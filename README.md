@@ -50,7 +50,7 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
 
 <p align="center">
     <a href="https://www.youtube.com/watch?v=7Tl0F6VSKjQ">
-        <img src="/readme-assets/video-image.jpg" width="600px">
+        <img src="/readme-assets/video-image.png" width="600px">
     </a>
 </p>
 
