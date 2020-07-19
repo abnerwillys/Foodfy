@@ -10,10 +10,6 @@
   🍕🍗  Projeto FoodFy - 🚀  Em produção!
 </h4>
 
-<h6 align="center">
-    
-</h6>
-
 <p align="center">
   <a href="https://www.linkedin.com/in/abnerwillys/">
     <img 
@@ -52,14 +48,11 @@
 
 O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi proposto como desafio durante o **Bootcamp LaunchBase** lecionado pela **Rocketseat**, com o intuito de colocar em prática todo o conhecimento adquirido. O projeto foi desenvolvido em diversas etapas conforme a evolução no curso.
 
-<h4 align="center"> 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7Tl0F6VSKjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</h4>
-
-
-
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=7Tl0F6VSKjQ">
+        <img src="/readme-assets/video-image.jpg" width="600px">
+    </a>
+</p>
 
 ---
 ### 📝 Etapas do projeto
@@ -201,46 +194,45 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ### 👨‍💻 Desenvolvedor
 
 <p align="center">
-<a href="https://blog.rocketseat.com.br/author/thiago/">
-    <img 
-        style="border-radius: 50%;" 
-        src="https://avatars0.githubusercontent.com/u/59853942?s=460&u=000274e39c7029e3c065fd9a6913c850907d4691&v=4" 
-        width="120px;" 
-        alt="Foto">
-    <br/>
-    <sub><b>Abner Willys  🚀</b></sub>
-</a>
-
+    <a href="https://blog.rocketseat.com.br/author/thiago/">
+        <img 
+            style="border-radius: 50%;" 
+            src="https://avatars0.githubusercontent.com/u/59853942?s=460&u=000274e39c7029e3c065fd9a6913c850907d4691&v=4" 
+            width="120px;" 
+            alt="Foto">
+        <br/>
+        <sub><b>Abner Willys  🚀</b></sub>
+    </a>
+</p>
 </br>
-</br>
-
 <h6 align="center">
     Feito com 💜 por Abner Willys 🙌 Entre em contato 😊🤓
 </h6>
 
 <p align="center">
-<a href="https://www.linkedin.com/in/abnerwillys/">
-    <img 
-        alt="Linkedin Abner Willys" 
-        src="https://img.shields.io/badge/-Abner%20Willys-%230077b5?style=flat-square&logo=linkedin">
-</a>
-<a href="https://twitter.com/AbnerStarkasty">
-    <img 
-        alt="twitter Abner Willys" 
-        src="https://img.shields.io/badge/-@abnerStarkasty-%231ca0f1?style=flat-square&logo=twitter&logoColor=white">
-</a>
-<a href="mailto:tgmarinho@gmail.com">
-    <img 
-        alt="gmail Abner Willys" 
-        src="https://img.shields.io/badge/-abwillys001@gmail.com-%23c14438?style=flat-square&logo=gmail&logoColor=white">
-</a>
-<a href="https://www.facebook.com/abnerwillys">
-    <img 
-        alt="facebook Abner Willys" 
-        src="https://img.shields.io/badge/-Abner%20Willys-%234267b2?style=flat-square&logo=facebook&logoColor=white">
-</a>
-<a href="https://bit.ly/3eC6MX5">
-    <img 
-        alt="whatsapp Abner Willys" 
-        src="https://img.shields.io/badge/-Abner%20Willys-%2325D366?style=flat-square&logo=whatsapp&logoColor=white">
-</a>
+    <a href="https://www.linkedin.com/in/abnerwillys/">
+        <img 
+            alt="Linkedin Abner Willys" 
+            src="https://img.shields.io/badge/-Abner%20Willys-%230077b5?style=flat-square&logo=linkedin">
+    </a>
+    <a href="https://twitter.com/AbnerStarkasty">
+        <img 
+            alt="twitter Abner Willys" 
+            src="https://img.shields.io/badge/-@abnerStarkasty-%231ca0f1?style=flat-square&logo=twitter&logoColor=white">
+    </a>
+    <a href="mailto:tgmarinho@gmail.com">
+        <img 
+            alt="gmail Abner Willys" 
+            src="https://img.shields.io/badge/-abwillys001@gmail.com-%23c14438?style=flat-square&logo=gmail&logoColor=white">
+    </a>
+    <a href="https://www.facebook.com/abnerwillys">
+        <img 
+            alt="facebook Abner Willys" 
+            src="https://img.shields.io/badge/-Abner%20Willys-%234267b2?style=flat-square&logo=facebook&logoColor=white">
+    </a>
+    <a href="https://bit.ly/3eC6MX5">
+        <img 
+            alt="whatsapp Abner Willys" 
+            src="https://img.shields.io/badge/-Abner%20Willys-%2325D366?style=flat-square&logo=whatsapp&logoColor=white">
+    </a>
+</p>
