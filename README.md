@@ -59,16 +59,16 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
 
  - [x] 💯 Construindo Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-02/blob/master/desafios/02-foodfy.md)
-    - [Solução]()
+    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/01-building)
  - [x] 💯 Refatorando Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-03/blob/master/desafios/03-refatorando-foodfy.md)
-    - [Solução]()
- - [ ] 👨‍💻 Admin Foodfy:
-    - [Instruções]()
-    - [Solução]()
+    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/02-refactoring)
+ - [ ] 👨‍💻 Administração do Foodfy:
+    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md)
+    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/03-admin)
  - [ ] 👨‍💻 Persistindo Dados do Foodfy:
-    - [Instruções]()
-    - [Solução]()
+    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md)
+    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/04-persisting-data)
  - [ ] 👨‍💻 Apresentação e Organização das Receitas no Foodfy:
     - [Instruções]()
     - [Solução]()
