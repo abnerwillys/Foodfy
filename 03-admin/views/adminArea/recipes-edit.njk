@@ -1,0 +1,40 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy - Admin | Editar receita</title>
+
+  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-form.css">
+{% endblock %}
+
+{% block content %}
+
+  <div id="recipe-create">
+    <div class="header-form">
+      <h1>Editando receita</h1>
+      
+      <div>
+        <form action="/admin/recipes?_method=DELETE" id="delete-recipe" method="POST">
+          <button type="submit">
+            <span class="material-icons">delete</span>
+            Deletar
+          </button>
+        </form>
+        <button type="submit" form="create-recipe">
+          <span class="material-icons">save</span>
+          Salvar receita
+        </button>
+      </div>
+    </div>
+
+    <form action="/admin/recipes?_method=PUT" id="create-recipe" method="POST">
+      
+      {% include './fields.njk' %}
+
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block script %}
+  <script src="/scripts/adminArea/addNewField.js"></script>
+{% endblock %}

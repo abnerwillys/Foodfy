@@ -1,0 +1,19 @@
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 0;
+}
+
+.error-404 img {
+  width: 40%;
+  border: 2px solid var(--color-background1);
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.error-404 h1 {
+  color: var(--color-text1);
+  font-size: 40px;
+  margin-bottom: 50px;
+}

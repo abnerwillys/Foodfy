@@ -1,16 +1,17 @@
-<!-- FoodFy -->
-
 {% extends 'layout.njk' %}
 
 {% block head %}
-    <title>Error 404 - FoodFy</title>
+  <title>Error 404 - FoodFy</title>
+
+  <link rel="stylesheet" href="/styles/page404.css">
+
 {% endblock %}
 
 {% block content %}
 
-    <div class="error-404">
-        <img src={{notFoundData.image}} alt="Error 404">
-        <h1>{{notFoundData.message}}</h1>
-    </div>
+  <div class="error-404">
+    <img src={{notFoundData.image}} alt="Error 404">
+    <h1>{{notFoundData.message}}</h1>
+  </div>
 
 {% endblock %}

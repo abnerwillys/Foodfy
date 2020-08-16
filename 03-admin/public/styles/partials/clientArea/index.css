@@ -1,0 +1,45 @@
+#introduction {
+  min-width: 940px;
+  height: 366px;
+  background-color: var(--color-background1);
+  border-radius: 30px;
+  margin: 20px 15vw 50px;
+  position: relative;
+}
+
+#introduction div {
+  width: 315px;
+  position: absolute;
+  left: 60px;
+  bottom: 117px;
+  text-align: justify;
+}
+
+#introduction h2 {
+  font-size: 32px;
+  line-height: 38px;
+  margin-bottom: 10px;
+}
+
+#introduction p {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+#introduction img {
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+}
+
+#more-acess {
+  min-width: 940px;
+  margin: 0 15vw 50px;
+}
+
+#more-acess h3 {
+  font-size: 24px;
+  line-height: 28px;
+}
