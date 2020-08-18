@@ -35,12 +35,12 @@
 ---
 
 <p align="center">
- <a href="#sobre">Sobre</a> •
- <a href="#etapas-do-projeto">Etapas do projeto</a> • 
- <a href="#tecnologias-utilizadas">Tecnologias</a> • 
- <a href="#como-baixar-o-projeto">Como baixar o projeto</a> • 
- <a href="#licença">Licença</a> • 
- <a href="#desenvolvedor">Desenvolvedor</a>
+ <a href="#-sobre">Sobre</a> •
+ <a href="#-etapas-do-projeto">Etapas do projeto</a> • 
+ <a href="#-tecnologias-utilizadas">Tecnologias</a> • 
+ <a href="#-como-baixar-o-projeto">Como baixar o projeto</a> • 
+ <a href="#-licença">Licença</a> • 
+ <a href="#-desenvolvedor">Desenvolvedor</a>
 </p>
 
 ---
@@ -63,7 +63,7 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
  - [x] 💯 Refatorando Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-03/blob/master/desafios/03-refatorando-foodfy.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/02-refactoring)
- - [ ] 👨‍💻 Administração do Foodfy:
+ - [x] 💯 Administração do Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/03-admin)
  - [ ] 👨‍💻 Persistindo Dados do Foodfy:
@@ -127,7 +127,7 @@ As seguintes ferramentas foram usadas na solução dos desafios:
         <img 
             src="/readme-assets/icon-express2.png" 
             alt="logo framework express"
-            width="100px">
+            width="85px">
     </a>
     <a href="https://git-scm.com/">
         <img 
@@ -223,7 +223,7 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
     <a href="mailto:tgmarinho@gmail.com">
         <img 
             alt="gmail Abner Willys" 
-            src="https://img.shields.io/badge/-abwillys001@gmail.com-%23c14438?style=flat-square&logo=gmail&logoColor=white">
+            src="https://img.shields.io/badge/Gmail-%23c14438?style=flat-square&logo=gmail&logoColor=white">
     </a>
     <a href="https://www.facebook.com/abnerwillys">
         <img 
