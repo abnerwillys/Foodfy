@@ -42,7 +42,7 @@ header {
 
   background-color: var(--color-background1);
   border-radius: 6px;
-  padding: 4px 6px;
+  padding: 4px 10px;
 
   justify-self: end;
   display: flex;

@@ -1,10 +1,9 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>FoodFy |
-    {{ item.title }}</title>
+  <title>FoodFy | {{ item.title }}</title>
 
-  <link rel="stylesheet" href="/styles/partials/clientArea/recipes.css">
+  <link rel="stylesheet" href="/styles/partials/recipes.css">
 {% endblock %}
 
 {% block content %}
@@ -14,8 +13,7 @@
 
     <div class="recipe-title">
       <h1>{{ item.title }}</h1>
-      <p>por
-        {{ item.author }}</p>
+      <p>por {{ item.author }}</p>
     </div>
 
     <div class="recipe-content">
@@ -55,4 +53,4 @@
 
 {% block script %}
   <script src="/scripts/clientArea/recipe-detail.js"></script>
-  {% endblock%}
+{% endblock%}

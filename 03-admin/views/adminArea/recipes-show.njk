@@ -3,7 +3,7 @@
 {% block head %}
   <title>FoodFy - Admin | {{ item.title }}</title>
 
-  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-show.css">
+  <link rel="stylesheet" href="/styles/partials/recipes.css">
 {% endblock %}
 
 {% block content %}
@@ -21,8 +21,7 @@
 
     <div class="recipe-title">
       <h1>{{ item.title }}</h1>
-      <p>por
-        {{ item.author }}</p>
+      <p>por {{ item.author }}</p>
     </div>
 
     <div class="recipe-content">

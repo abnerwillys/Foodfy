@@ -1,6 +1,8 @@
 #about-page {
-  margin: 0 15vw 50px;
-  min-width: 940px;
+  margin: 0 auto 50px;
+
+  width: 90vw;
+  max-width: 940px;
 }
 
 #about-page h3 {

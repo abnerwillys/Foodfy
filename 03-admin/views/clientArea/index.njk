@@ -9,15 +9,17 @@
 
 {% block content %}
 
-  <section id="introduction">
-    <div>
+  <section id="box-introduction">
+    <div class="text-container">
       <h2>As melhores receitas</h2>
       <p>
         Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.
       </p>
     </div>
 
-    <img src="assets/chef.png" alt="Chef">
+    <div class="image-container">
+      <img src="assets/chef.png" alt="Chef">
+    </div>
   </section>
 
   <section id="more-acess">
@@ -40,5 +42,5 @@
 {% endblock %}
 
 {% block script %}
-  <script src="/scripts/scripts.js"></script>
+  <script src="/scripts/clientArea/recipes.js"></script>
 {% endblock %}

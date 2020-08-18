@@ -21,6 +21,13 @@
 body {
   color: var(--color-text1);
   font-family: 'Roboto', sans-serif;
+
+  padding: 95px 0 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body,
@@ -39,6 +46,13 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1;
 }
 
 header .box-menu {

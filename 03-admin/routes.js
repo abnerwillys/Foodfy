@@ -12,15 +12,14 @@ routes
 .get('/recipes', clientArea.recipes)
 .get('/recipes/:index', clientArea.recipeDetail)
 
-.get("/admin/recipes", adminArea.index) // Mostrar a lista de receitas
-.get("/admin/recipes/create", adminArea.create) // Mostrar formulário de nova receita
-.get("/admin/recipes/:id", adminArea.show) // Exibir detalhes de uma receita
-.get("/admin/recipes/:id/edit", adminArea.edit) // Mostrar formulário de edição de receita
+.get("/admin/recipes", adminArea.index)
+.get("/admin/recipes/create", adminArea.create)
+.get("/admin/recipes/:id", adminArea.show)
+.get("/admin/recipes/:id/edit", adminArea.edit)
 
-.post("/admin/recipes", adminArea.post) // Cadastrar nova receita
-.put("/admin/recipes", adminArea.put) // Editar uma receita
-.delete("/admin/recipes", adminArea.delete) // Deletar uma receita
-
+.post("/admin/recipes", adminArea.post)
+.put("/admin/recipes", adminArea.put)
+.delete("/admin/recipes", adminArea.delete) 
 
 .use((req, res) => {
   res.status(404).render('not-found', { notFoundData })

@@ -47,6 +47,7 @@
           placeholder="Insira um ingrediente em cada campo" 
           required
         />
+        <span class="material-icons delete-field">delete</span>
       </div>
     {% else %}
       {% for ingredient in item.ingredients %}
@@ -55,9 +56,10 @@
             type="text"
             name="ingredients[]" 
             value="{{ingredient}}" 
-            placeholder="Insira um ingrediente em cada campo" 
+            placeholder="Insira um ingrediente em cada campo"   
             required
           />
+          <span class="material-icons delete-field">delete</span>
         </div>
       {% endfor %}
     {% endif %}
@@ -81,6 +83,7 @@
           placeholder="Insira um passo do preparo em cada campo" 
           required
         />
+        <span class="material-icons delete-field">delete</span>
       </div>
     {% else %}
       {% for step in item.preparation %}
@@ -92,14 +95,15 @@
             placeholder="Insira um passo do preparo em cada campo" 
             required
           />
+          <span class="material-icons delete-field">delete</span>
         </div>
       {% endfor %}
     {% endif %}
   </div>
   
   <div class="textarea-block">
-    <label for="extra-info">Informações adicionais</label>
-    <textarea name="extra-info" id="extra-info">{{item.information}}</textarea>
+    <label for="information">Informações adicionais</label>
+    <textarea name="information" id="information">{{item.information}}</textarea>
   </div>
 
 </fieldset>

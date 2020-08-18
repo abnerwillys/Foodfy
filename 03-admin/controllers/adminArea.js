@@ -1,17 +1,9 @@
-// const dataRecipes = require('../data-recipes.js')
 const fs = require('fs')
-const { recipes } = require('../data.json')
+const data = require('../data.json')
 const { notFoundData } = require('./page404')
 
-
-for (let recipe of recipes) {
-  if (!recipe.information) {
-    recipe.information = 'Sem informações adicionais.'
-  }
-}
-
 exports.index = (request, response) => {
-  return response.render('adminArea/recipes-manager', { items: recipes })
+  return response.render('adminArea/recipes-manager', { items: data.recipes })
 }
 
 exports.create = (request, response) => {
@@ -21,12 +13,12 @@ exports.create = (request, response) => {
 exports.show = (request, response) => {
   const recipeId = request.params.id
 
-  if (!recipes[recipeId]) {
+  if (!data.recipes[recipeId]) {
     return response.render('not-found', { notFoundData })
   }
 
   const chosenRecipe = {
-    ...recipes[recipeId],
+    ...data.recipes[recipeId],
     id: recipeId,
   }
 
@@ -36,12 +28,12 @@ exports.show = (request, response) => {
 exports.edit = (request, response) => {
   const recipeId = request.params.id
 
-  if (!recipes[recipeId]) {
+  if (!data.recipes[recipeId]) {
     return response.render('not-found', { notFoundData })
   }
 
   const chosenRecipe = {
-    ...recipes[recipeId],
+    ...data.recipes[recipeId],
     id: recipeId,
   }
 
@@ -49,15 +41,64 @@ exports.edit = (request, response) => {
 }
 
 exports.post = (request, response) => {
-  console.log(request.body)
+  
+  let { image, title, author, ingredients, preparation, information } = request.body
 
-  return response.send(request.body)
+  if (information == "" || !information) {
+    information = 'Sem informações adicionais.'
+  }
+
+  data.recipes.push({
+    image,
+    title,
+    author,
+    ingredients,
+    preparation,
+    information
+  })
+  
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+    if(err) return response.send('Write file error!')
+
+    return response.redirect('/admin/recipes')
+  })
 }
 
 exports.put = (request, response) => {
-  return response.send("Hi, that is the put's page")
+  let { id, image, title, author, ingredients, preparation, information } = request.body
+
+  if (information == "" || !information) {
+    information = 'Sem informações adicionais.'
+  }
+
+  data.recipes[id] = {
+    image,
+    title,
+    author,
+    ingredients,
+    preparation,
+    information
+  }
+
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+    if(err) return response.send('Write file error!')
+
+    return response.redirect(`/admin/recipes/${id}`)
+  })  
 }
 
 exports.delete = (request, response) => {
-  return response.send("Hi, that is the delete page")
+  const recipeId = request.body.id
+
+  const filteredRecipes = data.recipes.filter(recipe => {
+    return recipe != data.recipes[recipeId]
+  })
+
+  data.recipes = filteredRecipes
+
+  fs.writeFile("data.json", JSON.stringify(data, null, 2), (err) => {
+    if(err) return response.send('Error in delete recipe!')
+
+    return response.redirect('/admin/recipes')
+  })
 }

@@ -3,7 +3,7 @@
 {% block head %}
   <title>FoodFy | Receitas</title>
 
-  <link rel="stylesheet" href="/styles/partials/clientArea/recipes.css">
+  <link rel="stylesheet" href="/styles/partials/recipes.css">
   <link rel="stylesheet" href="/styles/partials/clientArea/cards.css">
 {% endblock %}
 
@@ -15,13 +15,6 @@
       {% for item in items %}
         <div class="card">
           <img src="{{ item.image }}" alt="Imagem de {{ item.title }}">
-          <p class="food-name">{{ item.title }}</p>
-          <p class="by-chef">{{ item.author }}</p>
-        </div>
-      {% endfor %}
-      {% for item in items %}
-        <div class="card">
-          <img src="{{ item.image }}" alt="{{ item.title }}">
           <p class="food-name">{{ item.title }}</p>
           <p class="by-chef">{{ item.author }}</p>
         </div>

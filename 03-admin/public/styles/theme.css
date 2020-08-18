@@ -23,8 +23,8 @@
   color: var(--color-mainText);
 }
 
-.dark-mode #introduction,
-.dark-mode #introduction p {
+.dark-mode #box-introduction,
+.dark-mode #box-introduction p {
   color: var(--color-alternativeText);
 }
 

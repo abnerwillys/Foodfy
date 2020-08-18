@@ -5,6 +5,10 @@
   margin-top: 20px;
 }
 
+.card {
+  padding: 3px;
+}
+
 .card img {
   width: 100%;
   height: 145px;
@@ -26,11 +30,12 @@
 }
 
 .card:hover {
-  padding: 3px;
   border-radius: 15px;
   background-color: rgba(251, 223, 219, 0.8);
-  transition: all 0.3s;
   text-align: center;
+  
   cursor: pointer;
+
+  transition: all 0.3s;
   transform: scale(1.05, 1.05);
 }

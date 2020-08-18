@@ -1,15 +1,8 @@
-const dataRecipes = require('../data-recipes.js')
+const data = require('../data.json')
 const { notFoundData } = require('./page404')
 
-
-for (let recipe of dataRecipes) {
-  if (!recipe.information) {
-    recipe.information = 'Sem informações adicionais.'
-  }
-}
-
 exports.index = (req, res) => {
-  return res.render('clientArea/index', { items: dataRecipes })
+  return res.render('clientArea/index', { items: data.recipes })
 }
 
 exports.about = (req, res) => { 
@@ -17,15 +10,15 @@ exports.about = (req, res) => {
 }
 
 exports.recipes = (req, res) => {
-  return res.render('clientArea/recipes', { items: dataRecipes })
+  return res.render('clientArea/recipes', { items: data.recipes })
 }
 
 exports.recipeDetail = (req, res) => {
   const recipeId = req.params.index
 
-  if (!dataRecipes[recipeId]) {
+  if (!data.recipes[recipeId]) {
     return res.render('not-found', { notFoundData })
   }
 
-  return res.render('clientArea/recipe-detail', { item: dataRecipes[recipeId] })
+  return res.render('clientArea/recipe-detail', { item: data.recipes[recipeId] })
 }
