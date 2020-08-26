@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block head %}
+      <title>FoodFy | Sua referência para matar a fome</title>
+    {% endblock %}
+
+    <link rel="shortcut icon" href="/assets/favicon.svg" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/theme.css">
+  </head>
+  <body class="">
+    <header class="">
+      <div class="box-menu">
+        {% block header %}
+          <a href="/">          
+            <img src="/assets/logo.png" alt="logo">          
+          </a>
+
+          <div class="menu">
+            <a href="/">
+              <span class="material-icons">home</span>
+            </a>
+            <a href="/about">Sobre</a>
+            <a href="/recipes">Receitas</a>
+            <a href="/chefs">Chefs</a>
+          </div>
+        {% endblock %}
+        <span class="material-icons change-theme">nights_stay</span>
+      </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+      <footer>
+        <p>Todos direitos reservados, receitas Foodfy.</p>
+      </footer>
+    {% endblock  %}
+
+    {% block script %}{% endblock %}
+    <script src="/scripts/theme.js"></script>
+    <script src="/scripts/menu.js"></script>
+
+  </body>
+</html>

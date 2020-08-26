@@ -1,0 +1,58 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy - Admin | {{ item.name }}</title>
+
+  <link rel="stylesheet" href="/styles/partials/adminArea/chefs-show.css">
+  <link rel="stylesheet" href="/styles/partials/adminArea/admin-cards.css">
+{% endblock %}
+
+{% block header %}
+  {% include './change-header.njk' %}
+{% endblock %}
+
+{% block content %}
+
+  <section id="chef-detail">
+    <div class="edit-chef">
+      <h2>Chef: Mudar Depois</h2>
+      <a href="/admin/chefs/{{chosenRecipe.id}}/edit">
+        <span class="material-icons">edit</span>
+        Editar chef
+      </a>
+    </div>
+
+    <img src="{{ item.image }}" alt="{{ item.name }}">
+
+    <div class="chef-title">
+      <h1>Nome do Chef</h1>
+      <p>4 receitas</p>
+    </div>
+
+    <div class="chef-recipes">
+      <h2>Receitas</h2>
+
+      <div class="cards">
+        {% for item in items %}
+          <div class="card">
+            <img src="{{ item.image }}" alt="Imagem de {{ item.title }}">
+            <p class="food-name">{{ item.title }}</p>
+            <p class="by-chef">por {{ item.author }}</p>
+            <div class="view-details">
+              <span class="material-icons">visibility</span>
+              Visualizar
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </section>
+
+{% endblock %}
+
+{% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/adminArea/pages-manager.js"></script>
+{% endblock %}

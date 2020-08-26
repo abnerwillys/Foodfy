@@ -1,0 +1,198 @@
+#recipe-create {
+  width: 90vw;
+  max-width: 940px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 150px;
+}
+
+#recipe-create .header-form {
+  width: 100%;
+  margin-top: 50px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#recipe-create .header-form h1 {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+#recipe-create .header-form > div {
+  display: flex;
+}
+
+#recipe-create .header-form button span {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+#recipe-create .header-form button[type="submit"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 4px;
+  background-color: var(--color-buttons1);
+  padding: 8px 16px;
+
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+
+  cursor: pointer;
+}
+
+#recipe-create .header-form button[type="submit"]:hover {
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+}
+
+#recipe-create .header-form #delete-recipe button {
+  margin-right: 10px;
+  background-color: var(--color-buttons2);
+}
+
+#recipe-form {
+  width: 100%;
+}
+
+#recipe-form .input-block,
+#recipe-form .textarea-block,
+#recipe-form #ingredients,
+#recipe-form #steps {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.input-block:focus-within::after,
+.textarea-block:focus-within::after,
+#steps .step:focus-within::after,
+#ingredients .ingredient:focus-within::after {
+  content: "";
+
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: var(--color-background1);
+
+  position: absolute;
+  top: 29px;
+  left: 0;
+  bottom: 0;
+}
+
+#steps .step:focus-within::after,
+#ingredients .ingredient:focus-within::after {
+  top: 0;
+}
+
+#recipe-form label {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 19px;
+  color: var(--color-text1);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+#recipe-form label button {
+  color: var(--color-buttons1);
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+#recipe-form label button span {
+  margin-right: 4px;
+}
+
+#recipe-form label button:hover {
+  transition: 0.2s;
+  transform: translateY(-3px);
+}
+
+#recipe-form input,
+#recipe-form textarea {
+  width: 100%;
+  height: 49px;
+
+  padding: 8px 10px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+#recipe-form input::placeholder {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-text3);
+}
+
+#recipe-form textarea {
+  height: 255px;
+  min-height: 49px;
+  max-height: 400px;
+  resize: vertical;
+}
+
+#recipe-form .ingredient + .ingredient,
+#recipe-form .step + .step {
+  margin-top: 8px;
+}
+
+#recipe-form .ingredient,
+#recipe-form .step {
+  position: relative;
+}
+
+#recipe-form .ingredient input,
+#recipe-form .step input {
+  padding-right: 48px;
+}
+
+#recipe-form .ingredient .delete-field,
+#recipe-form .step .delete-field {
+  position: absolute;
+  right: 8px;
+  top: 13px;
+
+  font-size: 20px;
+  color: red;
+
+  cursor: pointer;
+}
+
+#recipe-form .ingredient:nth-child(2) .delete-field,
+#recipe-form .step:nth-child(2) .delete-field {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#recipe-form .ingredient .delete-field:hover,
+#recipe-form .step .delete-field:hover {
+  transition: all 0.2s;
+  transform: scale(1.3, 1.3);
+}

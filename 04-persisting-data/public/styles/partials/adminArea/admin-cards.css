@@ -1,0 +1,82 @@
+.cards {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+
+  margin-top: 30px;
+}
+
+.card {
+  padding: 3px;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+  "image foodname"
+  "image   bychef"
+  "image  button";
+  column-gap: 20px;
+
+  align-items: center;
+}
+
+.card:hover {
+  border-radius: 8px;
+  background-color: rgba(251, 223, 219, 0.8);
+
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+}
+
+.card img {
+  width: 172px;
+  height: 80px;
+  grid-area: image;
+  border-radius: 8px;
+}
+
+.card .food-name {
+  grid-area: foodname;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--color-text1);
+}
+
+.card .by-chef {
+  grid-area: bychef;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--color-text2);
+}
+
+.card .view-details {
+  grid-area: button;
+  width: auto;
+  padding: 3px 6px;
+
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  
+  background-color: var(--color-background1);
+  border-radius: 8px;
+  border: 1px solid #fff;
+  color: var(--color-text4);
+  font-size: 14px;
+  font-style: italic;
+
+  cursor: pointer;
+}
+
+.card .view-details:hover {
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+}
+
+.card .view-details span {
+  margin-right: 4px;
+  font-size: 20px;
+}

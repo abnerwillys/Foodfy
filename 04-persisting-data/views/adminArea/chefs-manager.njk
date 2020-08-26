@@ -1,0 +1,46 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy - Admin | Gerenciador de Chefs</title>
+
+  <link rel="stylesheet" href="/styles/partials/adminArea/chefs-manager.css">
+{% endblock %}
+
+{% block header %}
+  {% include './change-header.njk' %}
+{% endblock %}
+
+{% block content %}
+
+  <section id="chef-manager">
+    
+    <div class="title">
+      <h1>Gerenciar chefs</h1>
+      <a href="/admin/chefs/create" class="new-chef">
+        <span class="material-icons">add</span>
+        Novo chef
+      </a>
+    </div>
+
+    <div class="cards">
+      {% for item in items %}
+        <div class="card">
+          <img src="{{ item.image }}" alt="Foto do chef {{ item.name }}">
+          <p class="chef-name">Mudar depois</p>
+          <div class="view-details">
+            <span class="material-icons">visibility</span>
+            Visualizar
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </section>
+
+{% endblock %}
+
+{% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/adminArea/pages-manager.js"></script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy | {{ item.title }}</title>
+
+  <link rel="stylesheet" href="/styles/partials/recipes.css">
+{% endblock %}
+
+{% block content %}
+
+  <section id="recipe-detail">
+    <img src="{{ item.image }}" alt="{{ item.title }}">
+
+    <div class="recipe-title">
+      <h1>{{ item.title }}</h1>
+      <p>por {{ item.author }}</p>
+    </div>
+
+    <div class="recipe-content">
+      <div class="subtitles">
+        <h3>Ingredientes</h3>
+        <a id="box1" class="button-hide">ESCONDER</a>
+      </div>
+      <ul id="box1" class="box">
+        {% for item in item.ingredients %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="recipe-content">
+      <div class="subtitles">
+        <h3>Modo de preparo</h3>
+        <a id="box2" class="button-hide">ESCONDER</a>
+      </div>
+      <ul id="box2" class="box">
+        {% for item in item.preparation %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="recipe-content">
+      <div class="subtitles">
+        <h3>Informações adicionais</h3>
+        <a id="box3" class="button-hide">ESCONDER</a>
+      </div>
+      <p id="box3" class="box">{{ item.information }}</p>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block script %}
+  <script src="/scripts/clientArea/recipe-detail.js"></script>
+{% endblock%}
