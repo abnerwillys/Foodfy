@@ -5,7 +5,7 @@
     <input 
       type="url" 
       name="image" 
-      value="{{item.image}}" 
+      value="{{recipe.image}}" 
       placeholder="http://"
       required
     />
@@ -15,18 +15,23 @@
     <input 
       type="text" 
       name="title" 
-      value="{{item.title}}" 
+      value="{{recipe.title}}" 
       required
     />
   </div>
-  <div class="input-block">
-    <label for="author">Nome do Chef</label>
-    <input 
-      type="text" 
-      name="author" 
-      value="{{item.author}}" 
-      required
-    />
+  <div class="select-block">
+    <label for="chef">Chef</label>
+    <select name="chef" required>
+      <option value="" hidden>Selecione um chef</option>
+      {% for chef in chefOptions %}
+        <option 
+          value="{{ chef.id }}"
+          {% if recipe.chef_id == chef.id %}selected{% endif %}
+        >
+          {{ chef.name }}
+        </option>
+      {% endfor %}
+    </select>
   </div>
 
   <div id="ingredients">
@@ -38,7 +43,7 @@
       </button>
     </label>
 
-    {% if not item.preparation %}
+    {% if not recipe.preparation %}
       <div class="ingredient">
         <input 
           type="text"
@@ -50,7 +55,7 @@
         <span class="material-icons delete-field">delete</span>
       </div>
     {% else %}
-      {% for ingredient in item.ingredients %}
+      {% for ingredient in recipe.ingredients %}
         <div class="ingredient">
           <input 
             type="text"
@@ -74,7 +79,7 @@
       </button>
     </label>
     
-    {% if not item.preparation %}
+    {% if not recipe.preparation %}
       <div class="step">
         <input 
           type="text"
@@ -86,7 +91,7 @@
         <span class="material-icons delete-field">delete</span>
       </div>
     {% else %}
-      {% for step in item.preparation %}
+      {% for step in recipe.preparation %}
         <div class="step">
           <input 
             type="text"
@@ -103,7 +108,7 @@
   
   <div class="textarea-block">
     <label for="information">Informações adicionais</label>
-    <textarea name="information" id="information">{{item.information}}</textarea>
+    <textarea name="information" id="information">{{recipe.information}}</textarea>
   </div>
 
 </fieldset>

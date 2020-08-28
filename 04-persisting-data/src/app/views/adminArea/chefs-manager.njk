@@ -3,7 +3,7 @@
 {% block head %}
   <title>FoodFy - Admin | Gerenciador de Chefs</title>
 
-  <link rel="stylesheet" href="/styles/partials/adminArea/chefs-manager.css">
+  <link rel="stylesheet" href="/styles/partials/chefs-list.css">
 {% endblock %}
 
 {% block header %}
@@ -12,7 +12,7 @@
 
 {% block content %}
 
-  <section id="chef-manager">
+  <section id="chef-list">
     
     <div class="title">
       <h1>Gerenciar chefs</h1>
@@ -23,14 +23,14 @@
     </div>
 
     <div class="cards">
-      {% for item in items %}
+      {% for chef in chefs %}
         <div class="card">
-          <img src="{{ item.image }}" alt="Foto do chef {{ item.name }}">
-          <p class="chef-name">Mudar depois</p>
-          <div class="view-details">
+          <span class="image-container" style="background-image: url({{ chef.avatar_url }})"></span>
+          <p class="chef-name">{{ chef.name }}</p>
+          <a class="view-details" href="/admin/chefs/{{ chef.id }}">
             <span class="material-icons">visibility</span>
             Visualizar
-          </div>
+          </a>
         </div>
       {% endfor %}
     </div>
@@ -40,7 +40,3 @@
 {% endblock %}
 
 {% block footer %}{% endblock  %}
-
-{% block script %}
-  <script src="/scripts/adminArea/pages-manager.js"></script>
-{% endblock %}

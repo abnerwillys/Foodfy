@@ -30,11 +30,14 @@
   transform: scale(1.05, 1.05);
 }
 
-.card img {
+.card .image-container {
   width: 172px;
-  height: 80px;
+  height: 90px;
   grid-area: image;
   border-radius: 8px;
+
+  background-position: center;
+  background-size: cover;
 }
 
 .card .food-name {

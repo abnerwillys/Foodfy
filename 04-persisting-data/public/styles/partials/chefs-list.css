@@ -1,29 +1,31 @@
-#chef-manager {
+#chef-list {
   width: 90vw;
   max-width: 940px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-bottom: 150px;
 }
 
-#chef-manager .title {
+#chef-list .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-  margin: 50px 0 30px;
+  margin: 50px 0 0;
 }
 
-#chef-manager .title h1 {
+#chef-list .title h1 {
   font-style: bold;
   font-size: 24px;
   color: var(--color-text1);
   line-height: 28px;
 }
 
-#chef-manager .new-chef {
+#chef-list .new-chef {
   width: auto;
   font-weight: bold;
   font-size: 14px;
@@ -41,25 +43,25 @@
   cursor: pointer;
 }
 
-#chef-manager .new-chef:hover {
+#chef-list .new-chef:hover {
   transition: all 0.2s;
   transform: scale(1.1, 1.1);
 }
 
-#chef-manager .new-chef .material-icons {
+#chef-list .new-chef .material-icons {
   margin-right: 4px;
 }
 
-#chef-manager .cards {
+#chef-list .cards {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px 15px;
 
-  margin-bottom: 80px;
+  margin-top: 30px;
 }
 
-#chef-manager .card {
+#chef-list .card {
   padding: 2px;
 
   display: grid;
@@ -72,7 +74,7 @@
   align-items: center;
 }
 
-#chef-manager .card:hover {
+#chef-list .card:hover {
   border-radius: 40px 8px 8px 40px;
   background-color: rgba(251, 223, 219, 0.8);
     
@@ -81,24 +83,27 @@
   transform: scale(1.05, 1.05);
 }
 
-#chef-manager .card img {
+.card .image-container {
   width: 64px;
   height: 64px;
   grid-area: image;
   border-radius: 50%;
+
+  background-position: center;
+  background-size: cover;
 }
 
-#chef-manager .card .chef-name {
+.card .chef-name {
   grid-area: chefname;
   font-size: 18px;
   line-height: 21px;
   color: var(--color-text1);
 }
 
-#chef-manager .card .view-details {
-  grid-area: button;
+.card .view-details {
   width: auto;
   padding: 3px 6px;
+  margin-bottom: 2px;
 
   justify-self: start;
   display: flex;
@@ -114,12 +119,50 @@
   cursor: pointer;
 }
 
-#chef-manager .card .view-details:hover {
+.card .view-details:hover {
   transition: all 0.2s;
   transform: scale(1.05, 1.05);
 }
 
-#chef-manager .card .view-details span {
+.card .view-details span {
   margin-right: 4px;
+  font-size: 20px;
+}
+
+/* == Page Chefs ClientArea == */
+
+.card .footer {
+  grid-area: button;
+
+  display: flex;
+  align-items: center;
+  
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.card .footer .view-details span {
+  margin-right: 0;
+}
+
+.card .footer .number-recipes {
+  width: auto;
+  padding: 3px 8px;
+  margin-left: 12px;
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-style: italic;
+
+  display: flex;
+  align-items: center;
+  
+  background-color: var(--color-background1);
+  border-radius: 8px;
+  border: 1px solid #fff;
+  color: var(--color-text4);
+}
+
+.card .footer .number-recipes span {
+  margin-left: 6px;
   font-size: 20px;
 }

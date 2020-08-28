@@ -21,15 +21,15 @@
       Nova receita
     </a>
 
-    {% for item in items %}
+    {% for recipe in recipes %}
       <div class="card">
-        <img src="{{ item.image }}" alt="Imagem de {{ item.title }}">
-        <p class="food-name">{{ item.title }}</p>
-        <p class="by-chef">por {{ item.author }}</p>
-        <div class="view-details">
+        <span class="image-container" style="background-image: url({{ recipe.image }})"></span>
+        <p class="food-name">{{ recipe.title }}</p>
+        <p class="by-chef">por {{ recipe.chef_name }}</p>
+        <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
           <span class="material-icons">visibility</span>
           Visualizar
-        </div>
+        </a>
       </div>
     {% endfor %}
 
@@ -38,7 +38,3 @@
 {% endblock %}
 
 {% block footer %}{% endblock  %}
-
-{% block script %}
-  <script src="/scripts/adminArea/pages-manager.js"></script>
-{% endblock %}

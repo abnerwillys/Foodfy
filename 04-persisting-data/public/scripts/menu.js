@@ -16,7 +16,7 @@ window.onload = () => {
   }
 }
 
-//Header change color when is in admin area
+//Header change when is in admin area
 if (url.includes("admin")) {
   const header = document.querySelector("header")
 

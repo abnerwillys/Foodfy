@@ -12,11 +12,11 @@
   <section id="recipe-page">
     <div class="cards">
 
-      {% for item in items %}
-        <div class="card">
-          <img src="{{ item.image }}" alt="Imagem de {{ item.title }}">
-          <p class="food-name">{{ item.title }}</p>
-          <p class="by-chef">{{ item.author }}</p>
+      {% for recipe in recipes %}
+        <div class="card" data-id={{recipe.id}}>
+          <div class="recipe-image" style="background-image: url({{ recipe.image }})"></div>
+          <p class="food-name">{{ recipe.title }}</p>
+          <p class="by-chef">por {{ recipe.chef_name }}</p>
         </div>
       {% endfor %}
 
@@ -26,5 +26,5 @@
 {% endblock %}
 
 {% block script %}
-  <script src="/scripts/clientArea/recipes.js"></script>
+  <script src="/scripts/clientArea/click-recipes.js"></script>
 {% endblock %}

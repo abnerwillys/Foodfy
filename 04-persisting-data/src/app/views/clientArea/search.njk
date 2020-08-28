@@ -1,0 +1,28 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy | Resultados para {{filter}}</title>
+
+  <link rel="stylesheet" href="/styles/partials/recipes.css">
+  <link rel="stylesheet" href="/styles/partials/clientArea/cards.css">
+{% endblock %}
+
+{% block content %}
+
+  <section id="recipe-page">
+    <h1>Buscando por "{{filter}}"</h1>
+
+    <div class="cards">
+
+      {% for recipe in recipes %}
+        <div class="card" data-id={{recipe.id}}>
+          <div class="recipe-image" style="background-image: url({{ recipe.image }})"></div>
+          <p class="food-name">{{ recipe.title }}</p>
+          <p class="by-chef">por {{ recipe.chef_name }}</p>
+        </div>
+      {% endfor %}
+
+    </div>
+  </section>
+
+{% endblock %}

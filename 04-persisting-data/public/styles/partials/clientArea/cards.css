@@ -9,11 +9,14 @@
   padding: 3px;
 }
 
-.card img {
+.card .recipe-image {
   width: 100%;
   height: 145px;
   border-radius: 15px;
   margin-bottom: 20px;
+
+  background-position: center;
+  background-size: cover;
 }
 
 .card .food-name {

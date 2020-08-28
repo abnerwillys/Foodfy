@@ -1,10 +1,10 @@
 const express = require('express')
 const routes  = express.Router()
 
-const { notFoundData } = require('./controllers/page404')
-const clientArea   = require('./controllers/clientArea')
-const adminRecipes = require('./controllers/adminRecipes')
-const adminChefs   = require('./controllers/adminChefs')
+const { notFoundData } = require('./lib/page404')
+const clientArea   = require('./app/controllers/clientArea')
+const adminRecipes = require('./app/controllers/adminRecipes')
+const adminChefs   = require('./app/controllers/adminChefs')
 
 //Routes
 routes
@@ -12,6 +12,10 @@ routes
 .get('/about', clientArea.about)
 .get('/recipes', clientArea.recipes)
 .get('/recipes/:index', clientArea.recipeDetail)
+.get('/chefs', clientArea.chefs)
+.get('/chefs/:index', clientArea.chefDetail)
+.get('/search/recipes', clientArea.search)
+
 
 .get("/admin/recipes", adminRecipes.index)
 .get("/admin/recipes/create", adminRecipes.create)
@@ -21,6 +25,7 @@ routes
 .post("/admin/recipes", adminRecipes.post)
 .put("/admin/recipes", adminRecipes.put)
 .delete("/admin/recipes", adminRecipes.delete)
+
 
 .get("/admin/chefs", adminChefs.index)
 .get("/admin/chefs/create", adminChefs.create)

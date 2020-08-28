@@ -64,6 +64,7 @@
 }
 
 #recipe-form .input-block,
+#recipe-form .select-block,
 #recipe-form .textarea-block,
 #recipe-form #ingredients,
 #recipe-form #steps {
@@ -76,6 +77,7 @@
 }
 
 .input-block:focus-within::after,
+.select-block:focus-within::after,
 .textarea-block:focus-within::after,
 #steps .step:focus-within::after,
 #ingredients .ingredient:focus-within::after {
@@ -134,6 +136,7 @@
 }
 
 #recipe-form input,
+#recipe-form select,
 #recipe-form textarea {
   width: 100%;
   height: 49px;

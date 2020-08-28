@@ -136,7 +136,7 @@ header.admin-area .menu a.active {
 footer {
   background-color: #EEEEEE;
   padding: 23px 0;
-  margin-top: 50px;
+  margin: auto auto 0;
 
   width: 100%;
 }
