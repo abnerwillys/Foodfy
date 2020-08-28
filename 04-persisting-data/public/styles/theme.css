@@ -1,5 +1,6 @@
 :root {
   --color-mainText: white;
+  --color-mainText-lighter: #eeeeee;
   --color-alternativeText: black;
   --color-theme: #FBDFDB;
 }
@@ -16,12 +17,18 @@
 .dark-mode,
 .dark-mode a,
 .dark-mode p,
-.dark-mode header .menu a,
 .dark-mode .error-404 h1,
 .dark-mode #recipe-manager h1,
-.dark-mode #recipe-manager .food-name,
-.dark-mode #create-recipe label {
+.dark-mode #chef-list h1,
+.dark-mode .food-name,
+.dark-mode .chef-name {
   color: var(--color-mainText);
+}
+
+.dark-mode #recipe-create label,
+.dark-mode #chef-create label,
+.dark-mode header .menu a {
+  color: var(--color-mainText-lighter);
 }
 
 .dark-mode #box-introduction,
@@ -32,16 +39,24 @@
 .dark-mode #about-page .text-history,
 .dark-mode .recipe-title p,
 .dark-mode .recipe-content li,
-.dark-mode .recipe-content p {
+.dark-mode .recipe-content p,
+.dark-mode #chef-detail .chef-title p {
   color: var(--color-mainText);
   opacity: 0.6;
 }
 
 .dark-mode .button-hide {
-  color: rgba(0, 0, 0, 0.6);
+  color: #000000;
 }
 
 .dark-mode header .menu a:hover,
 .dark-mode header .menu a.active {
-  border: 1.5px solid var(--color-theme);
+  font-weight: bold;
+  color: var(--color-mainText);
+  border-bottom: 1.5px solid var(--color-theme);
+}
+
+.dark-mode #chef-list .image-container,
+.dark-mode #chef-detail .avatar-container {
+  border: 1px solid var(--color-theme);
 }

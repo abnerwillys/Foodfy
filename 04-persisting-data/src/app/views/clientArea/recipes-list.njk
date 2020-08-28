@@ -5,11 +5,19 @@
 
   <link rel="stylesheet" href="/styles/partials/recipes.css">
   <link rel="stylesheet" href="/styles/partials/clientArea/cards.css">
+  <link rel="stylesheet" href="/styles/partials/pagination.css">
 {% endblock %}
 
 {% block content %}
 
   <section id="recipe-page">
+    <div 
+      class="pagination"
+      data-total="{{pagination.totalPages}}"
+      data-page="{{pagination.page}}"
+      data-filter="{{filter}}"
+    ></div>
+
     <div class="cards">
 
       {% for recipe in recipes %}
@@ -26,5 +34,6 @@
 {% endblock %}
 
 {% block script %}
+  <script src="/scripts/pagination.js"></script>
   <script src="/scripts/clientArea/click-recipes.js"></script>
 {% endblock %}

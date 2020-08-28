@@ -2,9 +2,38 @@ const Recipe = require('../models/Recipe')
 
 module.exports = {
   index(req, res) {
-    Recipe.all((recipes) => {
-      return res.render('adminArea/recipes-manager', { recipes })
-    })
+    let { filter, page, limit } = req.query
+
+    page  = page  || 1
+    limit = limit || 8
+    let offset = limit * (page - 1)
+
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(recipes) {
+        try {  
+          const pagination = {
+            totalPages: Math.ceil(recipes[0].total / limit),
+            page
+          }
+  
+          return res.render("adminArea/recipes-manager", { recipes, pagination, filter })
+
+        } catch (error) {
+          const message = "Nenhuma receita encontrada!"
+
+          if (error) {
+            console.log(error)
+            return res.render("adminArea/recipes-manager", { message })
+          }
+        }
+      }
+    }
+
+    Recipe.paginate(params)
   },
   create(req, res) {
     Recipe.chefSelectOptions(options => {

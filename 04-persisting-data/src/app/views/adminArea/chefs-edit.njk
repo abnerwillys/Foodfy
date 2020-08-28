@@ -17,7 +17,7 @@
       <h1>Editando chef</h1>
 
       <div>
-        <form action="/admin/chefs?_method=DELETE" id="delete-chef" method="POST">
+        <form action="/admin/chefs?_method=DELETE" id="delete-chef" method="POST" data-recipe="{{chef.number_recipes}}">
           <button type="submit" form="delete-chef">
             <span class="material-icons">delete</span>
             Deletar

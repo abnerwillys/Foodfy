@@ -39,6 +39,12 @@
   cursor: pointer;
 }
 
+#recipe-manager .pagination {
+  grid-column: 1 / span 2;
+
+  margin: 0 0 10px;
+}
+
 #recipe-manager .new-recipe:hover {
   transition: all 0.2s;
   transform: scale(1.1, 1.1);

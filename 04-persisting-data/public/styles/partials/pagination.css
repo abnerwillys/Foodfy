@@ -1,0 +1,32 @@
+.pagination {
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 20px 0 50px;
+}
+
+.pagination a,
+.pagination span {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 16px;
+
+  padding: 8px 16px;
+  background-color: var(--color-buttons1);
+  border-radius: 16px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.pagination a:hover {
+  transition: all 0.2s;
+  transform: scale(1.1, 1.1);
+}
+
+.pagination .selected {
+  box-shadow: 5px 5px 6px -2px rgba(0, 0, 0, 0.7);
+}

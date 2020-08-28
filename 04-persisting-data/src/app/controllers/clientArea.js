@@ -11,9 +11,38 @@ module.exports = {
     return res.render('clientArea/about')
   },
   recipes(req, res) {
-    Client.all("recipes", (recipes) => {
-      return res.render('clientArea/recipes-list', { recipes })
-    })
+    let { filter, page, limit } = req.query
+
+    page  = page  || 1
+    limit = limit || 9
+    let offset = limit * (page - 1)
+
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(recipes) {
+        try {  
+          const pagination = {
+            totalPages: Math.ceil(recipes[0].total / limit),
+            page
+          }
+  
+          return res.render("clientArea/recipes-list", { recipes, pagination, filter })
+
+        } catch (error) {
+          const message = "Nenhuma receita encontrada!"
+
+          if (error) {
+            console.log(error)
+            return res.render("clientArea/recipes-list", { message })
+          }
+        }
+      }
+    }
+
+    Client.paginate(params)
   },
   recipeDetail(req, res) {
     Client.find("recipes", req.params.index, (recipe) => {
@@ -39,11 +68,37 @@ module.exports = {
     })
   },
   search(req, res) {
-    const { filter } = req.query
+    let { filter, page, limit } = req.query
 
-    Client.findBy(filter, (recipes) => {
+    page  = page  || 1
+    limit = limit || 9
+    let offset = limit * (page - 1)
 
-      return res.render('clientArea/search', { recipes, filter })
-    })
+    const params = {
+      filter,
+      page,
+      limit,
+      offset,
+      callback(recipes) {
+        try {  
+          const pagination = {
+            totalPages: Math.ceil(recipes[0].total / limit),
+            page
+          }
+  
+          return res.render("clientArea/search", { recipes, pagination, filter })
+
+        } catch (error) {
+          const message = "Nenhuma receita encontrada!"
+
+          if (error) {
+            console.log(error)
+            return res.render("clientArea/search", { message, filter })
+          }
+        }
+      }
+    }
+
+    Client.paginate(params)
   },
 }

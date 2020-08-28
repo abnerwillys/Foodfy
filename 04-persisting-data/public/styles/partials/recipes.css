@@ -10,6 +10,18 @@
   line-height: 28px;
 }
 
+#recipe-page .message {
+  width: 100%;
+  margin-top: 80px;
+  text-align: center;
+}
+
+#recipe-page .message h2 {
+  color: var(--color-text3);
+  font-size: 20px;
+  font-weight: normal;
+}
+
 #recipe-detail {
   width: 90vw;
   max-width: 940px;

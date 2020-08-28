@@ -1,46 +1,45 @@
 <h1 align="center">
-    <img 
-        src="/readme-assets/chef.png"
-        width="200px"
-        alt="Logo do LaunchBase">
+  <img 
+    src="/readme-assets/chef.png"
+    width="200px"
+    alt="Logo do LaunchBase">
 </h1>
 
-
 <h4 align="center">
-  🍕🍗  Projeto FoodFy - 🚀  Em produção!
+  🍕🍗  FoodFy - 🚀  Em produção!
 </h4>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/abnerwillys/">
     <img 
-        alt="Made by Abner Willys" 
-        src="https://img.shields.io/badge/MADE%20BY-Abner%20Willys-%230077b5?style=flat-square&logo=linkedin">
+      alt="Made by Abner Willys" 
+      src="https://img.shields.io/badge/MADE%20BY-Abner%20Willys-%230077b5?style=flat-square&logo=linkedin">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%20brightgreen?style=flat-square&logo=">
 
   <a href="https://rocketseat.com.br/">
     <img 
-        alt="Instituição de Ensino" 
-        src="https://img.shields.io/badge/-Rocketseat-%237159c1?style=flat-square&logo=apache-rocketMQ&logoColor=White">
+      alt="Instituição de Ensino" 
+      src="https://img.shields.io/badge/-Rocketseat-%237159c1?style=flat-square&logo=apache-rocketMQ&logoColor=White">
   </a>
 
   <a href="https://www.javascript.com/">
     <img 
-        alt="JavaScript" 
-        src="https://img.shields.io/badge/STACK-JavaScript-%23F7DF1E?style=flat-square&logo=JAVASCRIPT">
+      alt="JavaScript" 
+      src="https://img.shields.io/badge/STACK-JavaScript-%23F7DF1E?style=flat-square&logo=JAVASCRIPT">
   </a>
 </p>
 
 ---
 
 <p align="center">
- <a href="#-sobre">Sobre</a> •
- <a href="#-etapas-do-projeto">Etapas do projeto</a> • 
- <a href="#-tecnologias-utilizadas">Tecnologias</a> • 
- <a href="#-como-baixar-o-projeto">Como baixar o projeto</a> • 
- <a href="#-licença">Licença</a> • 
- <a href="#-desenvolvedor">Desenvolvedor</a>
+  <a href="#-sobre">Sobre</a> •
+  <a href="#-etapas-do-projeto">Etapas do projeto</a> • 
+  <a href="#-tecnologias-utilizadas">Tecnologias</a> • 
+  <a href="#-como-baixar-o-projeto">Como baixar o projeto</a> • 
+  <a href="#-licença">Licença</a> • 
+  <a href="#-desenvolvedor">Desenvolvedor</a>
 </p>
 
 ---
@@ -66,7 +65,7 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
  - [x] 💯 Administração do Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/03-admin)
- - [ ] 👨‍💻 Persistindo Dados do Foodfy:
+ - [x] 💯 Persistindo Dados do Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/04-persisting-data)
  - [ ] 👨‍💻 Apresentação e Organização das Receitas no Foodfy:
@@ -116,6 +115,13 @@ As seguintes ferramentas foram usadas na solução dos desafios:
             width="50px"
             style="border-radius: 8px;">
     </a>
+    <a href="https://mozilla.github.io/nunjucks/">
+        <img 
+            src="/readme-assets/icon-nunjucks.svg" 
+            alt="logo HTML5"
+            width="52px"
+            style="border-radius: 8px;">
+    </a>
     <a href="https://nodejs.org/en/">
         <img 
             src="/readme-assets/icon-nodejs.svg" 
@@ -135,6 +141,12 @@ As seguintes ferramentas foram usadas na solução dos desafios:
             alt="logo git"
             width="50px">
     </a>
+    <a href="https://github.com/">
+        <img 
+            src="/readme-assets/icon-gitHub2.svg" 
+            alt="logo git"
+            width="50px">
+    </a>
     <a href="https://www.postgresql.org/">
         <img 
             src="/readme-assets/icon-postgresql.svg" 
@@ -144,6 +156,12 @@ As seguintes ferramentas foram usadas na solução dos desafios:
     <a href="https://www.figma.com/">
         <img 
             src="/readme-assets/icon-figma.svg" 
+            alt="logo Figma"
+            width="50px">
+    </a>
+    <a href="https://code.visualstudio.com/">
+        <img 
+            src="/readme-assets/icon-vscode.svg" 
             alt="logo Figma"
             width="50px">
     </a>

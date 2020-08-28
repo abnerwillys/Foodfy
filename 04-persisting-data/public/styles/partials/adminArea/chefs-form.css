@@ -78,10 +78,10 @@
 
   width: 4px;
   border-radius: 4px 0 0 4px;
-  background: var(--color-background1);
+  background: var(--color-buttons1);
 
   position: absolute;
-  top: 29px;
+  top: 28.5px;
   left: 0;
   bottom: 0;
 }

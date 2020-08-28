@@ -5,6 +5,7 @@
 
   <link rel="stylesheet" href="/styles/partials/adminArea/recipes-manager.css">
   <link rel="stylesheet" href="/styles/partials/adminArea/admin-cards.css">
+  <link rel="stylesheet" href="/styles/partials/pagination.css">
 {% endblock %}
 
 {% block header %}
@@ -20,6 +21,13 @@
       <span class="material-icons">add</span>
       Nova receita
     </a>
+
+    <div 
+      class="pagination"
+      data-total="{{pagination.totalPages}}"
+      data-page="{{pagination.page}}"
+      data-filter="{{filter}}"
+    ></div>
 
     {% for recipe in recipes %}
       <div class="card">
@@ -38,3 +46,7 @@
 {% endblock %}
 
 {% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/pagination.js"></script>
+{% endblock %}

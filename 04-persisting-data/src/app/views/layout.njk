@@ -31,6 +31,19 @@
             <a href="/recipes">Receitas</a>
             <a href="/chefs">Chefs</a>
           </div>
+
+          <form action="/search/recipes" method="GET">
+            <div class="input-block">
+              <input 
+                type="text" 
+                name="filter" 
+                value="{{filter}}"
+                placeholder="Buscar uma receita"
+              >
+            </div>
+
+            <button type="submit"><span class="material-icons">search</span></button>
+          </form>
         {% endblock %}
         <span class="material-icons change-theme">nights_stay</span>
       </div>

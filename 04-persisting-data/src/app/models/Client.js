@@ -80,5 +80,41 @@ module.exports = {
       callback(results.rows)
     })
   },
-  paginate() {}
+  paginate(params) {
+    const { filter, limit, offset, callback } = params
+
+    let query = "", 
+        filterQuery = "",
+        subQuery = `(
+          SELECT count(*) 
+          FROM recipes
+        ) AS total`
+
+    if (filter) {
+      filterQuery = `
+        WHERE recipes.title ILIKE '%${filter}%'
+      `
+
+      subQuery = `(
+        SELECT count(*) 
+        FROM recipes
+        ${filterQuery}
+      ) AS total`
+    }
+    
+    query = `
+      SELECT recipes.*, ${subQuery}, chefs.name AS chef_name
+      FROM recipes
+      LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+      ${filterQuery}
+      ORDER BY recipes.title ASC
+      LIMIT $1 OFFSET $2
+    `
+
+    db.query(query, [limit, offset], (err, results) => {
+      if (err) throw `Database error! ${err}`
+
+      callback(results.rows)
+    })
+  }
 }
