@@ -1,0 +1,47 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy | Resultados para {{filter}}</title>
+
+  <link rel="stylesheet" href="/styles/partials/recipes.css">
+  <link rel="stylesheet" href="/styles/partials/pagination.css">
+  <link rel="stylesheet" href="/styles/partials/clientArea/cards.css">
+{% endblock %}
+
+{% block content %}
+
+  <section id="recipe-page">
+    <h1>Buscando por "{{filter}}"</h1>
+
+    <div 
+      class="pagination"
+      data-total="{{pagination.totalPages}}"
+      data-page="{{pagination.page}}"
+      data-filter="{{filter}}"
+    ></div>
+
+    {% if not message %}
+      <div class="cards">
+
+        {% for recipe in recipes %}
+          <div class="card" data-id={{recipe.id}}>
+            <div class="recipe-image" style="background-image: url({{ recipe.image }})"></div>
+            <p class="food-name">{{ recipe.title }}</p>
+            <p class="by-chef">por {{ recipe.chef_name }}</p>
+          </div>
+        {% endfor %}
+
+      </div>
+    {% else %}
+      <div class="message">
+        <h2>{{ message }}</h2>
+      </div>
+    {% endif %}
+  </section>
+
+{% endblock %}
+
+{% block script %}
+  <script src="/scripts/pagination.js"></script>
+  <script src="/scripts/clientArea/click-recipes.js"></script>
+{% endblock %}

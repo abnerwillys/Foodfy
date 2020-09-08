@@ -1,0 +1,48 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy | Chefs</title>
+
+  <link rel="stylesheet" href="/styles/partials/chefs-list.css">
+{% endblock %}
+
+{% block header %}
+  <a href="/">          
+    <img src="/assets/logo.png" alt="logo">          
+  </a>
+
+  <div class="menu">
+    <a href="/">
+      <span class="material-icons">home</span>
+    </a>
+    <a href="/about">Sobre</a>
+    <a href="/recipes">Receitas</a>
+    <a href="/chefs">Chefs</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+  <section id="chef-list">
+    
+    <div class="cards">
+      {% for chef in chefs %}
+        <div class="card">
+          <span class="image-container" style="background-image: url({{ chef.avatar_url }})"></span>
+          <p class="chef-name">{{ chef.name }}</p>
+          <div class="footer">
+            <a class="view-details" href="/chefs/{{ chef.id }}">
+              <span class="material-icons">visibility</span>
+            </a>
+            <div class="number-recipes">
+              {{ chef.number_recipes }}
+              <span class="material-icons">receipt</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </section>
+
+{% endblock %}

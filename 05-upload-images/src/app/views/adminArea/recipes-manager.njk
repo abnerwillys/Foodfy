@@ -1,0 +1,52 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy - Admin | Gerenciador de receitas</title>
+
+  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-manager.css">
+  <link rel="stylesheet" href="/styles/partials/adminArea/admin-cards.css">
+  <link rel="stylesheet" href="/styles/partials/pagination.css">
+{% endblock %}
+
+{% block header %}
+  {% include './change-header.njk' %}
+{% endblock %}
+
+{% block content %}
+
+  <section id="recipe-manager">
+    
+    <h1>Gerenciar receitas</h1>
+    <a href="/admin/recipes/create" class="new-recipe">
+      <span class="material-icons">add</span>
+      Nova receita
+    </a>
+
+    <div 
+      class="pagination"
+      data-total="{{pagination.totalPages}}"
+      data-page="{{pagination.page}}"
+      data-filter="{{filter}}"
+    ></div>
+
+    {% for recipe in recipes %}
+      <div class="card">
+        <span class="image-container" style="background-image: url({{ recipe.image }})"></span>
+        <p class="food-name">{{ recipe.title }}</p>
+        <p class="by-chef">por {{ recipe.chef_name }}</p>
+        <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
+          <span class="material-icons">visibility</span>
+          Visualizar
+        </a>
+      </div>
+    {% endfor %}
+
+  </section>
+
+{% endblock %}
+
+{% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/pagination.js"></script>
+{% endblock %}

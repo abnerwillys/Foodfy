@@ -1,0 +1,52 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy - Admin | Editar chef</title>
+
+  <link rel="stylesheet" href="/styles/partials/adminArea/chefs-form.css">
+{% endblock %}
+
+{% block header %}
+  {% include './change-header.njk' %}
+{% endblock %}
+
+{% block content %}
+
+  <div id="chef-create">
+    <div class="header-form">
+      <h1>Editando chef</h1>
+
+      <div>
+        <form action="/admin/chefs?_method=DELETE" id="delete-chef" method="POST" data-recipe="{{chef.number_recipes}}">
+          <button type="submit" form="delete-chef">
+            <span class="material-icons">delete</span>
+            Deletar
+          </button>
+          <input type="hidden" name="id" value="{{chef.id}}">
+        </form>
+        <button type="submit" form="chef-form">
+          <span class="material-icons">save</span>
+          Salvar chef
+        </button>
+      </div>
+    </div>
+
+    <form action="/admin/chefs?_method=PUT" id="chef-form" method="POST">
+      
+      {% include './chefs-fields.njk' %}
+
+      <input 
+        type="hidden" 
+        name="id" 
+        value="{{ chef.id }}"
+      >
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/adminArea/alert-delete.js"></script>
+{% endblock %}

@@ -1,0 +1,114 @@
+<fieldset>
+
+  <div class="input-block">
+    <label for="image">Imagem da receita</label>
+    <input 
+      type="url" 
+      name="image" 
+      value="{{recipe.image}}" 
+      placeholder="http://"
+      required
+    />
+  </div>
+  <div class="input-block">
+    <label for="title">Nome da receita</label>
+    <input 
+      type="text" 
+      name="title" 
+      value="{{recipe.title}}" 
+      required
+    />
+  </div>
+  <div class="select-block">
+    <label for="chef">Chef</label>
+    <select name="chef" required>
+      <option value="" hidden>Selecione um chef</option>
+      {% for chef in chefOptions %}
+        <option 
+          value="{{ chef.id }}"
+          {% if recipe.chef_id == chef.id %}selected{% endif %}
+        >
+          {{ chef.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div id="ingredients">
+    <label for="ingredients">
+      Ingredientes
+      <button type="button" class="add-ingredient">
+        <span class="material-icons">add</span>
+        Adicionar novo ingrediente
+      </button>
+    </label>
+
+    {% if not recipe.preparation %}
+      <div class="ingredient">
+        <input 
+          type="text"
+          name="ingredients[]" 
+          value="{{ingredient}}" 
+          placeholder="Insira um ingrediente em cada campo" 
+          required
+        />
+        <span class="material-icons delete-field">delete</span>
+      </div>
+    {% else %}
+      {% for ingredient in recipe.ingredients %}
+        <div class="ingredient">
+          <input 
+            type="text"
+            name="ingredients[]" 
+            value="{{ingredient}}" 
+            placeholder="Insira um ingrediente em cada campo"   
+            required
+          />
+          <span class="material-icons delete-field">delete</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div id="steps">
+    <label for="preparation">
+      Modo de preparo
+      <button type="button" class="add-step">
+        <span class="material-icons">add</span>
+        Adicionar novo passo
+      </button>
+    </label>
+    
+    {% if not recipe.preparation %}
+      <div class="step">
+        <input 
+          type="text"
+          name="preparation[]" 
+          value="{{step}}" 
+          placeholder="Insira um passo do preparo em cada campo" 
+          required
+        />
+        <span class="material-icons delete-field">delete</span>
+      </div>
+    {% else %}
+      {% for step in recipe.preparation %}
+        <div class="step">
+          <input 
+            type="text"
+            name="preparation[]" 
+            value="{{step}}" 
+            placeholder="Insira um passo do preparo em cada campo" 
+            required
+          />
+          <span class="material-icons delete-field">delete</span>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  
+  <div class="textarea-block">
+    <label for="information">Informações adicionais</label>
+    <textarea name="information" id="information">{{recipe.information}}</textarea>
+  </div>
+
+</fieldset>

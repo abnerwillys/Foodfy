@@ -1,0 +1,41 @@
+body {
+  padding: 95px 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 0;
+}
+
+.error-404 img {
+  width: 60%;
+  border: 2px solid var(--color-background1);
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.error-404 h1 {
+  color: var(--color-text1);
+  font-size: 40px;
+  margin-bottom:  px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

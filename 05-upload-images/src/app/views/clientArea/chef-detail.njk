@@ -1,0 +1,42 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy | {{ chef.name }}</title>
+
+  <link rel="stylesheet" href="/styles/partials/chefs-detail.css">
+  <link rel="stylesheet" href="/styles/partials/clientArea/cards.css">
+{% endblock %}
+
+{% block content %}
+
+  <section id="chef-detail">
+    <span class="avatar-container" style="background-image: url({{ chef.avatar_url }})"></span>
+
+    <div class="chef-title">
+      <h1>{{ chef.name }}</h1>
+      <p>{{ chef.number_recipes }} receita(s)</p>
+    </div>
+
+    <div class="chef-recipes">
+      <h2>Receitas</h2>
+
+      <div class="cards">
+
+      {% for recipe in recipes %}
+        <div class="card" data-id={{recipe.id}}>
+          <div class="recipe-image" style="background-image: url({{ recipe.image }})"></div>
+          <p class="food-name">{{ recipe.title }}</p>
+          <p class="by-chef">por {{ recipe.chef_name }}</p>
+        </div>
+      {% endfor %}
+
+    </div>
+    </div>
+
+  </section>
+
+{% endblock %}
+
+{% block script %}
+  <script src="/scripts/clientArea/click-recipes.js"></script>
+{% endblock %}

@@ -1,0 +1,168 @@
+#chef-list {
+  width: 90vw;
+  max-width: 940px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 150px;
+}
+
+#chef-list .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  margin: 50px 0 0;
+}
+
+#chef-list .title h1 {
+  font-style: bold;
+  font-size: 24px;
+  color: var(--color-text1);
+  line-height: 28px;
+}
+
+#chef-list .new-chef {
+  width: auto;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-text4);
+
+  background-color: var(--color-background1);
+  border-radius: 6px;
+  padding: 4px 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+#chef-list .new-chef:hover {
+  transition: all 0.2s;
+  transform: scale(1.1, 1.1);
+}
+
+#chef-list .new-chef .material-icons {
+  margin-right: 4px;
+}
+
+#chef-list .cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px 15px;
+
+  margin-top: 30px;
+}
+
+#chef-list .card {
+  padding: 2px;
+
+  display: grid;
+  grid-template: 1fr auto / auto 1fr;
+  grid-template-areas:
+  "image chefname"
+  "image  button";
+  column-gap: 20px;
+
+  align-items: center;
+}
+
+#chef-list .card:hover {
+  border-radius: 40px 8px 8px 40px;
+  background-color: rgba(251, 223, 219, 0.8);
+    
+  transition-duration: 0.2s;
+  transition-property: transform, background;
+  transform: scale(1.05, 1.05);
+}
+
+.card .image-container {
+  width: 64px;
+  height: 64px;
+  grid-area: image;
+  border-radius: 50%;
+
+  background-position: center;
+  background-size: cover;
+}
+
+.card .chef-name {
+  grid-area: chefname;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--color-text1);
+}
+
+.card .view-details {
+  width: auto;
+  padding: 3px 6px;
+  margin-bottom: 2px;
+
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  
+  background-color: var(--color-background1);
+  border-radius: 8px;
+  border: 1px solid #fff;
+  color: var(--color-text4);
+  font-size: 14px;
+  font-style: italic;
+
+  cursor: pointer;
+}
+
+.card .view-details:hover {
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+}
+
+.card .view-details span {
+  margin-right: 4px;
+  font-size: 20px;
+}
+
+/* == Page Chefs ClientArea == */
+
+.card .footer {
+  grid-area: button;
+
+  display: flex;
+  align-items: center;
+  
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.card .footer .view-details span {
+  margin-right: 0;
+}
+
+.card .footer .number-recipes {
+  width: auto;
+  padding: 3px 8px;
+  margin-left: 12px;
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-style: italic;
+
+  display: flex;
+  align-items: center;
+  
+  background-color: var(--color-background1);
+  border-radius: 8px;
+  border: 1px solid #fff;
+  color: var(--color-text4);
+}
+
+.card .footer .number-recipes span {
+  margin-left: 6px;
+  font-size: 20px;
+}

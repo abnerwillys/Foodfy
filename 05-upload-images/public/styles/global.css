@@ -1,0 +1,218 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap";
+
+:root {
+  --color-text1: #111111;
+  --color-text2: #777777;
+  --color-text3: #999999;
+  --color-text4: #444444;
+  --color-background1: #FBDFDB;
+  --color-buttons1: #6558C3;
+  --color-buttons2: #DC4747;
+  --color-border-input: #DDDDDD;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  color: var(--color-text1);
+  font-family: 'Roboto', sans-serif;
+
+  padding: 95px 0 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body,
+input,
+button,
+textarea {
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-text1);
+}
+
+/* == Header == */
+header {
+  height: 95px;
+  padding: 30px 0;
+  background-color: var(--color-background1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1;
+}
+
+header .box-menu {
+  width: 90vw;
+  max-width: 940px;
+
+  display: grid;
+  grid-template-columns: 200px 1fr auto 40px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+header .box-menu > a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+header .menu {
+  display: flex;
+  align-items: center;
+}
+
+header .menu a {
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--color-text1);
+  margin-right: 30px;
+
+  padding: 1px 6px;
+  border-bottom: 0px solid var(--color-text1);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header .menu a:hover,
+header .menu a.active {
+  border-width: 1.5px;
+  border-radius: 7px;
+  transform: scale(1.1, 1.1);
+  transition: all 0.2s;
+}
+
+header .box-menu form {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  align-items: center;
+  column-gap: 8px;
+
+  height: 37px;
+  margin-right: 16px;
+}
+
+header .box-menu form input {
+  border: 1px solid var(--color-border-input);
+  border-radius: 4px;
+  padding: 4px 8px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+
+  outline: none;
+}
+
+header .box-menu form input::placeholder {
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--color-text3);
+}
+
+header .box-menu form .input-block {
+  position: relative;
+  height: 100%;
+  width: 246px;
+}
+
+header .box-menu form .input-block:focus-within::after {
+  content: "";
+
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: var(--color-buttons1);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+header .box-menu form button {
+  margin: 0;
+  border-radius: 4px;
+  background-color: var(--color-buttons1);
+
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+header .box-menu form button:hover {
+  transform: scale(1.1, 1.1);
+  transition: all 0.2s;
+}
+
+header .box-menu form button span {
+  color: #fff;
+  font-size: 20px;
+}
+
+header .change-theme {
+  justify-self: end;
+  cursor: pointer;
+}
+
+header .change-theme:hover {
+  transform: scale(1.1, 1.1);
+  transition: all 0.2s;
+}
+
+/* == Header admin == */
+header.admin-area {
+  background-color: var(--color-text1);
+} 
+
+header.admin-area .box-menu {
+  grid-template-columns: 140px 1fr 40px;
+}
+
+header.admin-area .box-menu,
+header.admin-area .box-menu a{
+  color: #fff;
+  text-transform: uppercase;
+}
+
+header.admin-area .menu a {
+  border-color: #fff;
+  color: var(--color-text3);
+}
+
+header.admin-area .menu a.active {
+  color: #fff;
+}
+
+/* == Footer == */
+footer {
+  background-color: #EEEEEE;
+  padding: 23px 0;
+  margin: auto auto 0;
+
+  width: 100%;
+}
+
+footer p {
+  font-size: 14px;
+  color: var(--color-text3);
+  text-align: center;
+}
