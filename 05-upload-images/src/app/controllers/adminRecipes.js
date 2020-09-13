@@ -64,7 +64,18 @@ module.exports = {
         path: file.path.replace(/\\/g, "/" )
       })
     })
-    await Promise.all(filesPromise)
+
+    results = await Promise.all(filesPromise)
+
+    console.log(results)
+
+    const recipeFilesPromise = results.map(result => {
+      let fileId = result.rows[0].id
+
+      RecipeFile.create(recipeId, fileId)
+    })
+
+    await Promise.all(recipeFilesPromise)
 
     return res.redirect(`/admin/recipes/${recipeId}`)
   }, //ok
