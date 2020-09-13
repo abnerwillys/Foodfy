@@ -1,7 +1,7 @@
 const PhotosUpload = {
   input: "",
   preview: document.querySelector('#photos-preview'),
-  uploadLimit: 6,
+  uploadLimit: 5,
   files: [],
   handleFileInput(event) {
     const { files: fileList } = event.target
@@ -19,7 +19,7 @@ const PhotosUpload = {
         image.src   = String(reader.result)
         
         const div = PhotosUpload.getContainer(image)
-        PhotosUpload.preview.appendChild(div)        
+        PhotosUpload.preview.appendChild(div)
       }
 
       reader.readAsDataURL(file)
@@ -32,7 +32,7 @@ const PhotosUpload = {
     const { files: fileList } = input
 
     if (fileList.length > uploadLimit) {
-      alert(`Envie no máximo ${uploadLimit} Fotos`)
+      alert(`Por favor, envie no máximo ${uploadLimit} fotos!`)
       event.preventDefault()
       return true
     }
@@ -65,32 +65,32 @@ const PhotosUpload = {
     const div = document.createElement('div')
     div.classList.add('photo')
 
-    div.onclick = PhotosUpload.removePhoto
-
     div.appendChild(image)
-
+    
     div.appendChild(PhotosUpload.getRemoveButton())
+
+    div.onclick = PhotosUpload.removePhoto
 
     return div
   },
   getRemoveButton() {
     const button = document.createElement('i')
     button.classList.add('material-icons')
-    button.innerHTML = "delete"
+    button.innerHTML = "close"
     return button
   },
   removePhoto(event) {
-    const photoDiv    = event.target.parentNode // <div class="photo">
-    const photosArray = Array.from(PhotosUpload.preview.children) //Make an Array with all divs .photos
-    const index = photosArray.indexOf(photoDiv) //Find in array what photo will be deleted
+    const photoDiv    = event.target.parentNode
+    const photosArray = Array.from(PhotosUpload.preview.children)
+    const index = photosArray.indexOf(photoDiv)
 
-    PhotosUpload.files.splice(index, 1) //splice remove an item from an array on the index informated. The second parameter is how many elements/index we'll remove starting after the index.
+    PhotosUpload.files.splice(index, 1)
     PhotosUpload.input.files = PhotosUpload.getAllFiles()
 
     photoDiv.remove()
   },
   removeOldPhoto(event) {
-    const photoDiv    = event.target.parentNode
+    const photoDiv = event.target.parentNode
 
     if (photoDiv.id) {
       const removedFiles = document.querySelector('input[name="removed_files"]')
