@@ -1,5 +1,6 @@
 const express = require('express')
 const routes  = express.Router()
+const multerChef = require('./app/middlewares/multerChef')
 
 const { notFoundData } = require('./lib/page404')
 const clientArea   = require('./app/controllers/clientArea')
@@ -33,8 +34,8 @@ routes
 .get("/admin/chefs/:id/edit", adminChefs.edit)
 .get("/admin/chefs/:id/:index", adminChefs.redirect)
 
-.post("/admin/chefs", adminChefs.post)
-.put("/admin/chefs", adminChefs.put)
+.post("/admin/chefs", multerChef.single("photo_chef"), adminChefs.post)
+.put("/admin/chefs", multerChef.single("photo_chef"), adminChefs.put)
 .delete("/admin/chefs", adminChefs.delete)
 
 .use((req, res) => {

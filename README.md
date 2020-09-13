@@ -68,7 +68,7 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
  - [x] 💯 Persistindo Dados do Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/04-persisting-data)
- - [ ] 👨‍💻 Upload de Imagens no Foodfy:
+ - [x] 💯 Upload de Imagens no Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-07/blob/master/desafios/07-foodfy-envio-imagens.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/05-upload-images)
  - [ ] 👨‍💻 Apresentação e Organização das Receitas no Foodfy:

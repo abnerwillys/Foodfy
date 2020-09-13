@@ -89,8 +89,8 @@
   grid-area: image;
   border-radius: 50%;
 
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .card .chef-name {
@@ -165,4 +165,14 @@
 .card .footer .number-recipes span {
   margin-left: 6px;
   font-size: 20px;
+}
+
+.message {
+  margin-top: 100px;
+}
+
+.message h2 {
+  color: var(--color-text3);
+  opacity: .7;
+  font-weight: normal;
 }

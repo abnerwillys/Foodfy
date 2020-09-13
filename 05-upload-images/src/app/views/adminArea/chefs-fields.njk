@@ -5,20 +5,37 @@
     <input 
       type="text" 
       name="name" 
-      value="{{chef.name}}" 
+      value="{{ chef.name }}" 
       required
     />
   </div>
 
-  <div class="input-block">
+  <div class="avatar-block">
     <label for="image">Avatar</label>
-    <input 
-      type="url" 
-      name="avatar_url" 
-      value="{{chef.avatar_url}}" 
-      placeholder="http://"
-      required
-    />
+    {% if file %}
+      <input 
+        id="{{ file.id }}"
+        type="text" 
+        name="avatar" 
+        placeholder="{{ file.src }}"
+        disabled
+      />
+
+      <input type="hidden" name="current_file" value="{{ file.id }}">
+      <input type="hidden" name="removed_file">
+    {% endif %}
+    <div class="wrapper-photo">
+      <div id="photos-chef-upload">
+        <input 
+          id="photos-input"
+          type="file"
+          name="photo_chef"
+          accept="image/*"
+          onchange="PhotoUploadChef.imageSent()"
+        >
+        <p>Enviar Avatar</p>
+      </div>
+    </div>    
   </div>
 
 </fieldset>

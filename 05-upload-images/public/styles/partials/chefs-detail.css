@@ -53,8 +53,7 @@
   height: 200px;
   margin-top: 42px;
 
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
 }
 
 .chef-title {

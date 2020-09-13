@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <form action="/admin/chefs" id="chef-form" method="POST">
+    <form action="/admin/chefs" id="chef-form" method="POST" enctype='multipart/form-data'>
       
       {% include './chefs-fields.njk' %}
 
@@ -34,3 +34,7 @@
 {% endblock %}
 
 {% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/adminArea/photoUploadChef.js"></script>
+{% endblock %}

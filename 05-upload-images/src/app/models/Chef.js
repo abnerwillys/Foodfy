@@ -2,42 +2,34 @@ const db = require('../../config/db')
 const { date } = require('../../lib/useful')
 
 module.exports = {
-  all(callback) {
+  all() {
     const query = `
       SELECT *
       FROM chefs
       ORDER BY name ASC
     `
 
-    db.query(query, (err, results) => {
-      if(err) throw `Database Error! ${err}`
-
-      callback(results.rows)
-    })
+    return db.query(query)
   },
-  create(data, callback) {
+  create(data) {
     const query = `
       INSERT INTO chefs (
         name,
-        avatar_url,
-        created_at
+        created_at,
+        file_id
       ) VALUES ($1, $2, $3)
       RETURNING id
     `
 
     const values = [
       data.name,
-      data.avatar_url,
-      date(Date.now()).iso
+      date(Date.now()).iso,
+      data.file_id
     ]
 
-    db.query(query, values, (err, results) => {
-      if(err) throw `Database Error! ${err}`
-
-      callback(results.rows[0])
-    })
+    return db.query(query, values)
   },
-  find(id, callback) {
+  find(id) {
     const query = `
       SELECT chefs.*, count(recipes) AS number_recipes
       FROM chefs
@@ -45,13 +37,10 @@ module.exports = {
       WHERE chefs.id = $1
       GROUP BY chefs.id
     `
-    db.query(query, [id], (err, results) => {
-      if(err) throw `Database Error! ${err}`
 
-      callback(results.rows[0])
-    })
+    return db.query(query, [id])
   },
-  findRecipes(id, callback) {
+  findRecipes(id) {
     const query = `
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
@@ -60,42 +49,42 @@ module.exports = {
       ORDER BY recipes.title ASC
     `
 
-    db.query(query, [id], (err, results) => {
-      if(err) throw `Database Error! ${err}`
-  
-      callback(results.rows)
-    })
+    return db.query(query, [id])
   },
-  update(data, callback) {
+  update(data) {
     const query = `
       UPDATE chefs SET
         name=($1),
-        avatar_url=($2)
+        file_id=($2)
       WHERE id = $3
     `
 
     const values = [
       data.name,
-      data.avatar_url,
+      data.file_id,
       data.id
     ]
 
-    db.query(query, values, (err, results) => {
-      if(err) throw `Database Error! ${err}`
+    console.log(data)
+    console.log(values)
 
-      callback()
-    })
+    return db.query(query, values)
   },
-  delete(id, callback) {
+  delete(id) {
     const query = `
       DELETE FROM chefs
       WHERE id = $1
     `
 
-    db.query(query, [id], (err, results) => {
-      if(err) throw `Database Error! ${err}`
-
-      callback()
-    })
+    return db.query(query, [id])
   },
+  files(id) {
+    const query = `
+      SELECT * 
+      FROM files
+      WHERE id = $1
+    `
+
+    return db.query(query, [id])
+  }
 }

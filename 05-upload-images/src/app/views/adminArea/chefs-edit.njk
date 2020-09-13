@@ -23,6 +23,7 @@
             Deletar
           </button>
           <input type="hidden" name="id" value="{{chef.id}}">
+          <input type="hidden" name="current_file" value="{{chef.file_id}}">
         </form>
         <button type="submit" form="chef-form">
           <span class="material-icons">save</span>
@@ -31,7 +32,7 @@
       </div>
     </div>
 
-    <form action="/admin/chefs?_method=PUT" id="chef-form" method="POST">
+    <form action="/admin/chefs?_method=PUT" id="chef-form" method="POST" enctype='multipart/form-data'>
       
       {% include './chefs-fields.njk' %}
 
@@ -49,4 +50,5 @@
 
 {% block script %}
   <script src="/scripts/adminArea/alert-delete.js"></script>
+  <script src="/scripts/adminArea/photoUploadChef.js"></script>
 {% endblock %}
