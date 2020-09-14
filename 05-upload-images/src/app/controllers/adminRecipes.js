@@ -55,7 +55,7 @@ module.exports = {
         console.log(error)
       }
     }
-  }, //ok
+  },
   async create(req, res) {
     try {
       let results = await Recipe.chefSelectOptions()
@@ -66,7 +66,7 @@ module.exports = {
     } catch (error) {
       console.error(error)
     }
-  }, //ok
+  },
   async post(req, res) {
     try {
       if (req.body.information == "" || !req.body.information) {
@@ -94,7 +94,7 @@ module.exports = {
     } catch (error) {
       console.error(error)
     }
-  }, //ok
+  },
   async show(req, res) {
     try {
       let results  = await Recipe.find(req.params.id)
@@ -114,7 +114,7 @@ module.exports = {
     } catch (error) {
       console.error(error)
     }
-  }, //ok
+  },
   async edit(req, res) {
     try {
       let results       = await Recipe.chefSelectOptions()
@@ -137,7 +137,7 @@ module.exports = {
     } catch (error) {
       console.error(error)
     }
-  }, //ok
+  },
   async put(req, res) {
     try {
       if (req.body.information == "" || !req.body.information) {
@@ -177,10 +177,22 @@ module.exports = {
     } catch (error) {
       console.error(error)
     }
-  }, //ok
+  },
   async delete(req, res) {
-    await Recipe.delete(req.body.id)
-    
-    return res.redirect(`/admin/recipes`)
+    try {
+      let results = await File.find(req.body.id)
+      let files   = results.rows
+
+      const filesPromise = files.map(file => File.deleteRecipeFile(file.id))
+
+      await Promise.all(filesPromise)
+
+      await Recipe.delete(req.body.id)
+      
+      return res.redirect(`/admin/recipes`)
+      
+    } catch (error) {
+      console.error(error)
+    }
   },
 }
