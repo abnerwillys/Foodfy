@@ -9,49 +9,6 @@
   margin-bottom: 150px;
 }
 
-#chef-list .title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
-  margin: 50px 0 0;
-}
-
-#chef-list .title h1 {
-  font-style: bold;
-  font-size: 24px;
-  color: var(--color-text1);
-  line-height: 28px;
-}
-
-#chef-list .new-chef {
-  width: auto;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--color-text4);
-
-  background-color: var(--color-background1);
-  border-radius: 6px;
-  padding: 4px 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-#chef-list .new-chef:hover {
-  transition: all 0.2s;
-  transform: scale(1.1, 1.1);
-}
-
-#chef-list .new-chef .material-icons {
-  margin-right: 4px;
-}
-
 #chef-list .cards {
   width: 100%;
   display: grid;
@@ -128,8 +85,6 @@
   margin-right: 4px;
   font-size: 20px;
 }
-
-/* == Page Chefs ClientArea == */
 
 .card .footer {
   grid-area: button;

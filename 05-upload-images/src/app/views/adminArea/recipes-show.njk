@@ -3,7 +3,7 @@
 {% block head %}
   <title>FoodFy - Admin | {{ recipe.title }}</title>
 
-  <link rel="stylesheet" href="/styles/partials/recipes.css">
+  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-show.css">
 {% endblock %}
 
 {% block header %}
@@ -21,7 +21,33 @@
       </a>
     </div>
 
-    <span class="image-container" style="background-image: url({{ recipe.image }})"></span>
+    <div class="gallery">
+      <div class="highlight">
+        {% if not files[0] %}
+          <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO">
+        {% else %}
+          <img 
+            src="{{ files[0].src }}" 
+            alt="{{ files[0].name}}"
+          >
+        {% endif%}
+      </div>
+
+      <div class="thumbnails">
+        {% for image in files %}
+          <img 
+            src="{{ image.src }}" 
+            alt="{{ image.name }}"
+            {% if loop.index0 == 0 %}
+              class="active"
+            {% endif %}
+            onclick="ImageGallery.setImage(event)"
+          >
+        {% endfor %}
+      </div>
+    </div>
+
+    {# <img src="{{ files[0].src }}" alt="{{ files.name }}" class="image-container"> #}
 
     <div class="recipe-title">
       <h1>{{ recipe.title }}</h1>
@@ -67,4 +93,5 @@
 
 {% block script %}
   <script src="/scripts/showHideInfo.js"></script>
+  <script src="/scripts/adminArea/photoRecipe.js"></script>
 {% endblock%}

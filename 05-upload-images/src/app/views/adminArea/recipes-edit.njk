@@ -31,7 +31,13 @@
       </div>
     </div>
 
-    <form action="/admin/recipes?_method=PUT" id="recipe-form" method="POST" enctype='multipart/form-data'>
+    <form 
+      id="recipe-form"
+      action="/admin/recipes?_method=PUT"  
+      method="POST" 
+      enctype='multipart/form-data' 
+      onsubmit="PhotosUpload.checkNumberFiles(event)"
+    >
       
       {% include './recipes-fields.njk' %}
 

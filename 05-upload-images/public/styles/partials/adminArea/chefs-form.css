@@ -1,4 +1,6 @@
-#chef-create {
+#chef-create,
+#chef-create button,
+#chef-create input {
   font-family: Helvetica;
 }
 
@@ -45,7 +47,6 @@
 
   color: #fff;
   font-size: 16px;
-  font-family: Helvetica;
   line-height: 19px;
 
   cursor: pointer;

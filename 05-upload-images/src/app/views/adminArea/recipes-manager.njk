@@ -29,17 +29,25 @@
       data-filter="{{filter}}"
     ></div>
 
-    {% for recipe in recipes %}
-      <div class="card">
-        <span class="image-container" style="background-image: url({{ recipe.image }})"></span>
-        <p class="food-name">{{ recipe.title }}</p>
-        <p class="by-chef">por {{ recipe.chef_name }}</p>
-        <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
-          <span class="material-icons">visibility</span>
-          Visualizar
-        </a>
+    {% if not message %}
+
+      {% for recipe in recipes %}
+        <div class="card">
+          <img src="{{ recipe.file_recipe.src }}" alt="{{ recipe.file_recipe.name }}" class="image-container">
+          <p class="food-name">{{ recipe.title }}</p>
+          <p class="by-chef">por {{ recipe.chef_name }}</p>
+          <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
+            <span class="material-icons">visibility</span>
+            Visualizar
+          </a>
+        </div>
+      {% endfor %}
+
+    {% else %}
+      <div class="message">
+        <h2>{{ message }}</h2>
       </div>
-    {% endfor %}
+    {% endif %}
 
   </section>
 

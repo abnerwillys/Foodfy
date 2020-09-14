@@ -100,12 +100,27 @@ const PhotosUpload = {
     }
 
     photoDiv.remove()
+  },
+  checkNumberFiles(event) {
+    const { preview } = PhotosUpload
+
+    const photosDiv = []
+    preview.childNodes.forEach(item => {
+      if (item.classList && item.classList.value == "photo") {
+        photosDiv.push(item)
+      }
+    })
+
+    if (photosDiv.length == 0) {
+      alert("Por favor, envie pelo menos uma imagem da receita!")
+      return event.preventDefault()
+    }
   }
 }
 
 const ImageGallery = {
   highlight: document.querySelector('.gallery .highlight > img'),
-  previews: document.querySelectorAll('.gallery-preview img'),
+  previews: document.querySelectorAll('.thumbnails img'),
   setImage(event) {
     const { target } = event
     ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
@@ -113,24 +128,5 @@ const ImageGallery = {
     target.classList.add('active')
 
     ImageGallery.highlight.src = target.src
-    Lightbox.image.src = target.src
-  },
-}
-
-const Lightbox = {
-  target: document.querySelector('.lightbox-target'),
-  image: document.querySelector('.lightbox-target img'),
-  closeButton: document.querySelector('.lightbox-target a.lightbox-close'),
-  open() {
-    Lightbox.target.style.opacity = 1
-    Lightbox.target.style.top     = 0
-    Lightbox.target.style.bottom  = 0
-    Lightbox.closeButton.style.top  = 0
-  },
-  close() {
-    Lightbox.target.style.opacity = 0
-    Lightbox.target.style.top     = "-100%"
-    Lightbox.target.style.bottom  = "initial"
-    Lightbox.closeButton.style.top  = "-80px"
   },
 }

@@ -194,7 +194,7 @@ header.admin-area .box-menu a{
 }
 
 header.admin-area .menu a {
-  border-color: #fff;
+  border-color: var(--color-background1);
   color: var(--color-text3);
 }
 

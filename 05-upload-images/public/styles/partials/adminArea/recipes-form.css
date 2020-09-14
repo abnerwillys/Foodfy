@@ -1,3 +1,9 @@
+#recipe-create,
+#recipe-create button,
+#recipe-create input {
+  font-family: Helvetica;
+}
+
 #recipe-create {
   width: 90vw;
   max-width: 940px;
@@ -43,7 +49,6 @@
 
   color: #fff;
   font-size: 16px;
-  font-weight: bold;
   line-height: 19px;
 
   cursor: pointer;
@@ -153,6 +158,7 @@
 #recipe-form input::placeholder {
   font-size: 14px;
   font-style: italic;
+  font-family: Helvetica;
   color: var(--color-text3);
 }
 

@@ -36,8 +36,8 @@
   grid-area: image;
   border-radius: 8px;
 
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .card .food-name {
