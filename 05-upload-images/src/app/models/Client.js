@@ -2,7 +2,7 @@ const db = require('../../config/db')
 const { date } = require('../../lib/useful')
 
 module.exports = {
-  all(resource, callback) {
+  all(resource) {
     let query = `
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
@@ -20,13 +20,9 @@ module.exports = {
       `
     }
 
-    db.query(query, (err, results) => {
-      if(err) throw `Database Error! ${err}`
-
-      callback(results.rows)
-    })
+    return db.query(query)
   },
-  find(resource, id, callback) {
+  find(resource, id) {
     let query = `
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
@@ -44,13 +40,9 @@ module.exports = {
       `
     }
 
-    db.query(query, [id], (err, results) => {
-      if(err) throw `Database Error! ${err}`
-
-      callback(results.rows[0])
-    })
+    return db.query(query, [id])
   },
-  findRecipes(id, callback) {
+  findRecipes(id) {
     const query = `
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
@@ -59,13 +51,9 @@ module.exports = {
       ORDER BY recipes.title ASC
     `
 
-    db.query(query, [id], (err, results) => {
-      if(err) throw `Database Error! ${err}`
-  
-      callback(results.rows)
-    })
+    return db.query(query, [id])
   },
-  findBy(filter, callback) {
+  findBy(filter) {
     const query = `
       SELECT recipes.*, chefs.name AS chef_name
       FROM recipes
@@ -74,14 +62,10 @@ module.exports = {
       ORDER BY title ASC
     `
 
-    db.query(query, (err, results) => {
-      if(err) throw `Database Error! ${err}`
-
-      callback(results.rows)
-    })
+    return db.query(query)
   },
   paginate(params) {
-    const { filter, limit, offset, callback } = params
+    const { filter, limit, offset } = params
 
     let query = "", 
         filterQuery = "",
@@ -111,10 +95,15 @@ module.exports = {
       LIMIT $1 OFFSET $2
     `
 
-    db.query(query, [limit, offset], (err, results) => {
-      if (err) throw `Database error! ${err}`
+    return db.query(query, [limit, offset])
+  },
+  chefFiles(id) {
+    const query = `
+      SELECT * 
+      FROM files
+      WHERE id = $1
+    `
 
-      callback(results.rows)
-    })
+    return db.query(query, [id])
   }
 }

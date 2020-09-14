@@ -26,7 +26,7 @@
       <div class="cards">
         {% for chef in chefs %}
           <div class="card">
-            <img class="image-container" src="{{ chef.file_chef.src }}" alt="{{ chef.file_chef.name }}">
+            <img class="image-container" src="{{ chef.file_chef.src }}" alt="{{ chef.name }}">
             <p class="chef-name">{{ chef.name }}</p>
             <a class="view-details" href="/admin/chefs/{{ chef.id }}">
               <span class="material-icons">visibility</span>

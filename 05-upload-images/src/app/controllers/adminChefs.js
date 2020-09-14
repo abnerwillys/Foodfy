@@ -65,13 +65,36 @@ module.exports = {
 
       if(!chef) return res.send('Chef not found!')
 
-      results = await Chef.findRecipes(chef.id)
-      const recipes = results.rows
-
       results    = await Chef.files(chef.file_id)
       const file = { 
         ...results.rows[0],
         src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
+      }
+
+      results = await Chef.findRecipes(chef.id)
+      const recipes = results.rows
+
+      if (recipes == "") {
+        const message = "Nenhuma receita cadastrada!"
+        return res.render('adminArea/chefs-show', { chef, file, message })
+      
+      } else {
+        const recipesPromises = recipes.map(recipe => File.find(recipe.id))
+
+        results = await Promise.all(recipesPromises)
+        
+        for (let i = 0; i < recipes.length; i++) {
+          let currentFile = results[i].rows[0]
+          let fileTreated = {
+            ...currentFile,
+            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
+          }
+
+          recipes[i] = {
+            ...recipes[i], 
+            file_recipe: fileTreated
+          }
+        }
       }
 
       return res.render('adminArea/chefs-show', { chef, recipes, file })

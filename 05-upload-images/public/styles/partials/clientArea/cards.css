@@ -15,8 +15,8 @@
   border-radius: 15px;
   margin-bottom: 20px;
 
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .card .food-name {

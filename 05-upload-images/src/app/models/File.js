@@ -78,6 +78,7 @@ module.exports = {
         FROM recipe_files
         WHERE recipe_id = $1
       )
+      ORDER BY id
     `
 
     return db.query(query, [recipeId])

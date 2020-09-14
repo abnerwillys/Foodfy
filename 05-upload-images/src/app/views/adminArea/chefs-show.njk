@@ -32,19 +32,29 @@
     <div class="chef-recipes">
       <h2>Receitas</h2>
 
-      <div class="cards">
-        {% for recipe in recipes %}
-          <div class="card">
-            <span class="image-container" style="background-image: url({{ recipe.image }})"></span>
-            <p class="food-name">{{ recipe.title }}</p>
-            <p class="by-chef">por {{ recipe.chef_name }}</p>
-            <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
-              <span class="material-icons">visibility</span>
-              Visualizar
-            </a>
-          </div>
-        {% endfor %}
-      </div>
+      {% if not message %}
+
+        <div class="cards">
+
+          {% for recipe in recipes %}
+            <div class="card">
+              <img src="{{ recipe.file_recipe.src }}" alt="{{ recipe.name }}" class="image-container">
+              <p class="food-name">{{ recipe.title }}</p>
+              <p class="by-chef">por {{ recipe.chef_name }}</p>
+              <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
+                <span class="material-icons">visibility</span>
+                Visualizar
+              </a>
+            </div>
+          {% endfor %}
+
+        </div>
+        
+      {% else %}
+        <div class="message">
+          <h2>{{ message }}</h2>
+        </div>
+      {% endif %}
     </div>
 
   </section>

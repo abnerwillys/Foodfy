@@ -33,7 +33,7 @@
 
       {% for recipe in recipes %}
         <div class="card">
-          <img src="{{ recipe.file_recipe.src }}" alt="{{ recipe.file_recipe.name }}" class="image-container">
+          <img src="{{ recipe.file_recipe.src }}" alt="{{ recipe.name }}" class="image-container">
           <p class="food-name">{{ recipe.title }}</p>
           <p class="by-chef">por {{ recipe.chef_name }}</p>
           <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
