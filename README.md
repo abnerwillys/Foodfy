@@ -187,7 +187,7 @@ As seguintes ferramentas foram usadas na solução dos desafios:
 #->No terminal:
 
 # Clonar repositório
-$ git clone https://github.com/abner-starkasty/Project-Foodfy
+$ git clone https://github.com/abner-starkasty/Foodfy
 
 # Entrar no diretório da etapa do projeto desejada
 $ cd Project-Foodfy/login-system
