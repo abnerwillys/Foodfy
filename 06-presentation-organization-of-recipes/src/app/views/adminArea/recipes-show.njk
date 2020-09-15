@@ -1,0 +1,95 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>FoodFy - Admin | {{ recipe.title }}</title>
+
+  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-show.css">
+{% endblock %}
+
+{% block header %}
+  {% include './change-header.njk' %}
+{% endblock %}
+
+{% block content %}
+
+  <section id="recipe-detail">
+    <div class="edit-recipe">
+      <h2>Receita: {{ recipe.title }}</h2>
+      <a href="/admin/recipes/{{recipe.id}}/edit">
+        <span class="material-icons">edit</span>
+        Editar receita
+      </a>
+    </div>
+
+    <div class="gallery">
+      <div class="highlight">
+        {% if not files[0] %}
+          <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO">
+        {% else %}
+          <img 
+            src="{{ files[0].src }}" 
+            alt="{{ files[0].name}}"
+          >
+        {% endif%}
+      </div>
+
+      <div class="thumbnails">
+        {% for image in files %}
+          <img 
+            src="{{ image.src }}" 
+            alt="{{ image.name }}"
+            {% if loop.index0 == 0 %}
+              class="active"
+            {% endif %}
+            onclick="ImageGallery.setImage(event)"
+          >
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="recipe-title">
+      <h1>{{ recipe.title }}</h1>
+      <p>por {{ recipe.chef_name }}</p>
+    </div>
+
+    <div class="recipe-content">
+      <div class="subtitles">
+        <h3>Ingredientes</h3>
+        <span id="box1" class="button-hide">ESCONDER</span>
+      </div>
+      <ul id="box1" class="box">
+        {% for ingredient in recipe.ingredients %}
+          <li>{{ ingredient }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="recipe-content">
+      <div class="subtitles">
+        <h3>Modo de preparo</h3>
+        <span id="box2" class="button-hide">ESCONDER</span>
+      </div>
+      <ul id="box2" class="box">
+        {% for step in recipe.preparation %}
+          <li>{{ step }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="recipe-content">
+      <div class="subtitles">
+        <h3>Informações adicionais</h3>
+        <span id="box3" class="button-hide">ESCONDER</span>
+      </div>
+      <p id="box3" class="box">{{ recipe.information }}</p>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block footer %}{% endblock  %}
+
+{% block script %}
+  <script src="/scripts/showHideInfo.js"></script>
+  <script src="/scripts/gallery.js"></script>
+{% endblock%}
