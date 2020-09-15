@@ -48,7 +48,8 @@ module.exports = {
         filter,
         page,
         limit,
-        offset
+        offset,
+        order: "created_at"
       }
 
       let results   = await Client.paginate(params)
@@ -199,7 +200,8 @@ module.exports = {
         filter,
         page,
         limit,
-        offset
+        offset,
+        order: "updated_at"
       }
 
       let results    = await Client.paginate(params)

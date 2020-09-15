@@ -48,7 +48,7 @@ module.exports = {
       FROM recipes
       LEFT JOIN chefs ON (chefs.id = recipes.chef_id)
       WHERE recipes.chef_id = $1
-      ORDER BY recipes.title ASC
+      ORDER BY recipes.created_at DESC
     `
 
     return db.query(query, [id])
@@ -65,7 +65,7 @@ module.exports = {
     return db.query(query)
   },
   paginate(params) {
-    const { filter, limit, offset } = params
+    const { filter, limit, offset, order } = params
 
     let query = "", 
         filterQuery = "",
@@ -91,7 +91,7 @@ module.exports = {
       FROM recipes
       LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
       ${filterQuery}
-      ORDER BY recipes.title ASC
+      ORDER BY recipes.${order} DESC
       LIMIT $1 OFFSET $2
     `
 
