@@ -6,7 +6,7 @@
 </h1>
 
 <h4 align="center">
-  🍕🍗  FoodFy - 🚀  Em produção!
+  🍕🍗  FoodFy 🚀
 </h4>
 
 <p align="center">
@@ -75,12 +75,12 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-08)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/06-presentation-organization-of-recipes)
  - [ ] 👨‍💻 Sistema de login Foodfy:
-    - [Instruções]()
-    - [Solução]()
+    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-10/blob/master/desafios/10-sistema-login-foodfy.md)
+    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/07-login-system)
 
 👉 **Legenda**:
 
-- Instruções: link das informações dessa etapa do projeto;
+- Instruções: Link das informações dessa etapa do projeto;
 - Solução: Link da minha solução para o desafio proposto;
 
 ---
@@ -156,16 +156,10 @@ As seguintes ferramentas foram usadas na solução dos desafios:
             alt="logo postgreSQL"
             width="50px">
     </a>
-    <a href="https://www.figma.com/">
-        <img 
-            src="/readme-assets/icon-figma.svg" 
-            alt="logo Figma"
-            width="50px">
-    </a>
     <a href="https://code.visualstudio.com/">
         <img 
             src="/readme-assets/icon-vscode.svg" 
-            alt="logo Figma"
+            alt="logo vsCode"
             width="50px">
     </a>
 </p>
@@ -190,7 +184,7 @@ As seguintes ferramentas foram usadas na solução dos desafios:
 $ git clone https://github.com/abner-starkasty/Foodfy
 
 # Entrar no diretório da etapa do projeto desejada
-$ cd Project-Foodfy/login-system
+$ cd Foodfy/07-login-system
 
 # Instalar dependências
 $ npm install
