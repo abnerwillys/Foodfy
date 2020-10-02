@@ -72,7 +72,7 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-07/blob/master/desafios/07-foodfy-envio-imagens.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/05-upload-images)
  - [x] 💯 Apresentação e Organização das Receitas no Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-08)
+    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-08/blob/master/desafios/08-apresentacao-organizacao-receitas-foodfy.md)
     - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/06-presentation-organization-of-recipes)
  - [ ] 👨‍💻 Sistema de login Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-10/blob/master/desafios/10-sistema-login-foodfy.md)

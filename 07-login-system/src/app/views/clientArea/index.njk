@@ -1,13 +1,13 @@
 {% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+{% import 'parts/cardsRecipe.njk' as clientArea %}
 
 {% block head %}
   <title>FoodFy | Home</title>
-
-  <link rel="stylesheet" href="/styles/partials/clientArea/index.css">
-  <link rel="stylesheet" href="/styles/partials/clientArea/cards.css">
 {% endblock %}
 
 {% block content %}
+  {{ nunjucks.checkHeader('', '') }}
 
   <section id="box-introduction">
     <div class="text-container">
@@ -27,24 +27,10 @@
 
       <h3>Mais acessadas</h3>
 
-      <div class="cards">
-
-        {% for recipe in recipes %}
-          {% if loop.index <= 6 %}
-            <div class="card" data-id={{recipe.id}}>
-              <img class="recipe-image" src="{{recipe.file_recipe.src}}" alt="{{recipe.title}}">
-              <p class="food-name">{{ recipe.title }}</p>
-              <p class="by-chef">por {{ recipe.chef_name }}</p>
-            </div>
-          {% endif %}
-        {% endfor %}
-
-      </div>
+      {{ clientArea.cardsRecipe('index', 'client', recipes) }}
+      
     </section>
   {% endif %}
 
-{% endblock %}
-
-{% block script %}
-  <script src="/scripts/clientArea/click-recipes.js"></script>
+  {% include 'parts/footer.njk' %}
 {% endblock %}

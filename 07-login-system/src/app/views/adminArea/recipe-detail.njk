@@ -3,13 +3,11 @@
 {% import 'parts/sectionRecipeDetail.njk' as section %}
 
 {% block head %}
-  <title>FoodFy | {{ recipe.title }}</title>
+  <title>FoodFy - Admin | {{ recipe.title }}</title>
 {% endblock %}
 
 {% block content %}
-  {{ nunjucks.checkHeader('', '') }}
+  {{ nunjucks.checkHeader('admin-area', '') }}
 
-  {{ section.recipeDetail('', recipe, files) }}
-
-  {% include 'parts/footer.njk' %}
+  {{ section.recipeDetail('admin', recipe, files) }}
 {% endblock %}

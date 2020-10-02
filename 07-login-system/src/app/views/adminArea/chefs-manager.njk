@@ -1,18 +1,15 @@
 {% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+{% import 'parts/cardsChefs.njk' as adminArea %}
 
 {% block head %}
   <title>FoodFy - Admin | Gerenciador de Chefs</title>
-
-  <link rel="stylesheet" href="/styles/partials/adminArea/chefs-manager.css">
-{% endblock %}
-
-{% block header %}
-  {% include './change-header.njk' %}
 {% endblock %}
 
 {% block content %}
+  {{ nunjucks.checkHeader('admin-area', '') }}
 
-  <section id="chef-list">
+  <section id="chefs-manager">
     
     <div class="title">
       <h1>Gerenciar chefs</h1>
@@ -23,26 +20,10 @@
     </div>
 
     {% if not message %}
-      <div class="cards">
-        {% for chef in chefs %}
-          <div class="card">
-            <img class="image-container" src="{{ chef.file_chef.src }}" alt="{{ chef.name }}">
-            <p class="chef-name">{{ chef.name }}</p>
-            <a class="view-details" href="/admin/chefs/{{ chef.id }}">
-              <span class="material-icons">visibility</span>
-              Visualizar
-            </a>
-          </div>
-        {% endfor %}
-      </div>
+      {{ adminArea.cardsChefs('admin', chefs) }}      
     {% else %}
-      <div class="message">
-        <h2>{{ message }}</h2>
-      </div>
+      {% include 'parts/message.njk' %}
     {% endif %}
 
   </section>
-
 {% endblock %}
-
-{% block footer %}{% endblock  %}

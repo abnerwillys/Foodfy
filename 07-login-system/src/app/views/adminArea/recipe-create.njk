@@ -1,18 +1,14 @@
 {% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
 
 {% block head %}
   <title>FoodFy - Admin | Criar receita</title>
-
-  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-form.css">
-{% endblock %}
-
-{% block header %}
-  {% include './change-header.njk' %}
 {% endblock %}
 
 {% block content %}
+  {{ nunjucks.checkHeader('admin-area', '') }}
 
-  <div id="recipe-create">
+  <section id="recipe-create">
     <div class="header-form">
       <h1>Criando receita</h1>
       
@@ -32,16 +28,9 @@
       onsubmit="PhotosUpload.checkNumberFiles(event)"
     >
       
-      {% include './recipes-fields.njk' %}
+      {% include './recipe-fields.njk' %}
 
     </form>
-  </div>
+  </section>
 
-{% endblock %}
-
-{% block footer %}{% endblock  %}
-
-{% block script %}
-  <script src="/scripts/adminArea/addOrDeleteField.js"></script>
-  <script src="/scripts/adminArea/photoRecipe.js"></script>
 {% endblock %}

@@ -1,9 +1,9 @@
-#chef-list,
-#chef-list button {
+#chefs-manager,
+#chefs-manager button {
   font-family: Helvetica;
 }
 
-#chef-list {
+#chefs-manager {
   width: 90vw;
   max-width: 940px;
 
@@ -14,7 +14,7 @@
   margin-bottom: 150px;
 }
 
-#chef-list .title {
+#chefs-manager .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,14 +23,14 @@
   margin: 50px 0 0;
 }
 
-#chef-list .title h1 {
+#chefs-manager .title h1 {
   font-style: bold;
   font-size: 24px;
   color: var(--color-text1);
   line-height: 28px;
 }
 
-#chef-list .new-chef {
+#chefs-manager .new-chef {
   width: auto;
   font-weight: bold;
   font-size: 14px;
@@ -48,16 +48,16 @@
   cursor: pointer;
 }
 
-#chef-list .new-chef:hover {
+#chefs-manager .new-chef:hover {
   transition: all 0.2s;
   transform: scale(1.1, 1.1);
 }
 
-#chef-list .new-chef .material-icons {
+#chefs-manager .new-chef .material-icons {
   margin-right: 4px;
 }
 
-#chef-list .cards {
+#chefs-manager .cards {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -66,7 +66,7 @@
   margin-top: 30px;
 }
 
-#chef-list .card {
+#chefs-manager .card {
   padding: 2px;
 
   display: grid;
@@ -79,7 +79,7 @@
   align-items: center;
 }
 
-#chef-list .card:hover {
+#chefs-manager .card:hover {
   border-radius: 40px 8px 8px 40px;
   background-color: rgba(251, 223, 219, 0.8);
     
@@ -88,7 +88,7 @@
   transform: scale(1.05, 1.05);
 }
 
-.card .image-container {
+#chefs-manager .card .image-container {
   width: 64px;
   height: 64px;
   grid-area: image;
@@ -98,14 +98,14 @@
   object-position: center center;
 }
 
-.card .chef-name {
+#chefs-manager .card .chef-name {
   grid-area: chefname;
   font-size: 18px;
   line-height: 21px;
   color: var(--color-text1);
 }
 
-.card .view-details {
+#chefs-manager .card .view-details {
   width: auto;
   padding: 3px 6px;
   margin-bottom: 2px;
@@ -124,22 +124,12 @@
   cursor: pointer;
 }
 
-.card .view-details:hover {
+#chefs-manager .card .view-details:hover {
   transition: all 0.2s;
   transform: scale(1.05, 1.05);
 }
 
-.card .view-details span {
+#chefs-manager .card .view-details span {
   margin-right: 4px;
   font-size: 20px;
-}
-
-.message {
-  margin-top: 100px;
-}
-
-.message h2 {
-  color: var(--color-text3);
-  opacity: .7;
-  font-weight: normal;
 }

@@ -10,7 +10,7 @@ iconTheme.addEventListener('click', () => {
     const sunIcon     = 'wb_sunny'
     const moonIcon    = 'nights_stay'
 
-    console.log(currentIcon)
+    // console.log(currentIcon)
 
     if (currentIcon == moonIcon) {
         iconTheme.innerHTML = sunIcon
@@ -18,5 +18,5 @@ iconTheme.addEventListener('click', () => {
         iconTheme.innerHTML = moonIcon
     }
 
-    console.log(statusDarkMode)
+    // console.log(statusDarkMode)
 })

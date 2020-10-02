@@ -1,0 +1,40 @@
+{% macro cardsChefs(format, chefs) %}
+  {% if format == 'client' %}
+
+    <div class="cards">
+      {% for chef in chefs %}
+        <div class="card">
+          <img class="image-container" src="{{ chef.file_chef.src }}" alt="{{ chef.name }}">
+          <p class="chef-name">{{ chef.name }}</p>
+          <div class="footer">
+            <a class="view-details" href="/chefs/{{ chef.id }}">
+              <span class="material-icons">visibility</span>
+            </a>
+            <div class="number-recipes">
+              {{ chef.number_recipes }}
+              <span class="material-icons">receipt</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
+  {% if format == 'admin' %}
+    
+    <div class="cards">
+      {% for chef in chefs %}
+        <div class="card">
+          <img class="image-container" src="{{ chef.file_chef.src }}" alt="{{ chef.name }}">
+          <p class="chef-name">{{ chef.name }}</p>
+          <a class="view-details" href="/admin/chefs/{{ chef.id }}">
+            <span class="material-icons">visibility</span>
+            Visualizar
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+{% endmacro %}

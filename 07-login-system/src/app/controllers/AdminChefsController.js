@@ -1,6 +1,8 @@
 const Chef = require('../models/Chef')
 const File = require('../models/File')
 
+const { notFoundData } = require('../../lib/page404')
+
 module.exports = {
   async index(req, res) {
     try {
@@ -36,7 +38,7 @@ module.exports = {
     }
   },
   create(req, res) {
-    return res.render('adminArea/chefs-create')
+    return res.render('adminArea/chef-create')
   },
   async post(req, res) {
     try {
@@ -63,7 +65,7 @@ module.exports = {
       let results = await Chef.find(req.params.id)
       const chef  = results.rows[0]
 
-      if(!chef) return res.send('Chef not found!')
+      if(!chef) return res.render('not-found', { notFoundData })
 
       results    = await Chef.files(chef.file_id)
       const file = { 
@@ -76,7 +78,7 @@ module.exports = {
 
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
-        return res.render('adminArea/chefs-show', { chef, file, message })
+        return res.render('adminArea/chef-detail', { chef, file, message })
       
       } else {
         const recipesPromises = recipes.map(recipe => File.find(recipe.id))
@@ -97,7 +99,7 @@ module.exports = {
         }
       }
 
-      return res.render('adminArea/chefs-show', { chef, recipes, file })
+      return res.render('adminArea/chef-detail', { chef, recipes, file })
 
     } catch (error) {
       console.error(error)
@@ -121,7 +123,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
       }
 
-      return res.render('adminArea/chefs-edit', { chef, file })
+      return res.render('adminArea/chef-edit', { chef, file })
 
     } catch (error) {
       console.error(error)

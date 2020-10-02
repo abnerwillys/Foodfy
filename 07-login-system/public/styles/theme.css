@@ -18,8 +18,8 @@
 .dark-mode a,
 .dark-mode p,
 .dark-mode .error-404 h1,
-.dark-mode #recipe-manager h1,
-.dark-mode #chef-list h1,
+.dark-mode #recipes-manager h1,
+.dark-mode #chefs-list h1,
 .dark-mode .food-name,
 .dark-mode .chef-name {
   color: var(--color-mainText);
@@ -56,7 +56,7 @@
   border-bottom: 1.5px solid var(--color-theme);
 }
 
-.dark-mode #chef-list .image-container,
+.dark-mode #chefs-list .image-container,
 .dark-mode #chef-detail .avatar-container {
   border: 1px solid var(--color-theme);
 }

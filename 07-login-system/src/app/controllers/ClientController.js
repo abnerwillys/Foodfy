@@ -55,11 +55,6 @@ module.exports = {
       let results   = await Client.paginate(params)
       const recipes = results.rows
 
-      const pagination = {
-        totalPages: Math.ceil(recipes[0].total / limit),
-        page
-      }
-
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
         return res.render("clientArea/recipes-list", { message })
@@ -81,6 +76,11 @@ module.exports = {
             file_recipe: fileTreated
           }
         }
+      }
+
+      const pagination = {
+        totalPages: Math.ceil(recipes[0].total / limit),
+        page
       }
       
       return res.render("clientArea/recipes-list", { recipes, pagination, filter })
@@ -116,7 +116,7 @@ module.exports = {
       
       if (chefs == "") {
         const message = "Nenhum chef cadastrado!"
-        return res.render('clientArea/chefs', { message })
+        return res.render('clientArea/chefs-list', { message })
 
       } else {
         const chefsPromises = chefs.map(chef => Client.chefFiles(chef.file_id))
@@ -136,7 +136,7 @@ module.exports = {
         }
       }
 
-      return res.render('clientArea/chefs', { chefs })
+      return res.render('clientArea/chefs-list', { chefs })
 
     } catch (error) {
       console.error(error)
@@ -206,18 +206,12 @@ module.exports = {
 
       let results    = await Client.paginate(params)
       const recipes  = results.rows
-      let pagination = {}
 
       if (recipes == "") {
-        const message = "Nenhuma receita cadastrada!"
-        return res.render("clientArea/search", { message, filter })
+        const message = "Nenhuma receita encontrada!"
+        return res.render("clientArea/recipes-search", { message, filter })
       
       } else {
-        pagination = {
-          totalPages: Math.ceil(recipes[0].total / limit),
-          page
-        }
-
         const recipesPromises = recipes.map(recipe => File.find(recipe.id))
 
         results = await Promise.all(recipesPromises)
@@ -235,8 +229,13 @@ module.exports = {
           }
         }
       }
+
+      const pagination = {
+        totalPages: Math.ceil(recipes[0].total / limit),
+        page
+      }
       
-      return res.render("clientArea/search", { recipes, pagination, filter })
+      return res.render("clientArea/recipes-search", { recipes, pagination, filter })
 
     } catch (error) {
       console.error(error)

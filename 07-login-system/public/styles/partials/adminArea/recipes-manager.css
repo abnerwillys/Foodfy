@@ -1,9 +1,9 @@
-#recipe-manager,
-#recipe-manager button {
+#recipes-manager,
+#recipes-manager button {
   font-family: Helvetica;
 }
 
-#recipe-manager {
+#recipes-manager {
   width: 90vw;
   max-width: 940px;
 
@@ -15,7 +15,7 @@
   margin-bottom: 150px;
 }
 
-#recipe-manager h1 {
+#recipes-manager h1 {
   margin: 50px 0 10px;
   font-style: bold;
   font-size: 24px;
@@ -24,7 +24,7 @@
   align-self: flex-end;
 }
 
-#recipe-manager .new-recipe {
+#recipes-manager .new-recipe {
   width: auto;
   margin: 50px 0 10px;
   font-size: 14px;
@@ -44,32 +44,21 @@
   cursor: pointer;
 }
 
-#recipe-manager .pagination {
+#recipes-manager .pagination {
   grid-column: 1 / span 2;
 
   margin: 0 0 10px;
 }
 
-#recipe-manager .new-recipe:hover {
+#recipes-manager .new-recipe:hover {
   transition: all 0.2s;
   transform: scale(1.1, 1.1);
 }
 
-#recipe-manager .new-recipe .material-icons {
+#recipes-manager .new-recipe .material-icons {
   margin-right: 4px;
 }
 
-#recipe-manager .message {
-  text-align: center;
-
-  margin-top: 100px;
-  width: 100%;
-
+#recipes-manager .message {
   grid-column: span 2;
-}
-
-#recipe-manager .message h2 {
-  color: var(--color-text3);
-  opacity: .7;
-  font-weight: normal;
 }

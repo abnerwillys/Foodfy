@@ -1,0 +1,49 @@
+{% macro cardsRecipe(page, format, recipes) %}
+  {% if format == 'client' %}
+    <div class="cards {{format}}">
+
+      {% for recipe in recipes %}
+
+        {% if page == 'index' %}
+
+          {% if loop.index <= 6 %}
+            <div class="card {{format}}" data-id={{recipe.id}}>
+              <img class="recipe-image" src="{{recipe.file_recipe.src}}" alt="{{recipe.title}}">
+              <p class="food-name">{{ recipe.title }}</p>
+              <p class="by-chef">por {{ recipe.chef_name }}</p>
+            </div>
+          {% endif %}
+
+        {% else %}
+
+          <div class="card {{format}}" data-id={{recipe.id}}>
+            <img class="recipe-image" src="{{recipe.file_recipe.src}}" alt="{{recipe.title}}">
+            <p class="food-name">{{ recipe.title }}</p>
+            <p class="by-chef">por {{ recipe.chef_name }}</p>
+          </div>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+  {% endif %}
+
+  {% if format == 'admin' %}
+    <div class="cards {{format}}">
+
+      {% for recipe in recipes %}
+        <div class="card {{format}}">
+          <img src="{{ recipe.file_recipe.src }}" alt="{{ recipe.name }}" class="image-container">
+          <p class="food-name">{{ recipe.title }}</p>
+          <p class="by-chef">por {{ recipe.chef_name }}</p>
+          <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
+            <span class="material-icons">visibility</span>
+            Visualizar
+          </a>
+        </div>
+      {% endfor %}
+
+    </div>
+  {% endif %}
+{% endmacro %}

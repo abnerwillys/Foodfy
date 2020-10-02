@@ -1,12 +1,12 @@
 {% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
 
 {% block head %}
   <title>FoodFy | Sobre</title>
-
-  <link rel="stylesheet" href="/styles/partials/clientArea/about.css">
 {% endblock %}
 
 {% block content %}
+  {{ nunjucks.checkHeader('', '') }}
 
   <section id="about-page">
     <div>
@@ -43,4 +43,5 @@
     </div>
   </section>
 
+  {% include 'parts/footer.njk' %}
 {% endblock %}

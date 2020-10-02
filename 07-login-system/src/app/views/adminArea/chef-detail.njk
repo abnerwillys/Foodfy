@@ -1,15 +1,23 @@
 {% extends 'layout.njk' %}
 {% import 'parts/header.njk' as nunjucks %}
-{% import 'parts/cardsRecipe.njk' as clientArea %}
+{% import 'parts/cardsRecipe.njk' as adminArea %}
 
 {% block head %}
-  <title>FoodFy | {{ chef.name }}</title>
+  <title>FoodFy - Admin | {{ chef.name }}</title>
 {% endblock %}
 
 {% block content %}
-  {{ nunjucks.checkHeader('', '') }}
+  {{ nunjucks.checkHeader('admin-area', '') }}
 
-  <section id="chef-detail">
+  <section id="chef-detail" class="admin">
+    <div class="edit-chef">
+      <h2>Chef: {{ chef.name }}</h2>
+      <a href="/admin/chefs/{{ chef.id }}/edit">
+        <span class="material-icons">edit</span>
+        Editar chef
+      </a>
+    </div>
+
     <img class="avatar-container" src="{{ file.src }}" alt="{{ file.name }}">
 
     <div class="chef-title">
@@ -21,12 +29,11 @@
       <h2>Receitas</h2>
 
       {% if not message %}
-        {{ clientArea.cardsRecipe('', 'client', recipes) }}
+        {{ adminArea.cardsRecipe('', 'admin', recipes) }}
       {% else %}
         {% include 'parts/message.njk' %}
       {% endif %}
     </div>
-  </section>
 
-  {% include 'parts/footer.njk' %}
+  </section>
 {% endblock %}

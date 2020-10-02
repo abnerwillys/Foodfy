@@ -1,6 +1,55 @@
-.cards {
+/* == clientArea == */
+
+.cards.client {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px 20px;
+  margin-top: 20px;
+}
+
+.card.client {
+  padding: 3px;
+}
+
+.card.client .recipe-image {
+  width: 100%;
+  height: 145px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.card.client .food-name {
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 5px;
+}
+
+.card.client .by-chef {
+  font-size: 14px;
+  line-height: 16px;
+  font-style: italic;
+  color: var(--color-text2);
+}
+
+.card.client:hover {
+  border-radius: 15px;
+  background-color: rgba(251, 223, 219, 0.8);
+  text-align: center;
+  
+  cursor: pointer;
+
+  transition: all 0.3s;
+  transform: scale(1.05, 1.05);
+}
+
+/* == AdminArea == */
+.cards.admin {
   width: 100%;
 
+  grid-column: 1 / span 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px 30px;
@@ -8,7 +57,7 @@
   margin-top: 30px;
 }
 
-.card {
+.card.admin {
   padding: 3px;
 
   display: grid;
@@ -22,7 +71,7 @@
   align-items: center;
 }
 
-.card:hover {
+.card.admin:hover {
   border-radius: 8px;
   background-color: rgba(251, 223, 219, 0.8);
 
@@ -30,7 +79,7 @@
   transform: scale(1.05, 1.05);
 }
 
-.card .image-container {
+.card.admin .image-container {
   width: 172px;
   height: 90px;
   grid-area: image;
@@ -40,14 +89,14 @@
   object-position: 50% 50%;
 }
 
-.card .food-name {
+.card.admin .food-name {
   grid-area: foodname;
   font-size: 18px;
   line-height: 21px;
   color: var(--color-text1);
 }
 
-.card .by-chef {
+.card.admin .by-chef {
   grid-area: bychef;
   font-style: italic;
   font-size: 14px;
@@ -55,7 +104,7 @@
   color: var(--color-text2);
 }
 
-.card .view-details {
+.card.admin .view-details {
   grid-area: button;
   width: auto;
   padding: 3px 6px;
@@ -74,12 +123,12 @@
   cursor: pointer;
 }
 
-.card .view-details:hover {
+.card.admin .view-details:hover {
   transition: all 0.2s;
   transform: scale(1.05, 1.05);
 }
 
-.card .view-details span {
+.card.admin .view-details span {
   margin-right: 4px;
   font-size: 20px;
 }

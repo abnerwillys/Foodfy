@@ -1,5 +1,7 @@
-const Recipe     = require('../models/Recipe')
-const File       = require('../models/File')
+const Recipe = require('../models/Recipe')
+const File   = require('../models/File')
+
+const { notFoundData } = require('../../lib/page404')
 
 module.exports = {
   async index(req, res) {
@@ -19,11 +21,6 @@ module.exports = {
 
       let results   = await Recipe.paginate(params)
       const recipes = results.rows
-
-      const pagination = {
-        totalPages: Math.ceil(recipes[0].total / limit),
-        page
-      }
 
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
@@ -47,6 +44,11 @@ module.exports = {
           }
         }
       }
+
+      const pagination = {
+        totalPages: Math.ceil(recipes[0].total / limit),
+        page
+      }
       
       return res.render("adminArea/recipes-manager", { recipes, pagination })
 
@@ -61,7 +63,7 @@ module.exports = {
       let results = await Recipe.chefSelectOptions()
       const chefOptions = results.rows
       
-      return res.render('adminArea/recipes-create', { chefOptions })
+      return res.render('adminArea/recipe-create', { chefOptions })
       
     } catch (error) {
       console.error(error)
@@ -100,7 +102,7 @@ module.exports = {
       let results  = await Recipe.find(req.params.id)
       const recipe = results.rows[0]
 
-      if(!recipe) return res.send('Recipe not found!')
+      if(!recipe) return res.render('not-found', { notFoundData })
 
       results   = await File.find(recipe.id)
       let files = results.rows
@@ -109,7 +111,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
       }))
 
-      return res.render('adminArea/recipes-show', { recipe, files })
+      return res.render('adminArea/recipe-detail', { recipe, files })
 
     } catch (error) {
       console.error(error)
@@ -132,7 +134,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
       }))
 
-      return res.render('adminArea/recipes-edit', { recipe, chefOptions, files })
+      return res.render('adminArea/recipe-edit', { recipe, chefOptions, files })
 
     } catch (error) {
       console.error(error)

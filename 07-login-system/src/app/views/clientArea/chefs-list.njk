@@ -1,23 +1,22 @@
 {% extends 'layout.njk' %}
 {% import 'parts/header.njk' as nunjucks %}
-{% import 'parts/cardsRecipe.njk' as clientArea %}
+{% import 'parts/cardsChefs.njk' as clientArea %}
 
 {% block head %}
-  <title>FoodFy | Receitas</title>
+  <title>FoodFy | Chefs</title>
 {% endblock %}
 
 {% block content %}
-  {{ nunjucks.checkHeader('', '') }}
+  {{ nunjucks.checkHeader('', 'true') }}
 
-  <section id="recipe-page">
-    {% include 'parts/pagination.njk' %}
-
+  <section id="chefs-list">
+    
     {% if not message %}
-      {{ clientArea.cardsRecipe('', 'client', recipes) }}
+      {{ clientArea.cardsChefs('client', chefs) }}
     {% else %}
       {% include 'parts/message.njk' %}
     {% endif %}
-    
+
   </section>
 
   {% include 'parts/footer.njk' %}

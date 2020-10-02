@@ -1,4 +1,4 @@
-#chef-list {
+#chefs-list {
   width: 90vw;
   max-width: 940px;
 
@@ -9,7 +9,7 @@
   margin-bottom: 150px;
 }
 
-#chef-list .cards {
+#chefs-list .cards {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -18,7 +18,7 @@
   margin-top: 30px;
 }
 
-#chef-list .card {
+#chefs-list .card {
   padding: 2px;
 
   display: grid;
@@ -31,7 +31,7 @@
   align-items: center;
 }
 
-#chef-list .card:hover {
+#chefs-list .card:hover {
   border-radius: 40px 8px 8px 40px;
   background-color: rgba(251, 223, 219, 0.8);
     
@@ -40,7 +40,7 @@
   transform: scale(1.05, 1.05);
 }
 
-.card .image-container {
+#chefs-list .card .image-container {
   width: 64px;
   height: 64px;
   grid-area: image;
@@ -50,14 +50,14 @@
   object-position: 50% 50%;
 }
 
-.card .chef-name {
+#chefs-list .card .chef-name {
   grid-area: chefname;
   font-size: 18px;
   line-height: 21px;
   color: var(--color-text1);
 }
 
-.card .view-details {
+#chefs-list .card .view-details {
   width: auto;
   padding: 3px 6px;
   margin-bottom: 2px;
@@ -76,17 +76,17 @@
   cursor: pointer;
 }
 
-.card .view-details:hover {
+#chefs-list .card .view-details:hover {
   transition: all 0.2s;
   transform: scale(1.05, 1.05);
 }
 
-.card .view-details span {
+#chefs-list .card .view-details span {
   margin-right: 4px;
   font-size: 20px;
 }
 
-.card .footer {
+#chefs-list .card .footer {
   grid-area: button;
 
   display: flex;
@@ -96,11 +96,11 @@
   margin-bottom: 4px;
 }
 
-.card .footer .view-details span {
+#chefs-list .card .footer .view-details span {
   margin-right: 0;
 }
 
-.card .footer .number-recipes {
+#chefs-list .card .footer .number-recipes {
   width: auto;
   padding: 3px 8px;
   margin-left: 12px;
@@ -117,17 +117,7 @@
   color: var(--color-text4);
 }
 
-.card .footer .number-recipes span {
+#chefs-list .card .footer .number-recipes span {
   margin-left: 6px;
   font-size: 20px;
-}
-
-.message {
-  margin-top: 100px;
-}
-
-.message h2 {
-  color: var(--color-text3);
-  opacity: .7;
-  font-weight: normal;
 }

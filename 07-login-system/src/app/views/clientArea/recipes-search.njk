@@ -3,21 +3,26 @@
 {% import 'parts/cardsRecipe.njk' as clientArea %}
 
 {% block head %}
-  <title>FoodFy | Receitas</title>
+  <title>FoodFy | Resultados para {{filter}}</title>
 {% endblock %}
 
 {% block content %}
-  {{ nunjucks.checkHeader('', '') }}
+  {{ nunjucks.checkHeader('', '', filter) }}
 
   <section id="recipe-page">
+    <h1>Buscando por "{{filter}}"</h1>
+
     {% include 'parts/pagination.njk' %}
 
     {% if not message %}
+
       {{ clientArea.cardsRecipe('', 'client', recipes) }}
+
     {% else %}
+
       {% include 'parts/message.njk' %}
+
     {% endif %}
-    
   </section>
 
   {% include 'parts/footer.njk' %}

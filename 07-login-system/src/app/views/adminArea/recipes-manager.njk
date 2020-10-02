@@ -1,20 +1,15 @@
 {% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+{% import 'parts/cardsRecipe.njk' as adminArea %}
 
 {% block head %}
   <title>FoodFy - Admin | Gerenciador de receitas</title>
-
-  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-manager.css">
-  <link rel="stylesheet" href="/styles/partials/adminArea/admin-cards.css">
-  <link rel="stylesheet" href="/styles/partials/pagination.css">
-{% endblock %}
-
-{% block header %}
-  {% include './change-header.njk' %}
 {% endblock %}
 
 {% block content %}
+  {{ nunjucks.checkHeader('admin-area', '') }}
 
-  <section id="recipe-manager">
+  <section id="recipes-manager">
     
     <h1>Gerenciar receitas</h1>
     <a href="/admin/recipes/create" class="new-recipe">
@@ -22,39 +17,13 @@
       Nova receita
     </a>
 
-    <div 
-      class="pagination"
-      data-total="{{pagination.totalPages}}"
-      data-page="{{pagination.page}}"
-      data-filter="{{filter}}"
-    ></div>
+    {% include 'parts/pagination.njk' %}
 
     {% if not message %}
-
-      {% for recipe in recipes %}
-        <div class="card">
-          <img src="{{ recipe.file_recipe.src }}" alt="{{ recipe.name }}" class="image-container">
-          <p class="food-name">{{ recipe.title }}</p>
-          <p class="by-chef">por {{ recipe.chef_name }}</p>
-          <a href="/admin/recipes/{{ recipe.id }}" class="view-details">
-            <span class="material-icons">visibility</span>
-            Visualizar
-          </a>
-        </div>
-      {% endfor %}
-
+      {{ adminArea.cardsRecipe('', 'admin', recipes) }}
     {% else %}
-      <div class="message">
-        <h2>{{ message }}</h2>
-      </div>
+      {% include 'parts/message.njk' %}
     {% endif %}
 
   </section>
-
-{% endblock %}
-
-{% block footer %}{% endblock  %}
-
-{% block script %}
-  <script src="/scripts/pagination.js"></script>
 {% endblock %}

@@ -1,25 +1,16 @@
-{% extends 'layout.njk' %}
+{% macro recipeDetail(page, recipe, files) %}
 
-{% block head %}
-  <title>FoodFy - Admin | {{ recipe.title }}</title>
+  <section id="recipe-detail" class="{{page}}">
 
-  <link rel="stylesheet" href="/styles/partials/adminArea/recipes-show.css">
-{% endblock %}
-
-{% block header %}
-  {% include './change-header.njk' %}
-{% endblock %}
-
-{% block content %}
-
-  <section id="recipe-detail">
-    <div class="edit-recipe">
-      <h2>Receita: {{ recipe.title }}</h2>
-      <a href="/admin/recipes/{{recipe.id}}/edit">
-        <span class="material-icons">edit</span>
-        Editar receita
-      </a>
-    </div>
+    {% if page == 'admin' %}
+      <div class="edit-recipe">
+        <h2>Receita: {{ recipe.title }}</h2>
+        <a href="/admin/recipes/{{recipe.id}}/edit">
+          <span class="material-icons">edit</span>
+          Editar receita
+        </a>
+      </div>
+    {% endif %}
 
     <div class="gallery">
       <div class="highlight">
@@ -85,11 +76,4 @@
     </div>
   </section>
 
-{% endblock %}
-
-{% block footer %}{% endblock  %}
-
-{% block script %}
-  <script src="/scripts/showHideInfo.js"></script>
-  <script src="/scripts/gallery.js"></script>
-{% endblock%}
+{% endmacro %}

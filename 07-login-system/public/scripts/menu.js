@@ -15,10 +15,3 @@ window.onload = () => {
     }
   }
 }
-
-//Header change when is in admin area
-if (url.includes("admin")) {
-  const header = document.querySelector("header")
-
-  header.classList.add('admin-area')
-}
