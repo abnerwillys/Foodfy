@@ -41,6 +41,8 @@
   align-items: center;
   justify-content: center;
 
+  height: 37px;
+
   border-radius: 4px;
   background-color: var(--color-buttons1);
   padding: 8px 16px;

@@ -8,7 +8,7 @@
 {% block content %}
   {{ nunjucks.checkHeader('admin-area', '') }}
 
-  <div id="chef-create">
+  <section id="chef-create">
     <div class="header-form">
       <h1>Editando chef</h1>
 
@@ -32,7 +32,8 @@
       id="chef-form" 
       action="/admin/chefs?_method=PUT" 
       method="POST" 
-      enctype='multipart/form-data'>
+      enctype='multipart/form-data'
+    >
       
       {% include './chef-fields.njk' %}
 
@@ -42,6 +43,6 @@
         value="{{ chef.id }}"
       >
     </form>
-  </div>
+  </section>
 
 {% endblock %}

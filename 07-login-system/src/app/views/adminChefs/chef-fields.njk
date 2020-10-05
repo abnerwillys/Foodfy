@@ -3,6 +3,7 @@
   <div class="input-block">
     <label for="name">Nome</label>
     <input 
+      id="name"
       type="text" 
       name="name" 
       value="{{ chef.name }}" 
@@ -11,7 +12,7 @@
   </div>
 
   <div class="avatar-block">
-    <label for="image">Avatar</label>
+    <label>Avatar</label>
     {% if file %}
       <input 
         id="{{ file.id }}"

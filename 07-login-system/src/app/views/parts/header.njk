@@ -11,10 +11,22 @@
         <nav class="menu">
           <a href="/admin/recipes">Receitas</a>
           <a href="/admin/chefs">Chefs</a>
+          <a href="/admin/users">Usuários</a>
         </nav>
 
-        <span class="material-icons change-theme">nights_stay</span>
+        <a href="/" id="logout">
+          <span class="material-icons">exit_to_app</span>
+          Sair
+        </a>
       </div>
+    </header>
+
+  {% elseif type == 'session' %}
+
+    <header class="{{type}}">
+      <a href="/">          
+        <img src="/assets/logo.png" alt="logo">          
+      </a>
     </header>
 
   {% else %}
@@ -49,7 +61,6 @@
           </form>
         {% endif %}
 
-        <span class="material-icons change-theme">nights_stay</span>
       </div>
     </header>
     

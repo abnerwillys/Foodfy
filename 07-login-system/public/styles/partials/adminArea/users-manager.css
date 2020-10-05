@@ -1,0 +1,109 @@
+#users-manager,
+#users-manager button {
+  font-family: Helvetica;
+}
+
+#users-manager {
+  width: 90vw;
+  max-width: 940px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 150px;
+}
+
+#users-manager .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  margin: 50px 0 0;
+}
+
+#users-manager .title h1 {
+  font-style: bold;
+  font-size: 24px;
+  color: var(--color-text1);
+  line-height: 29px;
+}
+
+#users-manager .new-user {
+  width: 139px;
+  height: 37px;
+
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #fff;
+
+  background-color: var(--color-buttons1);
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+#users-manager .new-user:hover {
+  transition: all 0.2s;
+  transform: scale(1.1, 1.1);
+}
+
+#users-manager .new-user .material-icons {
+  margin-right: 3px;
+  font-size: 18px;
+}
+
+#users-manager .cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+
+  margin-top: 64px;
+}
+
+#users-manager .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#users-manager .card h5 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+#users-manager .card p {
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-text2);
+
+  margin-top: 4px;
+}
+
+#users-manager .card .footer {
+  display: flex;
+  align-items: flex-end;
+
+  margin-top: 16px;
+}
+
+#users-manager .card .button-action {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+
+  background-color: transparent;
+  color: var(--color-buttons1);
+}
+
+#users-manager .card form .button-action {
+  color: #F55A5A;
+  margin-left: 16px;
+}

@@ -1,0 +1,37 @@
+{% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+
+{% block head %}
+  <title>FoodFy - Admin | Bem vindo</title>
+{% endblock %}
+
+{% block content %}
+  {{ nunjucks.checkHeader('admin-area', '') }}
+
+  <section id="user-create" class="profile">
+    <div class="header-form">
+      <h1>Bem vindo Diego</h1>
+      
+      <button type="submit" form="user-form">
+        <span class="material-icons">save</span>
+        Salvar
+      </button>
+    </div>
+
+    <form 
+      id="user-form" 
+      action="/admin/profile?_method=PUT"  
+      method="POST"
+    >
+      
+      {% include './profile-fields.njk' %}
+
+      <input 
+        type="hidden" 
+        name="id" 
+        value="{{ user.id }}"
+      >
+    </form>
+  </section>
+
+{% endblock %}

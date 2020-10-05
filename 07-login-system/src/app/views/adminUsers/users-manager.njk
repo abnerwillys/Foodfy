@@ -1,0 +1,47 @@
+{% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+
+{% block head %}
+  <title>FoodFy - Admin | Usuários</title>
+{% endblock %}
+
+{% block content %}
+  {{ nunjucks.checkHeader('admin-area', '') }}
+
+  <section id="users-manager">
+    
+    <div class="title">
+      <h1>Usuários</h1>
+      <a href="/admin/users/create" class="new-user">
+        <span class="material-icons">add</span>
+        Novo
+      </a>
+    </div>
+
+    {% if not message %}
+      <div class="cards">
+
+        {% for user in users %}
+          <div id="{{user.id}}" class="card">
+            <h5>{{ user.name }}</h5>
+            <p>{{ user.email }}</p>
+
+            <div class="footer">
+              <a class="button-action" href="/admin/users/{{user.id}}/edit">Editar</a>
+
+              <form action="/admin/users?_method=DELETE" id="delete-user" method="POST">
+                <button class="button-action" type="submit" form="delete-user">
+                  Remover
+                </button>
+                <input type="hidden" name="id" value="{{user.id}}">
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+
+    {% else %}
+      {% include 'parts/message.njk' %}
+    {% endif %}
+
+  </section>
+{% endblock %}

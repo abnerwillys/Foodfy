@@ -1,0 +1,156 @@
+#user-create,
+#user-create button,
+#user-create input {
+  font-family: Helvetica;
+}
+
+#user-create {
+  width: 90vw;
+  max-width: 940px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user-create .header-form {
+  width: 100%;
+  margin-top: 50px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#user-create .header-form h1 {
+  font-size: 24px;
+  line-height: 29px;
+}
+
+#user-create .header-form > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+#user-create .header-form > div span,
+#user-create.profile button span {
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+#user-create .header-form button[type="submit"],
+#user-create .header-form > div a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 139px;
+  height: 37px;
+
+  border-radius: 4px;
+  background-color: var(--color-buttons1);
+  padding: 8px 16px;
+
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  cursor: pointer;
+}
+
+#user-create .header-form button[type="submit"]:hover {
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+}
+
+#user-create .header-form > div a {
+  background-color: #8a8a8a;
+}
+
+#user-create .header-form > div a:hover {
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+  background-color: #bb3017;
+}
+
+#user-create .header-form #delete-user button {
+  margin-right: 10px;
+  background-color: var(--color-buttons2);
+}
+
+#user-form {
+  width: 100%;
+  margin: 64px 0 150px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px 40px;
+}
+
+#user-form .input-block {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+#user-form .input-block:focus-within::after {
+  content: "";
+
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: var(--color-buttons1);
+
+  position: absolute;
+  top: 28.5px;
+  left: 0;
+  bottom: 0;
+}
+
+#user-form label {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--color-text1);
+
+  margin-bottom: 10px;
+}
+
+#user-form .input-block input {
+  width: 100%;
+  height: 49px;
+
+  padding: 0 20px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  outline: none;
+
+  font-size: 16px;
+  line-height: 19px;
+}
+
+#user-form .input-block input::placeholder {
+  font-size: 14px;
+  font-style: italic;
+  font-family: Helvetica;
+  color: var(--color-text3);
+}
+
+#user-form .checkbox-block {
+  display: flex;
+  align-items: center;
+}
+
+#user-form .checkbox-block label {
+  margin-bottom: initial;
+  margin-left: 8px;
+}
+
+#user-form .checkbox-block input {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}

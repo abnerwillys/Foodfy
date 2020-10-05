@@ -11,7 +11,7 @@ module.exports = {
 
       if (chefs == "") {
         const message = "Nenhum chef cadastrado!"
-        return res.render('adminArea/chefs-manager', { message })
+        return res.render('adminChefs/chefs-manager', { message })
 
       } else {
         const chefsPromises = chefs.map(chef => Chef.files(chef.file_id))
@@ -32,13 +32,13 @@ module.exports = {
         }
       }
 
-      return res.render('adminArea/chefs-manager', { chefs })
+      return res.render('adminChefs/chefs-manager', { chefs })
     } catch (error) {
       console.error(error)
     }
   },
   create(req, res) {
-    return res.render('adminArea/chef-create')
+    return res.render('adminChefs/chef-create')
   },
   async post(req, res) {
     try {
@@ -78,7 +78,7 @@ module.exports = {
 
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
-        return res.render('adminArea/chef-detail', { chef, file, message })
+        return res.render('adminChefs/chef-detail', { chef, file, message })
       
       } else {
         const recipesPromises = recipes.map(recipe => File.find(recipe.id))
@@ -99,7 +99,7 @@ module.exports = {
         }
       }
 
-      return res.render('adminArea/chef-detail', { chef, recipes, file })
+      return res.render('adminChefs/chef-detail', { chef, recipes, file })
 
     } catch (error) {
       console.error(error)
@@ -123,7 +123,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
       }
 
-      return res.render('adminArea/chef-edit', { chef, file })
+      return res.render('adminChefs/chef-edit', { chef, file })
 
     } catch (error) {
       console.error(error)

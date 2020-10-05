@@ -35,18 +35,21 @@
       </div>
     </div>
   </div>
+
   <div class="input-block">
     <label for="title">Nome da receita</label>
     <input 
+      id="title"
       type="text" 
       name="title" 
       value="{{recipe.title}}" 
       required
     />
   </div>
+
   <div class="select-block">
     <label for="chef">Chef</label>
-    <select name="chef" required>
+    <select id="chef" name="chef" required>
       <option value="" hidden>Selecione um chef</option>
       {% for chef in chefOptions %}
         <option 
@@ -60,7 +63,7 @@
   </div>
 
   <div id="ingredients">
-    <label for="ingredients">
+    <label for="insert-ingredient">
       Ingredientes
       <button type="button" class="add-ingredient">
         <span class="material-icons">add</span>
@@ -70,7 +73,8 @@
 
     {% if not recipe.preparation %}
       <div class="ingredient">
-        <input 
+        <input
+          id="insert-ingredient"
           type="text"
           name="ingredients[]" 
           value="{{ingredient}}" 
@@ -83,6 +87,7 @@
       {% for ingredient in recipe.ingredients %}
         <div class="ingredient">
           <input 
+            id="insert-ingredient"
             type="text"
             name="ingredients[]" 
             value="{{ingredient}}" 
@@ -107,6 +112,7 @@
     {% if not recipe.preparation %}
       <div class="step">
         <input 
+          id="preparation"
           type="text"
           name="preparation[]" 
           value="{{step}}" 
@@ -119,6 +125,7 @@
       {% for step in recipe.preparation %}
         <div class="step">
           <input 
+            id="preparation"
             type="text"
             name="preparation[]" 
             value="{{step}}" 
@@ -133,7 +140,7 @@
   
   <div class="textarea-block">
     <label for="information">Informações adicionais</label>
-    <textarea name="information" id="information">{{recipe.information}}</textarea>
+    <textarea id="information" name="information" id="information">{{recipe.information}}</textarea>
   </div>
 
 </fieldset>

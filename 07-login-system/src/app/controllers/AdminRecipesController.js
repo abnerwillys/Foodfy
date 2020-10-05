@@ -24,7 +24,7 @@ module.exports = {
 
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
-        return res.render('adminArea/recipes-manager', { message })
+        return res.render('adminRecipes/recipes-manager', { message })
       
       } else {
         const recipesPromises = recipes.map(recipe => File.find(recipe.id))
@@ -50,7 +50,7 @@ module.exports = {
         page
       }
       
-      return res.render("adminArea/recipes-manager", { recipes, pagination })
+      return res.render("adminRecipes/recipes-manager", { recipes, pagination })
 
     } catch (error) {
       if (error) {
@@ -63,7 +63,7 @@ module.exports = {
       let results = await Recipe.chefSelectOptions()
       const chefOptions = results.rows
       
-      return res.render('adminArea/recipe-create', { chefOptions })
+      return res.render('adminRecipes/recipe-create', { chefOptions })
       
     } catch (error) {
       console.error(error)
@@ -111,7 +111,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
       }))
 
-      return res.render('adminArea/recipe-detail', { recipe, files })
+      return res.render('adminRecipes/recipe-detail', { recipe, files })
 
     } catch (error) {
       console.error(error)
@@ -134,7 +134,7 @@ module.exports = {
         src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
       }))
 
-      return res.render('adminArea/recipe-edit', { recipe, chefOptions, files })
+      return res.render('adminRecipes/recipe-edit', { recipe, chefOptions, files })
 
     } catch (error) {
       console.error(error)

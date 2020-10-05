@@ -41,7 +41,6 @@ textarea {
 header {
   height: 95px;
   padding: 30px 0;
-  background-color: var(--color-background1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +58,7 @@ header .box-menu {
   max-width: 940px;
 
   display: grid;
-  grid-template-columns: 200px 1fr auto 40px;
+  grid-template-columns: 200px 1fr auto;
   align-items: center;
   box-sizing: border-box;
 }
@@ -104,7 +103,6 @@ header .box-menu form {
   column-gap: 8px;
 
   height: 37px;
-  margin-right: 16px;
 }
 
 header .box-menu form input {
@@ -180,10 +178,12 @@ header .change-theme:hover {
 header.admin-area {
   background-color: var(--color-text1);
   font-family: Helvetica;
+
+  height: 80px;
 } 
 
 header.admin-area .box-menu {
-  grid-template-columns: 140px 1fr 40px;
+  grid-template-columns: 140px 1fr auto;
 }
 
 header.admin-area .box-menu,
@@ -199,6 +199,29 @@ header.admin-area .menu a {
 
 header.admin-area .menu a.active {
   color: #fff;
+  font-weight: bold;
+}
+
+header #logout {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  top: 30px;
+  right: 50px;
+
+  height: initial;
+  letter-spacing: 1px;
+}
+
+header #logout span {
+  margin-right: 8px;
+
+  margin-bottom: 4px;
 }
 
 /* == Footer == */

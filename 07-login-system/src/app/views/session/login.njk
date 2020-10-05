@@ -1,0 +1,31 @@
+{% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+
+
+{% block head %}
+  <title>FoodFy - Login</title>
+{% endblock %}
+
+{% block content %}
+  {{ nunjucks.checkHeader('session', '') }}
+
+  <section id="session" class="login">
+    <form method="POST" action="/session/login">
+
+      <div class="header">
+        <h1>Iniciar Sessão</h1>
+      </div>
+
+      <div class="fields">
+        {% include './login-fields.njk' %}
+      </div>      
+      
+      <div class="footer">
+        <a href="/session/forgot-password">Perdeu a senha?</a>
+
+        <button class="button" type="submit">Acessar</button>
+      </div>
+    </form>
+  </section>
+
+{% endblock %}

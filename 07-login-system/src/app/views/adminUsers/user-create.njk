@@ -1,0 +1,38 @@
+{% extends 'layout.njk' %}
+{% import 'parts/header.njk' as nunjucks %}
+
+{% block head %}
+  <title>FoodFy - Admin | Criar usuário</title>
+{% endblock %}
+
+{% block content %}
+  {{ nunjucks.checkHeader('admin-area', '') }}
+
+  <section id="user-create">
+    <div class="header-form">
+      <h1>Criar Usuário</h1>
+      
+      <div>
+        <button type="submit" form="user-form">
+          <span class="material-icons">save</span>
+          Salvar
+        </button>
+        <a href="/admin/users">
+          <span class="material-icons">close</span>
+          Cancelar
+        </a>
+      </div>
+    </div>
+
+    <form 
+      id="user-form" 
+      action="/admin/users"  
+      method="POST"
+    >
+      
+      {% include './user-fields.njk' %}
+
+    </form>
+  </section>
+
+{% endblock %}

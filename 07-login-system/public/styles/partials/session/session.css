@@ -1,0 +1,121 @@
+#session,
+#session button,
+#session input {
+  font-family: Helvetica;
+}
+
+#session {
+  width: 90vw;
+  max-width: 500px;
+  margin-top: 116px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#session form {
+  width: 100%;
+}
+
+#session .header {
+  width: 100%;
+  text-align: center;
+
+  margin-bottom: 35px;
+}
+
+#session .header h1 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+#session .input-block {
+  margin-bottom: 35px;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+#session .input-block:focus-within::after {
+  content: "";
+
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+  background: var(--color-buttons1);
+
+  position: absolute;
+  top: 28.5px;
+  left: 0;
+  bottom: 0;
+}
+
+#session label {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--color-text1);
+
+  margin-bottom: 10px;
+}
+
+#session .input-block input {
+  width: 100%;
+  height: 49px;
+
+  padding: 0 14px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  outline: none;
+
+  font-size: 16px;
+  line-height: 19px;
+}
+
+#session .input-block input::placeholder {
+  font-size: 14px;
+  font-family: Helvetica;
+  color: var(--color-text3);
+}
+
+#session .footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#session.login .footer {
+  justify-content: space-between;
+}
+
+#session .footer a {
+  color: #969696;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+#session .footer button {
+  width: 134px;
+  height: 37px;
+
+  border-radius: 4px;
+  background-color: var(--color-buttons1);
+  padding: 8px 16px;
+
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  cursor: pointer;
+}
+
+#session .footer button:hover {
+  transition: all 0.2s;
+  transform: scale(1.05, 1.05);
+}
