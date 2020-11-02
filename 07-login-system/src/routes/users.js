@@ -4,6 +4,7 @@ const routes  = express.Router()
 const ProfileController = require('../app/controllers/ProfileController')
 const UserController    = require('../app/controllers/UserController')
 
+const UserValidator = require('../app/validators/user')
 
 // Rotas de perfil de um usuário logado
 routes
@@ -14,7 +15,7 @@ routes
 .get('/users/create', UserController.create)
 .get('/users/:id/edit', UserController.edit)
 
-.post('/users', UserController.post)
+.post('/users', UserValidator.post, UserController.post)
 .put('/users', UserController.put)
 .delete('/users', UserController.delete)
 

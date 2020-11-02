@@ -1,0 +1,42 @@
+@keyframes hidemessage {
+  to {
+    top: -360px;
+    opacity: 0;
+  }
+}
+
+.system {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 110px;
+  right: 30px;
+
+  width: 344px;
+  height: 135px;
+  padding: 20px;
+  border-radius: 4px;
+
+  z-index: 100;
+
+  color: white;
+  font-family: Helvetica;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+
+  opacity: 1;
+
+  animation: hidemessage 0.5s 5s ease-out forwards;
+}
+
+.system.error {
+  background-color:  #DC4747;
+}
+
+.system.success {
+  background-color: #01B12A;
+}

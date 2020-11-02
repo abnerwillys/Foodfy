@@ -1,17 +1,19 @@
 const Chef = require('../models/Chef')
 const File = require('../models/File')
 
-const { notFoundData } = require('../../lib/page404')
-
 module.exports = {
   async index(req, res) {
     try {
+      const { error, success } = req.session
+      req.session.error = '';
+      req.session.success = '';
+      
       let results = await Chef.all()
       const chefs = results.rows
 
       if (chefs == "") {
         const message = "Nenhum chef cadastrado!"
-        return res.render('adminChefs/chefs-manager', { message })
+        return res.render('adminChefs/chefs-manager', { message, error, success })
 
       } else {
         const chefsPromises = chefs.map(chef => Chef.files(chef.file_id))
@@ -32,7 +34,7 @@ module.exports = {
         }
       }
 
-      return res.render('adminChefs/chefs-manager', { chefs })
+      return res.render('adminChefs/chefs-manager', { chefs, error, success })
     } catch (error) {
       console.error(error)
     }
@@ -42,12 +44,6 @@ module.exports = {
   },
   async post(req, res) {
     try {
-      const keys = Object.keys(req.body)
-
-      for(key of keys) {
-        if(req.body[key] == "") return res.send('Please, fill all fields!')
-      }
-
       let results   = await File.create(req.file)
       const file_id = results.rows[0].id    
 
@@ -62,13 +58,10 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      let results = await Chef.find(req.params.id)
-      const chef  = results.rows[0]
+      const { chef } = req;
 
-      if(!chef) return res.render('not-found', { notFoundData })
-
-      results    = await Chef.files(chef.file_id)
-      const file = { 
+      let results = await Chef.files(chef.file_id)
+      const file  = { 
         ...results.rows[0],
         src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
       }
@@ -105,20 +98,12 @@ module.exports = {
       console.error(error)
     }
   },
-  redirect(req, res) {
-    const recipeId = req.params.index
-  
-    return res.redirect(`/admin/recipes/${recipeId}`)
-  },
   async edit(req, res) {
     try {
-      let results = await Chef.find(req.params.id)
-      const chef  = results.rows[0]
+      const { chef } = req;
 
-      if(!chef) return res.send('Chef not found!')
-
-      results    = await Chef.files(chef.file_id)
-      const file = { 
+      let results = await Chef.files(chef.file_id)
+      const file  = { 
         ...results.rows[0],
         src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
       }
@@ -130,15 +115,7 @@ module.exports = {
     }
   },
   async put(req, res) {
-    try {
-      const keys = Object.keys(req.body)
-
-      for(key of keys) {
-        if(req.body[key] == "" && key != "removed_file") {
-          return res.send('Please, fill all fields!')
-        }
-      }
-      
+    try {      
       if (req.body.removed_file) {
         let results   = await File.create(req.file)
         const file_id = results.rows[0].id 

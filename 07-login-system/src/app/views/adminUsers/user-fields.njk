@@ -7,7 +7,6 @@
     name="name" 
     value="{{ user.name }}" 
     placeholder="Digite o nome completo"
-    required
   />
 </div>
 
@@ -19,18 +18,16 @@
     name="email" 
     value="{{ user.email }}" 
     placeholder="Digite o email"
-    required
   />
 </div>
 
 <div class="checkbox-block">
   <input 
-    id="is_adm"
+    id="is_admin"
     type="checkbox" 
-    name="is_adm" 
+    name="is_admin" 
     value="1"
     {% if user.is_admin == "1" %}checked{%endif%}
-    required
   />
   <label for="is_adm">Admnistrador</label>
 </div>

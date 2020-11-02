@@ -1,11 +1,13 @@
 const Recipe = require('../models/Recipe')
 const File   = require('../models/File')
 
-const { notFoundData } = require('../../lib/page404')
-
 module.exports = {
   async index(req, res) {
     try {
+      const { error, success } = req.session
+      req.session.error = '';
+      req.session.success = '';
+
       let { filter, page, limit } = req.query
 
       page  = page  || 1
@@ -24,7 +26,7 @@ module.exports = {
 
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
-        return res.render('adminRecipes/recipes-manager', { message })
+        return res.render('adminRecipes/recipes-manager', { message, error, success })
       
       } else {
         const recipesPromises = recipes.map(recipe => File.find(recipe.id))
@@ -50,7 +52,7 @@ module.exports = {
         page
       }
       
-      return res.render("adminRecipes/recipes-manager", { recipes, pagination })
+      return res.render("adminRecipes/recipes-manager", { recipes, pagination, error, success })
 
     } catch (error) {
       if (error) {
@@ -70,18 +72,7 @@ module.exports = {
     }
   },
   async post(req, res) {
-    try {
-      if (req.body.information == "" || !req.body.information) {
-        req.body.information = 'Sem informações adicionais.'
-      }
-  
-      const keys = Object.keys(req.body)
-      for(key of keys) {
-        if(req.body[key] == "") return res.send('Please, fill all fields!')
-      }
-  
-      if (req.files.length == 0) return res.send("Please, send at least one image!")
-    
+    try {    
       let results  = await Recipe.create(req.body)
       const recipeId = results.rows[0].id
   
@@ -99,12 +90,9 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      let results  = await Recipe.find(req.params.id)
-      const recipe = results.rows[0]
+      const { recipe } = req
 
-      if(!recipe) return res.render('not-found', { notFoundData })
-
-      results   = await File.find(recipe.id)
+      let results = await File.find(recipe.id)
       let files = results.rows
       files     = files.map(file => ({
         ...file,
@@ -119,13 +107,10 @@ module.exports = {
   },
   async edit(req, res) {
     try {
+      const { recipe } = req
+      
       let results       = await Recipe.chefSelectOptions()
       const chefOptions = results.rows
-
-      results      = await Recipe.find(req.params.id)
-      const recipe = results.rows[0]
-      
-      if(!recipe) return res.send('Recipe not found!')
 
       results   = await File.find(recipe.id)
       let files = results.rows
@@ -141,18 +126,7 @@ module.exports = {
     }
   },
   async put(req, res) {
-    try {
-      if (req.body.information == "" || !req.body.information) {
-        req.body.information = 'Sem informações adicionais.'
-      }
-  
-      const keys = Object.keys(req.body)
-      for(key of keys) {
-        if (req.body[key] == "" && key != "removed_files") {
-          return res.send("Please, fill all fields!")
-        }
-      }
-  
+    try {  
       if (req.body.removed_files) {
         // 1,2,3,
         const removedFiles = req.body.removed_files.split(",") //[1,2,3, ]

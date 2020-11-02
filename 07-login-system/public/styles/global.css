@@ -39,6 +39,7 @@ textarea {
 
 /* == Header == */
 header {
+  background-color: #fff;
   height: 95px;
   padding: 30px 0;
   display: flex;
