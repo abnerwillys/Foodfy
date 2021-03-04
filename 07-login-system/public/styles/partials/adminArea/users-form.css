@@ -16,7 +16,7 @@
 #user-create .header-form {
   width: 100%;
   margin-top: 50px;
-  
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,10 +36,11 @@
 #user-create .header-form > div span,
 #user-create.profile button span {
   margin-right: 5px;
+  margin-bottom: 1px;
   font-size: 18px;
 }
 
-#user-create .header-form button[type="submit"],
+#user-create .header-form button[type='submit'],
 #user-create .header-form > div a {
   display: flex;
   align-items: center;
@@ -60,7 +61,7 @@
   cursor: pointer;
 }
 
-#user-create .header-form button[type="submit"]:hover {
+#user-create .header-form button[type='submit']:hover {
   transition: all 0.2s;
   transform: scale(1.05, 1.05);
 }
@@ -76,7 +77,7 @@
 }
 
 #user-create .header-form #delete-user button {
-  margin-right: 10px;
+  /* margin-right: 10px; */
   background-color: var(--color-buttons2);
 }
 
@@ -97,7 +98,7 @@
 }
 
 #user-form .input-block:focus-within::after {
-  content: "";
+  content: '';
 
   width: 4px;
   border-radius: 4px 0 0 4px;

@@ -37,6 +37,10 @@ textarea {
   color: var(--color-text1);
 }
 
+body form .input-block .input-error {
+  border-color: red !important;
+}
+
 /* == Header == */
 header {
   background-color: #fff;
@@ -97,7 +101,7 @@ header .menu a.active {
   transition: all 0.2s;
 }
 
-header .box-menu form {
+header .box-menu #search-form {
   display: grid;
   grid-template-columns: 1fr 50px;
   align-items: center;
@@ -106,7 +110,7 @@ header .box-menu form {
   height: 37px;
 }
 
-header .box-menu form input {
+header .box-menu #search-form input {
   border: 1px solid var(--color-border-input);
   border-radius: 4px;
   padding: 4px 8px;
@@ -117,19 +121,19 @@ header .box-menu form input {
   outline: none;
 }
 
-header .box-menu form input::placeholder {
+header .box-menu #search-form input::placeholder {
   font-size: 14px;
   line-height: 16px;
   color: var(--color-text3);
 }
 
-header .box-menu form .input-block {
+header .box-menu #search-form .input-block {
   position: relative;
   height: 100%;
   width: 246px;
 }
 
-header .box-menu form .input-block:focus-within::after {
+header .box-menu #search-form .input-block:focus-within::after {
   content: "";
 
   width: 4px;
@@ -142,7 +146,7 @@ header .box-menu form .input-block:focus-within::after {
   bottom: 0;
 }
 
-header .box-menu form button {
+header .box-menu #search-form button  {
   margin: 0;
   border-radius: 4px;
   background-color: var(--color-buttons1);
@@ -155,12 +159,12 @@ header .box-menu form button {
   cursor: pointer;
 }
 
-header .box-menu form button:hover {
+header .box-menu #search-form button:hover {
   transform: scale(1.1, 1.1);
   transition: all 0.2s;
 }
 
-header .box-menu form button span {
+header .box-menu #search-form button span {
   color: #fff;
   font-size: 20px;
 }
@@ -217,12 +221,17 @@ header #logout {
 
   height: initial;
   letter-spacing: 1px;
+
+  background-color: inherit;
+  color: white;
+
+  cursor: pointer;
+  padding: 2px 4px;
 }
 
 header #logout span {
   margin-right: 8px;
-
-  margin-bottom: 4px;
+  margin-bottom: 1px;
 }
 
 /* == Footer == */

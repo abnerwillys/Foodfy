@@ -2,6 +2,7 @@
 <div class="input-block">
   <label for="name">Nome</label>
   <input 
+    {% if error %}class="input-error"{%endif%}
     id="name"
     type="text" 
     name="name" 
@@ -14,6 +15,7 @@
 <div class="input-block">
   <label for="email">Email</label>
   <input 
+    {% if error %}class="input-error"{%endif%}
     id="email"
     type="email" 
     name="email" 
@@ -26,10 +28,10 @@
 <div class="input-block">
   <label for="password">Senha</label>
   <input 
+    {% if error %}class="input-error"{%endif%}
     id="password"
     type="password" 
     name="password" 
     placeholder="Digite a senha"
-    required
   />
 </div>

@@ -29,8 +29,13 @@
             <div class="footer">
               <a class="button-action" href="/admin/users/{{user.id}}/edit">Editar</a>
 
-              <form action="/admin/users?_method=DELETE" id="delete-user" method="POST">
-                <button class="button-action" type="submit" form="delete-user">
+              <form 
+                action="/admin/users?_method=DELETE" 
+                id="delete-user-{{user.id}}" 
+                class="delete-user" 
+                method="POST"
+              >
+                <button class="button-action" type="submit" form="delete-user-{{user.id}}">
                   Remover
                 </button>
                 <input type="hidden" name="id" value="{{user.id}}">

@@ -1,6 +1,4 @@
 const db = require('../../config/db')
-// const { hash } = require('bcryptjs');
-
 
 module.exports = {
   async findAll() {
@@ -49,13 +47,10 @@ module.exports = {
         RETURNING id
       `;
 
-      // const passwordHash = await hash(data.password, 8);
-      const passwordTemp = '12345'
-
       const values = [
         data.name,
         data.email,
-        passwordTemp,
+        data.password,
         data.reset_token,
         data.reset_token_expires,
         data.is_admin || '0'
@@ -90,33 +85,13 @@ module.exports = {
 
     } catch (error) {
       console.error(error)
+
+      return error
     }
   },
   async delete(id) {
     try {
-      let results = await db.query('SELECT * FROM products WHERE user_id = $1',[id]);
-
-      const products = results.rows;
-
-      const allFilesPromise = products.map((product) =>
-        Product.files(product.id)
-      );
-
-      let promiseResults = await Promise.all(allFilesPromise);
-
-      await db.query(`DELETE FROM users WHERE id = $1`, [id]);
-
-      promiseResults.map((results) => {
-        results.rows.map((file) => {
-          try {
-            fs.unlinkSync(file.path)
-            
-          } catch (error) {
-            console.error(error)
-          }
-        });
-      });
-
+      return db.query(`DELETE FROM users WHERE id = $1`, [id]);
     } catch (error) {
       console.error(error);
     }
