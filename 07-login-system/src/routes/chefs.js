@@ -1,11 +1,10 @@
-const express = require('express');
-const routes  = express.Router();
+const express = require('express')
+const routes  = express.Router()
 
-const multerChef = require('../app/middlewares/multerChef');
+const multerChef = require('../app/middlewares/multerChef')
 
-const ChefValidator = require('../app/validators/chef');
-
-const ChefsController = require('../app/controllers/ChefsController');
+const ChefValidator   = require('../app/validators/chef')
+const ChefsController = require('../app/controllers/ChefsController')
 
 routes
   .get('/chefs', ChefsController.index)
@@ -15,6 +14,6 @@ routes
 
   .post('/chefs', multerChef.single('photo_chef'), ChefValidator.post, ChefsController.post)
   .put('/chefs', multerChef.single('photo_chef'), ChefValidator.put, ChefsController.put)
-  .delete('/chefs', ChefsController.delete);
+  .delete('/chefs', ChefsController.delete)
 
-module.exports = routes;
+module.exports = routes

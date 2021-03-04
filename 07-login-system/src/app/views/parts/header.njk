@@ -4,8 +4,8 @@
 
     <header class="{{type}}">
       <div class="box-menu">
-        <a href="/">          
-          <img src="/assets/logo-admin.png" alt="logo">          
+        <a href="/">
+          <img src="/assets/logo-admin.png" alt="logo">
         </a>
 
         <nav class="menu">
@@ -14,27 +14,29 @@
           <a href="/admin/users">Usuários</a>
         </nav>
 
-        <a href="/" id="logout">
-          <span class="material-icons">exit_to_app</span>
-          Sair
-        </a>
+        <form action="/session/logout" method="POST">
+          <button type="submit" id="logout">
+            <span class="material-icons">exit_to_app</span>
+            Sair
+          </button>
+        </form>
       </div>
     </header>
 
   {% elseif type == 'session' %}
 
     <header class="{{type}}">
-      <a href="/">          
-        <img src="/assets/logo.png" alt="logo">          
+      <a href="/">
+        <img src="/assets/logo.png" alt="logo">
       </a>
     </header>
 
   {% else %}
-  
+
     <header class="">
       <div class="box-menu">
-        <a href="/">          
-          <img src="/assets/logo.png" alt="logo">          
+        <a href="/">
+          <img src="/assets/logo.png" alt="logo">
         </a>
 
         <nav class="menu">
@@ -44,26 +46,24 @@
           <a href="/about">Sobre</a>
           <a href="/recipes">Receitas</a>
           <a href="/chefs">Chefs</a>
+          <a href="/session/login">Entrar</a>
         </nav>
 
-        {% if ignoreFilter != "true"  %}
-          <form action="/search/recipes" method="GET">
+        {% if ignoreFilter != "true" %}
+          <form id="search-form" action="/search/recipes" method="GET">
             <div class="input-block">
-              <input 
-                type="text" 
-                name="filter" 
-                value="{{filter}}"
-                placeholder="Buscar uma receita"
-              >
+              <input type="text" name="filter" value="{{filter}}" placeholder="Buscar uma receita">
             </div>
 
-            <button type="submit"><span class="material-icons">search</span></button>
+            <button type="submit">
+              <span class="material-icons">search</span>
+            </button>
           </form>
         {% endif %}
 
       </div>
     </header>
-    
+
   {% endif %}
 
 {% endmacro %}

@@ -106,4 +106,6 @@
 #users-manager .card form .button-action {
   color: #F55A5A;
   margin-left: 16px;
+  cursor: pointer;
+  outline: none;
 }

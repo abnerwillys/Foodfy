@@ -1,9 +1,11 @@
 <div class="input-block">
   <label for="email">Email</label>
   <input 
+    {% if error %}class="input-error"{%endif%}
     id="email"
     type="email" 
-    name="email" 
+    name="email"
+    value="{{user.email}}"
     placeholder="Digite seu email"
     required
   />
@@ -12,6 +14,7 @@
 <div class="input-block">
   <label for="password">Nova senha</label>
   <input 
+    {% if error %}class="input-error"{%endif%}
     id="password"
     type="password" 
     name="password" 
@@ -23,6 +26,7 @@
 <div class="input-block">
   <label for="repeat_password">Repetir senha</label>
   <input 
+    {% if error %}class="input-error"{%endif%}
     id="repeat_password"
     type="password" 
     name="repeat_password" 
@@ -30,3 +34,5 @@
     required
   />
 </div>
+
+<input type="hidden" name="token" value="{{ token }}">
