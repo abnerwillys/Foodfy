@@ -142,6 +142,12 @@
 
 #user-form .checkbox-block {
   display: flex;
+  flex-direction: column;
+}
+
+#user-form .checkbox-block > div,
+#user-form .checkbox-block > p {
+  display: flex;
   align-items: center;
 }
 
@@ -154,4 +160,19 @@
   width: 15px;
   height: 15px;
   cursor: pointer;
+}
+
+#user-form .checkbox-block > p {
+  font-size: 14px;
+  font-style: italic;
+  color: #888;
+
+  margin-top: 10px;
+}
+
+#user-form .checkbox-block > p i {
+  color: orange;
+  font-size: 20px;
+  margin-right: 5px;
+  margin-bottom: 3px;
 }

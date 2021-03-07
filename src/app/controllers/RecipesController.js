@@ -11,7 +11,7 @@ function treatFieldInformation(body) {
 module.exports = {
   async index(req, res) {
     try {
-      const { error, success } = req.session
+      const { user: userInSession, error, success } = req.session
       req.session.error   = ''
       req.session.success = ''
 
@@ -28,12 +28,14 @@ module.exports = {
         offset
       }
 
-      let recipes = await Recipe.paginated(params)
+      const userIdForPaginate = !userInSession.isAdmin ? userInSession.id : null
+
+      let recipes = await Recipe.paginated(params, userIdForPaginate)
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
         return res.render('adminRecipes/recipes-manager', { message, error, success })
-      } 
-      
+      }
+
       const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
       const results = await Promise.all(recipesPromises)
 
@@ -47,7 +49,7 @@ module.exports = {
       return res.render("adminRecipes/recipes-manager", { recipes, pagination, error, success })
 
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   },
   async create(req, res) {

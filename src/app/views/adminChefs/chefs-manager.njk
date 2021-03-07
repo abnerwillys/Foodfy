@@ -10,17 +10,19 @@
   {{ nunjucks.checkHeader('admin-area', '') }}
 
   <section id="chefs-manager">
-    
+
     <div class="title">
       <h1>Gerenciar chefs</h1>
-      <a href="/admin/chefs/create" class="new-chef">
-        <span class="material-icons">add</span>
-        Novo chef
-      </a>
+      {% if session.user.isAdmin %}
+        <a href="/admin/chefs/create" class="new-chef">
+          <span class="material-icons">add</span>
+          Novo chef
+        </a>
+      {% endif %}
     </div>
 
     {% if not message %}
-      {{ adminArea.cardsChefs('admin', chefs) }}      
+      {{ adminArea.cardsChefs('admin', chefs) }}
     {% else %}
       {% include 'parts/message.njk' %}
     {% endif %}

@@ -1,14 +1,17 @@
 const crypto   = require('crypto')
 const { hash } = require('bcryptjs')
 const User     = require('../models/User')
-const { sendForgotEmail }   = require('../services/SendMailService')
+const { sendForgotEmail } = require('../services/SendMailService')
 
 module.exports = {
   loginForm(req, res) {
     return res.render("session/login")
   },
   login(req, res) {
-    req.session.userId = req.user.id
+    req.session.user = {
+      id: req.user.id,
+      isAdmin: req.user.is_admin
+    }
 
     return res.redirect('/admin/users')
   },

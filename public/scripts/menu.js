@@ -13,5 +13,9 @@ window.onload = () => {
     if (linkPath == url && "/") {
       link.classList.add("active")
     }
+
+    if (url.includes('profile') && linkPath === '/admin/users') {
+      link.classList.add("active")
+    }
   }
 }

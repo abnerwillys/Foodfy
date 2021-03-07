@@ -52,15 +52,17 @@ module.exports = {
       console.error(error)
     }
   },
-  async paginated(params) {
+  async paginated(params, userId) {
     try {
       const { filter, limit, offset, orderBy, isDesc } = params
 
       let query = "", 
+          userIdQuery = ""
           filterQuery = "",
           subQuery = `(
             SELECT count(*) 
             FROM recipes
+            ${userId ? `WHERE recipes.user_id = ${userId}` : ''}
           ) AS total`
 
       if (filter) {
@@ -74,12 +76,17 @@ module.exports = {
           ${filterQuery}
         ) AS total`
       }
+
+      if (userId) {
+        userIdQuery = `WHERE recipes.user_id = ${userId}`
+      }
       
       query = `
         SELECT recipes.*, ${subQuery}, chefs.name AS chef_name
         FROM recipes
         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
         ${filterQuery}
+        ${userIdQuery}
         ORDER BY recipes.${orderBy ? orderBy : 'title'} ${isDesc ? 'DESC' : 'ASC'}
         LIMIT $1 OFFSET $2
       `

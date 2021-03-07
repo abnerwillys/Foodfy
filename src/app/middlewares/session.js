@@ -1,44 +1,32 @@
-const User = require('../models/User')
-
 function onlyUsers(req, res, next) {
-  if (!req.session.userId) 
+  if (!req.session.user) 
     return res.redirect('/session/login')
 
   next()
 }
 
 async function onlyAdm(req, res, next) {
-  try {
-    const { userId: id } = req.session
+  const { user } = req.session
   
-    const user = await User.findById(id)
-    if(!user.is_admin) {
-      return res.redirect('/admin/profile')
-    }
-
-    next()
-  } catch (error) {
-    console.error(error)
+  if(!user.isAdmin) {
+    return res.redirect('/admin/profile')
   }
+
+  next()
 }
 
 async function isAdmRedirectToAdmRoute(req, res, next) {
-  try {
-    const { userId: id } = req.session
+  const { user } = req.session
   
-    const user = await User.findById(id)
-    if(user.is_admin) {
-      return res.redirect('/admin/users')
-    }
-
-    next()
-  } catch (error) {
-    console.error(error)
+  if(user.isAdmin) {
+    return res.redirect('/admin/users')
   }
+
+  next()
 }
 
 function isLoggedRedirectToUsers(req, res, next) {
-  if (req.session.userId) 
+  if (req.session.user) 
     return res.redirect('/admin/profile')
 
   next()

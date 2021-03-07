@@ -16,8 +16,8 @@ routes
   .get('/users/create', onlyAdm, UserController.create)
   .get('/users/:id/edit', onlyAdm, UserController.edit)
 
-  .post('/users', UserValidator.post, UserController.post)
-  .put('/users', UserValidator.put, UserController.put)
-  .delete('/users', UserValidator.delete, UserController.delete)
+  .post('/users', onlyAdm, UserValidator.post, UserController.post)
+  .put('/users', onlyAdm, UserValidator.put, UserController.put)
+  .delete('/users', onlyAdm, UserValidator.delete, UserController.delete)
 
 module.exports = routes

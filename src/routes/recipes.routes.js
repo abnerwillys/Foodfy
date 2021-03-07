@@ -14,6 +14,6 @@ routes
 
   .post('/recipes', multerRecipe.array('photos', 5), RecipeValidator.post, RecipesController.post)
   .put('/recipes', multerRecipe.array('photos', 5), RecipeValidator.put, RecipesController.put)
-  .delete('/recipes', RecipesController.delete)
+  .delete('/recipes', RecipeValidator.delete, RecipesController.delete)
 
 module.exports = routes
