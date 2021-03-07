@@ -1,31 +1,20 @@
-const Client = require('../models/Client')
+const Chef   = require('../models/Chef')
 const File   = require('../models/File')
+const Recipe = require('../models/Recipe')
 
+const { treatFilesFromData } = require('../../lib/useful')
 const { notFoundData } = require('../../lib/page404')
 
 module.exports = {
   async index(req, res) {
     try {
-      let results   = await Client.all("recipes")
-      const recipes = results.rows
-
+      let recipes = await Recipe.getAll()
       if (recipes == "") return res.render('clientArea/index')
 
-      const recipesPromises = recipes.map(recipe => File.find(recipe.id))
-      results = await Promise.all(recipesPromises)
-      
-      for (let i = 0; i < recipes.length; i++) {
-        let currentFile = results[i].rows[0]
-        let fileTreated = {
-          ...currentFile,
-          src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-        }
+      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
+      const results = await Promise.all(recipesPromises)
 
-        recipes[i] = {
-          ...recipes[i], 
-          file_recipe: fileTreated
-        }
-      }
+      recipes = treatFilesFromData('recipe', recipes, results, req)
       
       return res.render('clientArea/index', { recipes })
 
@@ -49,34 +38,20 @@ module.exports = {
         page,
         limit,
         offset,
-        order: "created_at"
+        orderBy: "created_at",
+        isDesc: true
       }
 
-      let results   = await Client.paginate(params)
-      const recipes = results.rows
-
+      let recipes = await Recipe.paginated(params)
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
         return res.render("clientArea/recipes-list", { message })
+      } 
       
-      } else {
-        const recipesPromises = recipes.map(recipe => File.find(recipe.id))
+      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
+      const results = await Promise.all(recipesPromises)
 
-        results = await Promise.all(recipesPromises)
-        
-        for (let i = 0; i < recipes.length; i++) {
-          let currentFile = results[i].rows[0]
-          let fileTreated = {
-            ...currentFile,
-            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-          }
-
-          recipes[i] = {
-            ...recipes[i], 
-            file_recipe: fileTreated
-          }
-        }
-      }
+      recipes = treatFilesFromData('recipe', recipes, results, req)
 
       const pagination = {
         totalPages: Math.ceil(recipes[0].total / limit),
@@ -87,16 +62,15 @@ module.exports = {
 
     } catch (error) {
       console.error(error)
+      return res.render('not-found', { notFoundData })
     }
   },
   async recipeDetail(req, res) {
     try {
-      let results  = await Client.find("recipes", req.params.index)
-      const recipe = results.rows[0]
-
+      const recipe = await Recipe.findRecipe(req.params.id)
       if (!recipe) return res.render('not-found', { notFoundData })
 
-      results   = await File.find(recipe.id)
+      let results = await File.findRecipeFile(recipe.id)
       let files = results.rows
       files     = files.map(file => ({
         ...file,
@@ -111,76 +85,42 @@ module.exports = {
   },
   async chefs(req, res) {
     try {
-      let results = await Client.all("chefs")
-      const chefs = results.rows
-      
+      let chefs = await Chef.findAllGroupBy('id')
       if (chefs == "") {
         const message = "Nenhum chef cadastrado!"
         return res.render('clientArea/chefs-list', { message })
+      } 
+      
+      const chefsPromises = chefs.map(chef => Chef.fileChef(chef.file_id))
+      const results = await Promise.all(chefsPromises)
 
-      } else {
-        const chefsPromises = chefs.map(chef => Client.chefFiles(chef.file_id))
-        results = await Promise.all(chefsPromises)
-        
-        for (let i = 0; i < chefs.length; i++) {
-          let currentFile = results[i].rows[0]
-          let fileTreated = {
-            ...currentFile,
-            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-          }
-
-          chefs[i] = {
-            ...chefs[i], 
-            file_chef: fileTreated
-          }
-        }
-      }
+      chefs = treatFilesFromData('chef', chefs, results, req)
 
       return res.render('clientArea/chefs-list', { chefs })
 
     } catch (error) {
       console.error(error)
+      return res.render('not-found', { notFoundData })
     }
   },
   async chefDetail(req, res) {
     try {
-      let results = await Client.find("chefs", req.params.index)
-      const chef  = results.rows[0]
-
+      const chef = await Chef.findChef(req.params.id)
       if (!chef) return res.render('not-found', { notFoundData })
 
-      results    = await Client.chefFiles(chef.file_id)
-      const file = { 
-        ...results.rows[0],
-        src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
-      } 
+      const file = await File.findById(chef.file_id)
+      file.src   = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
   
-      results       = await Client.findRecipes(chef.id)
-      const recipes = results.rows
-
+      let recipes = await Chef.findRecipesFromChef(chef.id, 'created_at')
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
-
         return res.render('clientArea/chef-detail', { chef, file, message })
+      } 
       
-      } else {
-        const recipesPromises = recipes.map(recipe => File.find(recipe.id))
-
-        results = await Promise.all(recipesPromises)
-        
-        for (let i = 0; i < recipes.length; i++) {
-          let currentFile = results[i].rows[0]
-          let fileTreated = {
-            ...currentFile,
-            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-          }
-
-          recipes[i] = {
-            ...recipes[i], 
-            file_recipe: fileTreated
-          }
-        }
-      }
+      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
+      const results = await Promise.all(recipesPromises)
+      
+      recipes = treatFilesFromData('recipe', recipes, results, req)
 
       return res.render('clientArea/chef-detail', { chef, recipes, file })
 
@@ -191,6 +131,7 @@ module.exports = {
   async search(req, res) {
     try {
       let { filter, page, limit } = req.query
+      if (!filter || filter.toLowerCase() === 'tudo') filter = null
 
       page  = page  || 1
       limit = limit || 9
@@ -201,41 +142,34 @@ module.exports = {
         page,
         limit,
         offset,
-        order: "updated_at"
+        orderBy: "updated_at",
+        isDesc: true
       }
 
-      let results    = await Client.paginate(params)
-      const recipes  = results.rows
-
+      let recipes = await Recipe.paginated(params)
       if (recipes == "") {
         const message = "Nenhuma receita encontrada!"
-        return res.render("clientArea/recipes-search", { message, filter })
+        return res.render("clientArea/recipes-search", {
+          message,
+          filter: filter || 'Tudo'
+        })
+      } 
       
-      } else {
-        const recipesPromises = recipes.map(recipe => File.find(recipe.id))
-
-        results = await Promise.all(recipesPromises)
-        
-        for (let i = 0; i < recipes.length; i++) {
-          let currentFile = results[i].rows[0]
-          let fileTreated = {
-            ...currentFile,
-            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-          }
-
-          recipes[i] = {
-            ...recipes[i], 
-            file_recipe: fileTreated
-          }
-        }
-      }
+      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
+      const results = await Promise.all(recipesPromises)
+      
+      recipes = treatFilesFromData('recipe', recipes, results, req)
 
       const pagination = {
         totalPages: Math.ceil(recipes[0].total / limit),
         page
       }
       
-      return res.render("clientArea/recipes-search", { recipes, pagination, filter })
+      return res.render("clientArea/recipes-search", {
+        recipes,
+        pagination,
+        filter: filter || 'Tudo'
+      })
 
     } catch (error) {
       console.error(error)

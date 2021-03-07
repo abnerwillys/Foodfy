@@ -2,12 +2,16 @@ const User = require("../models/User")
 
 module.exports = {
   async index(req, res) {
-    const { user } = req
-    const { error, success } = req.session
-    req.session.error   = ''
-    req.session.success = ''
+    try {
+      const { user } = req
+      const { error, success } = req.session
+      req.session.error   = ''
+      req.session.success = ''
 
-    return res.render("adminProfile/index", { user, success, error })
+      return res.render("adminProfile/index", { user, success, error })
+    } catch (error) {
+      console.error(error)
+    }
   },
   async put(req, res) {
     try {

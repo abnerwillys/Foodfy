@@ -1,7 +1,7 @@
 const crypto   = require('crypto')
-const mailer   = require('../../lib/mailer')
 const { hash } = require('bcryptjs')
-const User = require('../models/User')
+const User     = require('../models/User')
+const { sendForgotEmail }   = require('../services/SendMailService')
 
 module.exports = {
   loginForm(req, res) {
@@ -22,7 +22,7 @@ module.exports = {
   },
   async forgot(req, res) {
     try {
-      const user = req.user
+      const user  = req.user
       const token = crypto.randomBytes(20).toString('hex')
 
       let now = new Date()
@@ -33,24 +33,7 @@ module.exports = {
         reset_token_expires: now,
       })
 
-      await mailer.sendMail({
-        from: 'no-reply@foodfy.com.br',
-        to: user.email,
-        subject: 'Recuperação de senha',
-        html: `
-          <h2>Ixii, Esqueceu sua senha?</h2>
-          <p>Não se preocupe ${user.name}, clique no link abaixo para recuperar sua senha.</p>
-          <p>
-            <a href="http://localhost:3000/session/reset-password?token=${token}" target="_blank">
-              Link para recuperar sua senha
-            </a>
-          </p>
-          <p>Link válido por 1 hora.</p>
-          <p>
-            Abraços - Equipe Foodfy
-          </p>
-        `,
-      })
+      await sendForgotEmail(user, token)
 
       return res.render('session/forgot-password', {
         success:

@@ -1,66 +1,65 @@
-const User = require('../models/User');
-const { compare } = require('bcryptjs');
+const User = require('../models/User')
+const { compare } = require('bcryptjs')
 
 module.exports = {
   async login(req, res, next) {
     try {
-      const { email, password } = req.body;
+      const { email, password } = req.body
 
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } })
 
       if (!user)
         return res.render('session/login', {
           user: req.body,
           error: 'Usuário não cadastrado!',
-        });
+        })
 
-      const passed = await compare(password, user.password);
-      // const passed = password === user.password;
+      const passed = await compare(password, user.password)
 
       if (!passed)
         return res.render('session/login', {
           user: req.body,
           error: 'Senha incorreta!',
-        });
+        })
 
-      req.user = user;
+      req.user = user
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async forgot(req, res, next) {
     try {
-      const { email } = req.body;
+      const { email } = req.body
 
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } })
 
       if (!user)
         return res.render('session/forgot-password', {
           user: req.body,
           error: 'Email não cadastrado!',
-        });
+        })
 
-      req.user = user;
+      req.user = user
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async reset(req, res, next) {
     try {
-      const { email, password, repeat_password, token } = req.body;
+      const { email, password, repeat_password, token } = req.body
       
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email } })
 
       if (!user) {
         return res.render('session/reset-password', {
           token,
           user: req.body,
           error: 'Usuário não cadastrado!',
-        });
+        })
       }
 
       console.log(token)
@@ -71,7 +70,7 @@ module.exports = {
           token,
           user: req.body,
           error: 'A senha repetida não confere com a digitada inicialmente!',
-        });
+        })
       }
 
       if (token != user.reset_token) {
@@ -79,25 +78,25 @@ module.exports = {
           token,
           user: req.body,
           error: 'Token Inválido! Solicite uma nova recuperação de senha.',
-        });
+        })
       }
 
-      let now = new Date();
-      now = now.setHours(now.getHours());
+      let now = new Date()
+      now = now.setHours(now.getHours())
 
       if (now > user.reset_token_expires) {
         return res.render('session/reset-password', {
           token,
           user: req.body,
           error: 'Token expirado! Solicite uma nova recuperação de senha.',
-        });
+        })
       }
 
-      req.user = user;
-      next();
+      req.user = user
+      next()
 
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
-};
+}

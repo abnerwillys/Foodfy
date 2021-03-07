@@ -1,15 +1,15 @@
-const User = require('../models/User');
+const User = require('../models/User')
 const { compare } = require('bcryptjs')
 
 function checkAllFields(body) {
-  const keys = Object.keys(body);
+  const keys = Object.keys(body)
 
   for (key of keys) {
     if (body[key] == '') {
       return { 
         error: 'Por favor, preencha todos os campos!', 
         user: body 
-      };
+      }
     }
   }
 }
@@ -17,23 +17,23 @@ function checkAllFields(body) {
 module.exports = {
   async post(req, res, next) {
     try {
-      const fillAllFields = checkAllFields(req.body);
+      const fillAllFields = checkAllFields(req.body)
       if (fillAllFields) {
         return res.render('adminUsers/user-create', fillAllFields)
       }
 
-      const { email } = req.body;
+      const { email } = req.body
 
       const user = await User.findOne({ where: { email }})
 
       if (user) {
-        const error = 'Usuário já cadastrado!';
-        return res.render('adminUsers/user-create', { error, user: req.body });
+        const error = 'Usuário já cadastrado!'
+        return res.render('adminUsers/user-create', { error, user: req.body })
       }
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async put(req, res, next) {
@@ -44,13 +44,13 @@ module.exports = {
       }
 
       const { id } = req.body
-      const user = await User.findOne({ where: { id } })
+      const user = await User.findById(id)
 
       if (!user) {
         return res.render('adminUsers/user-edit', {
           user: req.body,
           error: 'Usuário não encontrado!',
-        });
+        })
       }
 
       next()
@@ -63,7 +63,7 @@ module.exports = {
       const { userId } = req.session 
       const { id: idDeleted } = req.body
 
-      const userInSession = await User.findOne({ where: { id: userId } })
+      const userInSession = await User.findById(userId)
       
       if (idDeleted == userInSession.id) {
         req.session.error = "Não é possível deletar seu próprio perfil."
@@ -85,7 +85,7 @@ module.exports = {
     try {
       const { userId: id } = req.session 
 
-      const user = await User.findOne({ where: { id } })
+      const user = await User.findById(id)
       if (!user) 
         return res.render('adminProfile/index', {
           error: "Usuário não encontrado!"
@@ -108,17 +108,17 @@ module.exports = {
       const { id, password } = req.body
 
       if (!password) {
-        const error = 'Coloque sua senha para atualizar seu cadastro!';
-        return res.render('adminProfile/index', { error, user: req.body });
+        const error = 'Coloque sua senha para atualizar seu cadastro!'
+        return res.render('adminProfile/index', { error, user: req.body })
       }
 
-      const user = await User.findOne({ where: {id} })
+      const user = await User.findById(id)
 
       const passed = await compare(password, user.password)
 
       if (!passed) {
-        const error = 'Senha incorreta!';
-        return res.render('adminProfile/index', { error, user: req.body });
+        const error = 'Senha incorreta!'
+        return res.render('adminProfile/index', { error, user: req.body })
       }
 
       next()

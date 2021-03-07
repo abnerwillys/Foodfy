@@ -1,38 +1,26 @@
 const Chef = require('../models/Chef')
 const File = require('../models/File')
+const { treatFilesFromData } = require('../../lib/useful')
 
 module.exports = {
   async index(req, res) {
     try {
       const { error, success } = req.session
-      req.session.error = '';
-      req.session.success = '';
+      req.session.error   = ''
+      req.session.success = ''
       
-      let results = await Chef.all()
-      const chefs = results.rows
+      let chefs = (await Chef.findAll())
+        .sort((a,b) => a.name.localeCompare(b.name))
 
       if (chefs == "") {
         const message = "Nenhum chef cadastrado!"
         return res.render('adminChefs/chefs-manager', { message, error, success })
-
-      } else {
-        const chefsPromises = chefs.map(chef => Chef.files(chef.file_id))
-
-        results = await Promise.all(chefsPromises)
-        
-        for (let i = 0; i < chefs.length; i++) {
-          let currentFile = results[i].rows[0]
-          let fileTreated = {
-            ...currentFile,
-            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-          }
-
-          chefs[i] = {
-            ...chefs[i], 
-            file_chef: fileTreated
-          }
-        }
       }
+
+      const chefsPromises = chefs.map(chef => Chef.fileChef(chef.file_id))
+      const results = await Promise.all(chefsPromises)
+
+      chefs = treatFilesFromData('chef', chefs, results, req)
 
       return res.render('adminChefs/chefs-manager', { chefs, error, success })
     } catch (error) {
@@ -44,108 +32,114 @@ module.exports = {
   },
   async post(req, res) {
     try {
-      let results   = await File.create(req.file)
-      const file_id = results.rows[0].id    
+      const { filename, path } = req.file
+      const file_id = await File.create({
+        name: filename,
+        path: path.replace(/\\/g, "/" ),
+      })
 
-      results      = await Chef.create({ ...req.body, file_id })
-      const chefId = results.rows[0].id
+      const chefId = await Chef.create({ ...req.body, file_id })
 
+      req.session.success = 'Chef criado com sucesso!'
       return res.redirect(`/admin/chefs/${chefId}`)
 
     } catch (error) {
       console.error(error)
+      return res.render('adminChefs/chef-create', {
+        error: `ATENÇÃO: ${error}`,
+        chef: req.body,
+      })
     }
   },
   async show(req, res) {
     try {
-      const { chef } = req;
+      const { chef } = req
+      const { error, success } = req.session
+      req.session.error   = ''
+      req.session.success = ''
 
-      let results = await Chef.files(chef.file_id)
-      const file  = { 
-        ...results.rows[0],
-        src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
-      }
+      const file = await File.findById(chef.file_id)
+      file.src   = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
 
-      results = await Chef.findRecipes(chef.id)
-      const recipes = results.rows
-
+      let recipes = await Chef.findRecipesFromChef(chef.id)
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
-        return res.render('adminChefs/chef-detail', { chef, file, message })
+        return res.render('adminChefs/chef-detail', { chef, file, message, error, success })
+      } 
+
+      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
+      const results = await Promise.all(recipesPromises)
       
-      } else {
-        const recipesPromises = recipes.map(recipe => File.find(recipe.id))
+      recipes = treatFilesFromData('recipe', recipes, results, req)
 
-        results = await Promise.all(recipesPromises)
-        
-        for (let i = 0; i < recipes.length; i++) {
-          let currentFile = results[i].rows[0]
-          let fileTreated = {
-            ...currentFile,
-            src: `${req.protocol}://${req.headers.host}${currentFile.path.replace('public', "")}`
-          }
-
-          recipes[i] = {
-            ...recipes[i], 
-            file_recipe: fileTreated
-          }
-        }
-      }
-
-      return res.render('adminChefs/chef-detail', { chef, recipes, file })
+      return res.render('adminChefs/chef-detail', { chef, recipes, file, error, success })
 
     } catch (error) {
       console.error(error)
+      req.session.error = `ATENÇÃO: ${error}`
+      return res.redirect(`/admin/chefs`)
     }
   },
   async edit(req, res) {
     try {
-      const { chef } = req;
+      const { chef } = req
+      const { error, success } = req.session
+      req.session.error   = ''
+      req.session.success = ''
 
-      let results = await Chef.files(chef.file_id)
-      const file  = { 
-        ...results.rows[0],
-        src: `${req.protocol}://${req.headers.host}${results.rows[0].path.replace('public', "")}`
-      }
+      const file = await File.findById(chef.file_id)
+      file.src   = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
 
-      return res.render('adminChefs/chef-edit', { chef, file })
+      return res.render('adminChefs/chef-edit', { chef, file, error, success })
 
     } catch (error) {
       console.error(error)
+      req.session.error = `ATENÇÃO: ${error}`
+      return res.redirect(`/admin/chefs`)
     }
   },
   async put(req, res) {
     try {      
       if (req.body.removed_file) {
-        let results   = await File.create(req.file)
-        const file_id = results.rows[0].id 
+        const { id, name, removed_file } = req.body
+        const { filename, path } = req.file
+        
+        const file_id = await File.create({
+          name: filename,
+          path: path.replace(/\\/g, "/" ),
+        })
 
-        await Chef.update({ ...req.body, file_id })
-
-        await File.delete(req.body.removed_file)
+        await Chef.update(id, { name, file_id })
+        await File.deleteFile(removed_file)
         
       } else {
         const { id, name, current_file } = req.body
 
-        await Chef.update({ id, name, file_id: current_file })
+        await Chef.update(id, { name, file_id: current_file })
       } 
 
+      req.session.success = 'Chef atualizado com sucesso!'
       return res.redirect(`/admin/chefs/${req.body.id}`)
 
     } catch (error) {
       console.error(error)
+      req.session.error = `ATENÇÃO: ${error}`
+      return res.redirect(`/admin/chefs/${req.body.id}/edit`)
     }
   },
   async delete(req, res) {
     try {
       await Chef.delete(req.body.id)
     
-      await File.delete(req.body.current_file)
+      await File.deleteFile(req.body.current_file)
 
+      req.session.success = 'Chef deletado com sucesso!'
       return res.redirect(`/admin/chefs`)
 
     } catch (error) {
       console.error(error)
+      req.session.error = `ATENÇÃO: ${error}`
+      return res.redirect(`/admin/chefs`)
     }
   }
 }

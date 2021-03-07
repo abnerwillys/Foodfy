@@ -1,56 +1,16 @@
-const db = require('../../config/db')
-const fs = require('fs')
+const db   = require('../../config/db')
+const fs   = require('fs')
+const Base = require('./Base')
+
+Base.init({ table: 'files' })
 
 module.exports = {
-  create({ filename, path }) {
-    const query = `
-      INSERT INTO files (
-        name,
-        path
-      ) VALUES ($1, $2)
-      RETURNING id
-    `
-
-    const values = [
-      filename,
-      path.replace(/\\/g, "/" ),
-    ]
-
-    return db.query(query, values)
-  },
-  async delete(id) {
+  ...Base,
+  async createRecipeFile(fileData, recipeId) {
     try {
-      const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
-      const file   = result.rows[0]
+      const fileId = await this.create(fileData)
 
-      fs.unlinkSync(file.path)
-
-      return db.query(`DELETE FROM files WHERE id = $1`, [id])
-
-    } catch (error) {
-      console.error(error)
-    }
-  },
-  async createRecipeFile({ filename, path, recipeId }) {
-    try {
-      let query = `
-        INSERT INTO files (
-          name,
-          path
-        ) VALUES ($1, $2)
-        RETURNING id
-      `
-
-      let values = [
-        filename,
-        path.replace(/\\/g, "/" ),
-      ]
-
-      let results  = await db.query(query, values)
-      const fileId = results.rows[0].id
-
-
-      query = `
+      const query = `
         INSERT INTO recipe_files (
           recipe_id,
           file_id
@@ -69,7 +29,7 @@ module.exports = {
       console.error(error)
     }
   },
-  find(recipeId) {
+  findRecipeFile(recipeId) {
     const query = `
       SELECT * 
       FROM files
@@ -83,19 +43,68 @@ module.exports = {
 
     return db.query(query, [recipeId])
   },  
-  async deleteRecipeFile(id) {
+  async deleteFile(id, entity) {
     try {
       const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
       const file   = result.rows[0]
 
       fs.unlinkSync(file.path)
 
-      await db.query(`DELETE FROM recipe_files WHERE file_id = $1`, [id])
+      if (entity === 'recipe') {
+        await db.query(`DELETE FROM recipe_files WHERE file_id = $1`, [id])
+      }
 
       return db.query(`DELETE FROM files WHERE id = $1`, [id])
 
     } catch (error) {
       console.error(error)
     }
-  }
+  },
 }
+
+/* 
+create({ filename, path }) {
+  const query = `
+    INSERT INTO files (
+      name,
+      path
+    ) VALUES ($1, $2)
+    RETURNING id
+  `
+
+  const values = [
+    filename,
+    path.replace(/\\/g, "/" ),
+  ]
+
+  return db.query(query, values)
+},
+async delete(id) {
+  try {
+    const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
+    const file   = result.rows[0]
+
+    fs.unlinkSync(file.path)
+
+    return db.query(`DELETE FROM files WHERE id = $1`, [id])
+
+  } catch (error) {
+    console.error(error)
+  }
+},
+async deleteRecipeFile(id) {
+  try {
+    const result = await db.query(`SELECT * FROM files WHERE id = $1`, [id])
+    const file   = result.rows[0]
+
+    fs.unlinkSync(file.path)
+
+    await db.query(`DELETE FROM recipe_files WHERE file_id = $1`, [id])
+
+    return db.query(`DELETE FROM files WHERE id = $1`, [id])
+
+  } catch (error) {
+    console.error(error)
+  }
+},
+*/

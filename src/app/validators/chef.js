@@ -1,14 +1,14 @@
-const Chef = require('../models/Chef');
+const Chef = require('../models/Chef')
 
 function checkAllFields(body) {
-  const keys = Object.keys(body);
+  const keys = Object.keys(body)
 
   for (key of keys) {
     if (body[key] == '' && key != 'removed_file') {
       return {
         error: 'Por favor, todos os campos devem ser preenchidos!',
         user: body,
-      };
+      }
     }
   }
 }
@@ -16,71 +16,64 @@ function checkAllFields(body) {
 module.exports = {
   post(req, res, next) {
     try {
-      const fillAllFields = checkAllFields(req.body);
+      const fillAllFields = checkAllFields(req.body)
       if (fillAllFields) {
-        return res.render('adminChefs/chef-create', fillAllFields);
+        return res.render('adminChefs/chef-create', fillAllFields)
       }
 
       if (!req.file) {
-        const error =
-          'Por favor, é obrigatório o envio de uma imagem de perfil.';
+        const error = 'Por favor, é obrigatório o envio de uma imagem de perfil.'
         return res.render('adminChefs/chef-create', {
           error,
-          user: req.body,
-        });
+          chef: req.body,
+        })
       }
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async show(req, res, next) {
     try {
-      let results = await Chef.find(req.params.id);
-      const chef  = results.rows[0];
-
+      const chef = await Chef.findChef(req.params.id)
       if (!chef) {
         req.session.error = 'Chef não encontrado!'
-
-        return res.redirect('/admin/chefs');
+        return res.redirect('/admin/chefs')
       }
 
-      req.chef = chef;
+      req.chef = chef
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async edit(req, res, next) {
     try {
-      let results = await Chef.find(req.params.id);
-      const chef  = results.rows[0];
-
+      const chef = await Chef.findChef(req.params.id)
       if (!chef) {
         req.session.error = 'Chef não encontrado!'
-
-        return res.redirect('/admin/chefs');
+        return res.redirect('/admin/chefs')
       }
 
-      req.chef = chef;
+      req.chef = chef
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   put(req, res, next) {
     try {
-      const fillAllFields = checkAllFields(req.body);
+      const fillAllFields = checkAllFields(req.body)
       if (fillAllFields) {
-        return res.render('adminChefs/chef-edit', fillAllFields);
+        return res.render('adminChefs/chef-edit', fillAllFields)
       }
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
-};
+}

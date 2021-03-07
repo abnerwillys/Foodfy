@@ -1,96 +1,83 @@
-const Recipe = require('../models/Recipe');
+const Recipe = require('../models/Recipe')
 
 function checkAllFields(body) {
-  const keys = Object.keys(body);
+  const keys = Object.keys(body)
 
   for (key of keys) {
-    if (body[key] == '' && key != 'removed_files') {
+    if (body[key] == '' && key != 'removed_files' && key != 'information') {
       return {
-        error:
-          'Por favor, com exceção do campo "informações", todos os demais devem ser preenchidos!',
-        user: body,
-      };
+        error: 'Por favor, com exceção do campo "informações", todos os demais devem ser preenchidos!',
+        recipe: body,
+      }
     }
-  }
-}
-
-function treatFieldInformation(body) {
-  if (body.information == '' || !body.information) {
-    body.information = 'Sem informações adicionais.';
   }
 }
 
 module.exports = {
-  post(req, res, next) {
+  async post(req, res, next) {
     try {
-      treatFieldInformation(req.body);
-
-      const fillAllFields = checkAllFields(req.body);
+      const fillAllFields = checkAllFields(req.body)
       if (fillAllFields) {
-        return res.render('adminRecipes/recipe-create', fillAllFields);
+        const chefOptions = await Recipe.chefSelectOptions()
+        return res.render('adminRecipes/recipe-create', {
+          ...fillAllFields,
+          chefOptions
+        })
       }
 
       if (req.files.length == 0) {
-        const error = 'Por favor, envie ao menos uma imagem!';
+        const error = 'Por favor, envie ao menos uma imagem!'
         return res.render('adminRecipes/recipe-create', {
           error,
-          user: req.body,
-        });
+          recipe: req.body,
+        })
       }
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async show(req, res, next) {
     try {
-      let results  = await Recipe.find(req.params.id);
-      const recipe = results.rows[0];
-
+      const recipe = await Recipe.findRecipe(req.params.id)
       if (!recipe) {
         req.session.error = 'Receita não encontrada!'
-
-        return res.redirect('/admin/recipes');
+        return res.redirect('/admin/recipes')
       }
 
-      req.recipe = recipe;
+      req.recipe = recipe
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   async edit(req, res, next) {
     try {
-      let results  = await Recipe.find(req.params.id);
-      const recipe = results.rows[0];
-
+      const recipe = await Recipe.findRecipe(req.params.id)
       if (!recipe) {
         req.session.error = 'Receita não encontrada!'
-
-        return res.redirect('/admin/recipes');
+        return res.redirect('/admin/recipes')
       }
 
-      req.recipe = recipe;
+      req.recipe = recipe
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
   put(req, res, next) {
     try {
-      treatFieldInformation(req.body);
-
-      const fillAllFields = checkAllFields(req.body);
+      const fillAllFields = checkAllFields(req.body)
       if (fillAllFields) {
-        return res.render('adminRecipes/recipe-edit', fillAllFields);
+        return res.render('adminRecipes/recipe-edit', fillAllFields)
       }
 
-      next();
+      next()
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   },
-};
+}

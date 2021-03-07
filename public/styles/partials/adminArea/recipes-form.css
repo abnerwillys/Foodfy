@@ -83,6 +83,10 @@
   position: relative;
 }
 
+#recipe-form .textarea-block {
+  margin-bottom: 50px;
+}
+
 #recipe-form .input-block:focus-within::after,
 #recipe-form .select-block:focus-within::after,
 #recipe-form .textarea-block:focus-within::after,
@@ -211,7 +215,6 @@
 }
 
 /* == UPLOAD IMAGES ==  */
-
 #recipe-form .photos-block {
   margin-top: 30px;
 
