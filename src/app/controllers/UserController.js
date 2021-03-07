@@ -28,8 +28,6 @@ module.exports = {
       let now = new Date()
       now = now.setDate(now.getDate() + 1)
 
-      console.log(req.body)
-
       const password = crypto.randomBytes(5).toString('hex')
       const newUser = {
         ...req.body,
