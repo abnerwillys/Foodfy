@@ -5,7 +5,7 @@ function checkAllFields(body) {
   const keys = Object.keys(body)
 
   for (key of keys) {
-    if (body[key] == '') {
+    if (body[key] == '' && key != 'password') {
       return { 
         error: 'Por favor, preencha todos os campos!', 
         user: body 
@@ -60,16 +60,14 @@ module.exports = {
   },
   async delete(req, res, next) {
     try {
-      const { userId } = req.session 
+      const { user: userInSession } = req.session 
       const { id: idDeleted } = req.body
 
-      const userInSession = await User.findById(userId)
-      
       if (idDeleted == userInSession.id) {
         req.session.error = "Não é possível deletar seu próprio perfil."
         return res.redirect('/admin/users')
       }
-      if (!userInSession.is_admin) {
+      if (!userInSession.isAdmin) {
         req.session.error = "Usuário em sessão não tem permissão para deletar outros usuários!"
         return res.redirect('/admin/users')
       }
@@ -83,9 +81,9 @@ module.exports = {
   },
   async indexProfile(req, res, next) {
     try {
-      const { userId: id } = req.session 
+      const { user: userInSession } = req.session 
 
-      const user = await User.findById(id)
+      const user = await User.findById(userInSession.id)
       if (!user) 
         return res.render('adminProfile/index', {
           error: "Usuário não encontrado!"

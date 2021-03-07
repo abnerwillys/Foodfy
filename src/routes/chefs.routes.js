@@ -6,14 +6,16 @@ const multerChef = require('../app/middlewares/multerChef')
 const ChefValidator   = require('../app/validators/chef')
 const ChefsController = require('../app/controllers/ChefsController')
 
+const { onlyAdm } = require('../app/middlewares/session')
+
 routes
   .get('/chefs', ChefsController.index)
-  .get('/chefs/create', ChefsController.create)
+  .get('/chefs/create', onlyAdm, ChefsController.create)
   .get('/chefs/:id', ChefValidator.show, ChefsController.show)
-  .get('/chefs/:id/edit', ChefValidator.edit, ChefsController.edit)
+  .get('/chefs/:id/edit', onlyAdm, ChefValidator.edit, ChefsController.edit)
 
-  .post('/chefs', multerChef.single('photo_chef'), ChefValidator.post, ChefsController.post)
-  .put('/chefs', multerChef.single('photo_chef'), ChefValidator.put, ChefsController.put)
-  .delete('/chefs', ChefsController.delete)
+  .post('/chefs', onlyAdm, multerChef.single('photo_chef'), ChefValidator.post, ChefsController.post)
+  .put('/chefs', onlyAdm, multerChef.single('photo_chef'), ChefValidator.put, ChefsController.put)
+  .delete('/chefs', onlyAdm, ChefsController.delete)
 
 module.exports = routes

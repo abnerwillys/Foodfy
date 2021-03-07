@@ -3,7 +3,8 @@
 {% import 'parts/cardsRecipe.njk' as adminArea %}
 
 {% block head %}
-  <title>FoodFy - Admin | {{ chef.name }}</title>
+  <title>FoodFy - Admin |
+    {{ chef.name }}</title>
 {% endblock %}
 
 {% block content %}
@@ -11,18 +12,22 @@
 
   <section id="chef-detail" class="admin">
     <div class="edit-chef">
-      <h2>Chef: {{ chef.name }}</h2>
-      <a href="/admin/chefs/{{ chef.id }}/edit">
-        <span class="material-icons">edit</span>
-        Editar chef
-      </a>
+      <h2>Chef:
+        {{ chef.name }}</h2>
+      {% if session.user.isAdmin %}
+        <a href="/admin/chefs/{{ chef.id }}/edit">
+          <span class="material-icons">edit</span>
+          Editar chef
+        </a>
+      {% endif %}
     </div>
 
     <img class="avatar-container" src="{{ file.src }}" alt="{{ file.name }}">
 
     <div class="chef-title">
       <h1>{{ chef.name }}</h1>
-      <p>{{ chef.number_recipes }} receita(s)</p>
+      <p>{{ chef.number_recipes }}
+        receita(s)</p>
     </div>
 
     <div class="chef-recipes">

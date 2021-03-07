@@ -9,5 +9,5 @@
 {% block content %}
   {{ nunjucks.checkHeader('admin-area', '') }}
 
-  {{ section.recipeDetail('admin', recipe, files) }}
+  {{ section.recipeDetail('admin', recipe, files, session.user) }}
 {% endblock %}

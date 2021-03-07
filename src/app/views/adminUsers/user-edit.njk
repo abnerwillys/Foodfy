@@ -28,7 +28,8 @@
     </div>
 
     <form 
-      id="user-form" 
+      id="user-form"
+      class="user-edit" 
       action="/admin/users?_method=PUT"  
       method="POST"
     >
@@ -39,6 +40,12 @@
         type="hidden" 
         name="id" 
         value="{{ user.id }}"
+      >
+      <input 
+        id="check_is_admin"
+        type="hidden" 
+        name="check_is_admin"
+        value="{{ user.is_admin }}"
       >
     </form>
   </section>

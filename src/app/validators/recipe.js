@@ -61,6 +61,14 @@ module.exports = {
         return res.redirect('/admin/recipes')
       }
 
+      const { user: userInSession } = req.session
+      if (recipe.user_id != userInSession.id) {
+        if (!userInSession.isAdmin) {
+          req.session.error = `ATENÇÃO: Só é possível editar uma receita caso seja admnistrador do sistema ou seja uma receita sua!`
+          return res.redirect('/admin/recipes')
+        }
+      }
+
       req.recipe = recipe
 
       next()
@@ -68,16 +76,45 @@ module.exports = {
       console.error(error)
     }
   },
-  put(req, res, next) {
+  async put(req, res, next) {
     try {
       const fillAllFields = checkAllFields(req.body)
       if (fillAllFields) {
         return res.render('adminRecipes/recipe-edit', fillAllFields)
       }
 
+      const { user: userInSession } = req.session
+      const recipe = await Recipe.findById(req.body.id)
+
+      if (recipe.user_id != userInSession.id) {
+        if (!userInSession.isAdmin) {
+          req.session.error = `ATENÇÃO: Só é possível atualizar caso seja admnistrador do sistema ou seja uma receita sua!`
+          return res.redirect('/admin/recipes')
+        }
+      }
+
       next()
     } catch (error) {
       console.error(error)
+    }
+  },
+  async delete(req, res, next) {
+    try {
+      const { user: userInSession } = req.session
+      const recipe = await Recipe.findById(req.body.id)
+
+      if (recipe.user_id != userInSession.id) {
+        if (!userInSession.isAdmin) {
+          req.session.error = `ATENÇÃO: Só é possível deletar caso seja admnistrador do sistema ou seja uma receita sua!`
+          return res.redirect('/admin/recipes')
+        }
+      }
+
+      next()
+    } catch (error) {
+      console.error(error)
+      req.session.error = `ATENÇÃO: ${error}`
+      res.redirect('/admin/recipes')
     }
   },
 }

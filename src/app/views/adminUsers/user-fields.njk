@@ -24,13 +24,23 @@
 </div>
 
 <div class="checkbox-block">
-  <input 
-    {% if error %}class="input-error"{%endif%}
-    id="is_admin"
-    type="checkbox" 
-    name="is_admin" 
-    value="1"
-    {% if user.is_admin == "1" %}checked{%endif%}
-  />
-  <label for="is_adm">Admnistrador</label>
+  <div>
+    <input 
+      {% if error %}class="input-error"{%endif%}
+      id="is_admin"
+      type="checkbox" 
+      name="is_admin" 
+      value="1"
+      {% if session.user.id == user.id %}disabled{%endif%}
+      {% if user.is_admin %}checked{%endif%}
+    />
+    <label for="is_admin">Admnistrador</label>
+  </div>
+
+  {% if session.user.id == user.id %}
+    <p>
+      <i class="material-icons">warning</i>
+      Não é possível alterar essa opção do próprio perfil!
+    </p>
+  {%endif%}
 </div>

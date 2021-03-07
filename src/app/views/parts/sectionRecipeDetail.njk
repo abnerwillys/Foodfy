@@ -1,14 +1,17 @@
-{% macro recipeDetail(page, recipe, files) %}
+{% macro recipeDetail(page, recipe, files, userInSession) %}
 
   <section id="recipe-detail" class="{{page}}">
 
     {% if page == 'admin' %}
       <div class="edit-recipe">
         <h2>Receita: {{ recipe.title }}</h2>
-        <a href="/admin/recipes/{{recipe.id}}/edit">
-          <span class="material-icons">edit</span>
-          Editar receita
-        </a>
+
+        {% if userInSession.isAdmin or userInSession.id == recipe.user_id %}
+          <a href="/admin/recipes/{{recipe.id}}/edit">
+            <span class="material-icons">edit</span>
+            Editar receita
+          </a>
+        {% endif %}
       </div>
     {% endif %}
 

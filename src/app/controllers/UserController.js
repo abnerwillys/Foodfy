@@ -8,7 +8,8 @@ module.exports = {
     req.session.error   = ''
     req.session.success = ''
 
-    const users = await (await User.findAll()).sort((a,b) => a.name.localeCompare(b.name))
+    const users = (await User.findAll())
+      .sort((a,b) => a.name.localeCompare(b.name))
 
     if (users == "") {
       const message = "Nenhum usuário cadastrado!"
@@ -26,6 +27,8 @@ module.exports = {
 
       let now = new Date()
       now = now.setDate(now.getDate() + 1)
+
+      console.log(req.body)
 
       const password = crypto.randomBytes(5).toString('hex')
       const newUser = {
@@ -60,9 +63,21 @@ module.exports = {
   },
   async put(req, res) {
     try {
-      const { id } = req.body
+      const { id, name, email, check_is_admin } = req.body
+      const { user: userInSession } = req.session
 
-      await User.update(id, req.body)
+      await User.update(id, {
+        name, 
+        email, 
+        is_admin: check_is_admin
+      })
+
+      if (userInSession.id == id) {
+        req.session.user = {
+          id,
+          isAdmin: check_is_admin === 'true' ? true : false
+        }
+      }
 
       req.session.success = 'Usuário atualizado com sucesso!'
       return res.redirect('/admin/users')
