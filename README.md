@@ -1,6 +1,6 @@
 <h1 align="center">
   <img 
-    src="/public/readme-assets/chef.png"
+    src="./public/readme-assets/chef.png"
     width="200px"
     alt="Logo do LaunchBase">
 </h1>
@@ -45,11 +45,11 @@
 ---
 ### 🔖 Sobre
 
-O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi proposto como desafio durante o **Bootcamp LaunchBase** lecionado pela **Rocketseat**, com o intuito de colocar em prática todo o conhecimento adquirido. O projeto foi desenvolvido em diversas etapas conforme a evolução no curso.
+O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi proposto como Trabalho Final durante o **Bootcamp LaunchBase** lecionado pela **Rocketseat**, com o intuito de colocar em prática todo o conhecimento adquirido. O projeto foi desenvolvido totalmente pelo aluno seguindo diversas instruções/etapas (simulando ambiente de trabalho) ao longo do curso.
 
 <p align="center">
     <a href="https://www.youtube.com/watch?v=7Tl0F6VSKjQ">
-        <img src="/public/readme-assets/video-image.png" width="600px">
+        <img sr.c="/public/readme-assets/video-image.png" width="600px">
     </a>
 </p>
 
@@ -58,107 +58,95 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
 
  - [x] 💯 Construindo Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-02/blob/master/desafios/02-foodfy.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/01-building)
  - [x] 💯 Refatorando Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-03/blob/master/desafios/03-refatorando-foodfy.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/02-refactoring)
  - [x] 💯 Administração do Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/03-admin)
  - [x] 💯 Persistindo Dados do Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/04-persisting-data)
  - [x] 💯 Upload de Imagens no Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-07/blob/master/desafios/07-foodfy-envio-imagens.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/05-upload-images)
  - [x] 💯 Apresentação e Organização das Receitas no Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-08/blob/master/desafios/08-apresentacao-organizacao-receitas-foodfy.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/06-presentation-organization-of-recipes)
- - [ ] 👨‍💻 Sistema de login Foodfy:
+ - [x] 💯 Sistema de login Foodfy:
     - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-10/blob/master/desafios/10-sistema-login-foodfy.md)
-    - [Solução](https://github.com/abner-starkasty/Project-Foodfy/tree/master/07-login-system)
-
-👉 **Legenda**:
-
-- Instruções: Link das informações dessa etapa do projeto;
-- Solução: Link da minha solução para o desafio proposto;
 
 ---
 ### 🛠 Tecnologias utilizadas
 
 <p align="center">
-As seguintes ferramentas foram usadas na solução dos desafios:
+As seguintes ferramentas foram usadas:
 
 <p align="center">
     <a href="https://www.javascript.com/">
         <img 
-            src="/public/readme-assets/icon-javascript.svg" 
+            src="./public/readme-assets/icon-javascript.svg" 
             alt="logo JavaScript"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="http://www.ecma-international.org/ecma-262/6.0/">
         <img 
-            src="/public/readme-assets/icon-ecmascript6.svg" 
+            src="./public/readme-assets/icon-ecmascript6.svg" 
             alt="logo ECS6"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
         <img 
-            src="/public/readme-assets/icon-css3.svg" 
+            src="./public/readme-assets/icon-css3.svg" 
             alt="logo CSS3"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
         <img 
-            src="/public/readme-assets/icon-html5.svg" 
+            src="./public/readme-assets/icon-html5.svg" 
             alt="logo HTML5"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://mozilla.github.io/nunjucks/">
         <img 
-            src="/public/readme-assets/icon-nunjucks.svg" 
+            src="./public/readme-assets/icon-nunjucks.svg" 
             alt="logo HTML5"
             width="52px"
             style="border-radius: 8px;">
     </a>
     <a href="https://nodejs.org/en/">
         <img 
-            src="/public/readme-assets/icon-nodejs.svg" 
+            src="./public/readme-assets/icon-nodejs.svg" 
             alt="logo Node.js"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://expressjs.com/">
         <img 
-            src="/public/readme-assets/icon-express2.png" 
+            src="./public/readme-assets/icon-express2.png" 
             alt="logo framework express"
             width="85px">
     </a>
     <a href="https://git-scm.com/">
         <img 
-            src="/public/readme-assets/icon-git.svg" 
+            src="./public/readme-assets/icon-git.svg" 
             alt="logo git"
             width="50px">
     </a>
     <a href="https://github.com/">
         <img 
-            src="/public/readme-assets/icon-gitHub2.svg" 
+            src="./public/readme-assets/icon-gitHub2.svg" 
             alt="logo git"
             width="50px">
     </a>
     <a href="https://www.postgresql.org/">
         <img 
-            src="/public/readme-assets/icon-postgresql.svg" 
+            src="./public/readme-assets/icon-postgresql.svg" 
             alt="logo postgreSQL"
             width="50px">
     </a>
     <a href="https://code.visualstudio.com/">
         <img 
-            src="/public/readme-assets/icon-vscode.svg" 
+            src="./public/readme-assets/icon-vscode.svg" 
             alt="logo vsCode"
             width="50px">
     </a>
@@ -166,13 +154,22 @@ As seguintes ferramentas foram usadas na solução dos desafios:
 
 
 ---
-### 📎 Como baixar o projeto
+### 📎 Como baixar/testar o projeto
 
 ##### 👉 Ferramentas necessárias:
 - Editor:
     - [Vscode](https://code.visualstudio.com/) foi utilizado nesse projeto; 
 - [Node.Js](https://nodejs.org/en/) - Instalado em sua máquina;
+- [Yarn](https://yarnpkg.com/getting-started/install) - Gerenciador de pacotes de sua preferência (Yarn foi usado nesse projeto);
 - [Git](https://git-scm.com/downloads) - Instalado em sua máquina;
+- [PostgreSQL](https://www.postgresql.org/download/) - Instalado em sua máquina. Segue abaixo a configuração usada nesse projeto em *src/config/db.js*:
+    - user: 'postgres',
+    - password: '12345',
+    - host: 'localhost',
+    - port: 5400,
+    - database: 'foodfydb'
+
+
 
 ##### 👉 Após instalar as ferramentas:
 
@@ -183,19 +180,35 @@ As seguintes ferramentas foram usadas na solução dos desafios:
 # Clonar repositório
 $ git clone https://github.com/abner-starkasty/Foodfy
 
-# Entrar no diretório da etapa do projeto desejada
-$ cd Foodfy/07-login-system
+# Entrar/abrir diretório do projeto no seu editor
+$ cd Foodfy
+
+# Criar banco de dados(observe a configuração do postgres comentada mais acima) utilizando a query dentro do arquivo: src/config/FoodfyDb/Foodfy.sql
+
+# Basta copiar e colar tudo na aba query do postbird e executar a query.
+
+# Executar seeds.js para criar primeiro usuário
+$ node src/config/FoodfyDb/seeds.js
 
 # Instalar dependências
-$ npm install
+$ yarn
 
 # Iniciar o server
-$ npm start
+$ yarn start
 
 # Acesso de 2 formas:
   - manualmente pela porta: http://localhost:5000/
   - automaticamente (abre assim que iniciar o server) pelo browsersync: http://localhost:3000/
 
+# Usuário criado através da seed, para poder logar no sistema:
+  - email: maykao.da.massa@rocketseat.com.br
+  - senha: 12345
+
+# Deixei fotos modelos para poder utilizar na criação de receitas e chefs dentro de:
+  - public/assets/chefs
+  - public/assets/recipes
+
+# Qualquer dúvida sinta-se a vontade para entrar em contato em abwillys001@gmail.com
 ```
 
 
