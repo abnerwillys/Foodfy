@@ -1,20 +1,13 @@
-const Chef   = require('../models/Chef')
-const File   = require('../models/File')
-const Recipe = require('../models/Recipe')
+const LoadRecipeService = require('../services/LoadRecipeService')
+const LoadChefService   = require('../services/LoadChefService')
 
-const { treatFilesFromData } = require('../../lib/useful')
 const { notFoundData } = require('../../lib/page404')
 
 module.exports = {
   async index(req, res) {
     try {
-      let recipes = await Recipe.getAll()
+      const recipes = await LoadRecipeService.load('recipes', { params: {}, req })
       if (recipes == "") return res.render('clientArea/index')
-
-      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
-      const results = await Promise.all(recipesPromises)
-
-      recipes = treatFilesFromData('recipe', recipes, results, req)
       
       return res.render('clientArea/index', { recipes })
 
@@ -42,16 +35,11 @@ module.exports = {
         isDesc: true
       }
 
-      let recipes = await Recipe.paginated(params)
+      const recipes = await LoadRecipeService.load('recipes', { params, req })
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
         return res.render("clientArea/recipes-list", { message })
       } 
-      
-      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
-      const results = await Promise.all(recipesPromises)
-
-      recipes = treatFilesFromData('recipe', recipes, results, req)
 
       const pagination = {
         totalPages: Math.ceil(recipes[0].total / limit),
@@ -67,15 +55,8 @@ module.exports = {
   },
   async recipeDetail(req, res) {
     try {
-      const recipe = await Recipe.findRecipe(req.params.id)
+      const { recipe, files } = await LoadRecipeService.load('recipe', { id: req.params.id , req})
       if (!recipe) return res.render('not-found', { notFoundData })
-
-      let results = await File.findRecipeFile(recipe.id)
-      let files = results.rows
-      files     = files.map(file => ({
-        ...file,
-        src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
-      }))
 
       return res.render('clientArea/recipe-detail', { recipe, files })
 
@@ -85,16 +66,11 @@ module.exports = {
   },
   async chefs(req, res) {
     try {
-      let chefs = await Chef.findAllGroupBy('id')
+      const chefs = await LoadChefService.load('chefs', { req, isClient: true })
       if (chefs == "") {
         const message = "Nenhum chef cadastrado!"
         return res.render('clientArea/chefs-list', { message })
       } 
-      
-      const chefsPromises = chefs.map(chef => Chef.fileChef(chef.file_id))
-      const results = await Promise.all(chefsPromises)
-
-      chefs = treatFilesFromData('chef', chefs, results, req)
 
       return res.render('clientArea/chefs-list', { chefs })
 
@@ -105,24 +81,19 @@ module.exports = {
   },
   async chefDetail(req, res) {
     try {
-      const chef = await Chef.findChef(req.params.id)
+      const { chef, file, recipes } = await LoadChefService.load('chef', {
+        id: req.params.id,
+        req,
+        isClient: true
+      })
+
       if (!chef) return res.render('not-found', { notFoundData })
 
-      const file = await File.findById(chef.file_id)
-      file.src   = `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
-  
-      let recipes = await Chef.findRecipesFromChef(chef.id, 'created_at')
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
         return res.render('clientArea/chef-detail', { chef, file, message })
       } 
-      
-      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
-      const results = await Promise.all(recipesPromises)
-      
-      recipes = treatFilesFromData('recipe', recipes, results, req)
-
-      return res.render('clientArea/chef-detail', { chef, recipes, file })
+      return res.render('clientArea/chef-detail', { chef, file, recipes })
 
     } catch (error) {
       console.error(error)
@@ -145,8 +116,8 @@ module.exports = {
         orderBy: "updated_at",
         isDesc: true
       }
-
-      let recipes = await Recipe.paginated(params)
+      
+      const recipes = await LoadRecipeService.load('recipes', { params, req })
       if (recipes == "") {
         const message = "Nenhuma receita encontrada!"
         return res.render("clientArea/recipes-search", {
@@ -155,11 +126,6 @@ module.exports = {
         })
       } 
       
-      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
-      const results = await Promise.all(recipesPromises)
-      
-      recipes = treatFilesFromData('recipe', recipes, results, req)
-
       const pagination = {
         totalPages: Math.ceil(recipes[0].total / limit),
         page

@@ -1,4 +1,4 @@
-const Chef = require('../models/Chef')
+const LoadChefService = require('../services/LoadChefService')
 
 function checkAllFields(body) {
   const keys = Object.keys(body)
@@ -36,13 +36,15 @@ module.exports = {
   },
   async show(req, res, next) {
     try {
-      const chef = await Chef.findChef(req.params.id)
+      const { chef, file, recipes } = await LoadChefService.load('chef', { id: req.params.id , req})
       if (!chef) {
         req.session.error = 'Chef não encontrado!'
         return res.redirect('/admin/chefs')
       }
 
       req.chef = chef
+      req.file = file
+      req.recipes = recipes
 
       next()
     } catch (error) {
@@ -51,13 +53,14 @@ module.exports = {
   },
   async edit(req, res, next) {
     try {
-      const chef = await Chef.findChef(req.params.id)
+      const { chef, file } = await LoadChefService.load('chef', { id: req.params.id , req})
       if (!chef) {
         req.session.error = 'Chef não encontrado!'
         return res.redirect('/admin/chefs')
       }
 
       req.chef = chef
+      req.file = file
 
       next()
     } catch (error) {

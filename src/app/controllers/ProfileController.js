@@ -17,15 +17,10 @@ module.exports = {
     try {
       const { id, name, email } = req.body
 
-      const error = await User.update(id, {
+      await User.update(id, {
         name,
         email,
       })
-
-      if (error) {
-        req.session.error = `ATENÇÃO: ${error}`
-        return res.redirect('/admin/profile')
-      }
 
       req.session.success = 'Perfil atualizado com sucesso!'
 

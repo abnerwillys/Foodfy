@@ -1,5 +1,5 @@
-const User = require('../models/User')
 const { compare } = require('bcryptjs')
+const LoadUserService = require('../services/LoadUserService')
 
 function checkAllFields(body) {
   const keys = Object.keys(body)
@@ -22,9 +22,9 @@ module.exports = {
         return res.render('adminUsers/user-create', fillAllFields)
       }
 
-      const { email } = req.body
-
-      const user = await User.findOne({ where: { email }})
+      const user = await LoadUserService.load('user', {
+        where: { email: req.body.email }
+      })
 
       if (user) {
         const error = 'Usuário já cadastrado!'
@@ -43,8 +43,9 @@ module.exports = {
         return res.render('adminUsers/user-edit', fillAllFields)
       }
 
-      const { id } = req.body
-      const user = await User.findById(id)
+      const user = await LoadUserService.load('user', {
+        where: { id: req.body.id }
+      })
 
       if (!user) {
         return res.render('adminUsers/user-edit', {
@@ -82,8 +83,10 @@ module.exports = {
   async indexProfile(req, res, next) {
     try {
       const { user: userInSession } = req.session 
-
-      const user = await User.findById(userInSession.id)
+      
+      const user = await LoadUserService.load('user', {
+        where: { id: userInSession.id }
+      })
       if (!user) 
         return res.render('adminProfile/index', {
           error: "Usuário não encontrado!"
@@ -103,17 +106,23 @@ module.exports = {
         return res.render('adminProfile/index', fillAllFields)
       }
 
-      const { id, password } = req.body
+      const { id, email, password } = req.body
+      const { user: userInSession } = req.session
 
       if (!password) {
         const error = 'Coloque sua senha para atualizar seu cadastro!'
         return res.render('adminProfile/index', { error, user: req.body })
       }
 
-      const user = await User.findById(id)
+      const userAlreadyExists = await LoadUserService.load('user', { where: { email }})
+      if (userAlreadyExists && userAlreadyExists.id != userInSession.id) {
+        const error = 'Já existe um usuário com este email!'
+        return res.render('adminProfile/index', { error, user: req.body })
+      }
+
+      const user = await LoadUserService.load('user', { where: { id }})
 
       const passed = await compare(password, user.password)
-
       if (!passed) {
         const error = 'Senha incorreta!'
         return res.render('adminProfile/index', { error, user: req.body })

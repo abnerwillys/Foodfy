@@ -1,4 +1,5 @@
 const Recipe = require('../models/Recipe')
+const LoadRecipeService = require('../services/LoadRecipeService')
 
 function checkAllFields(body) {
   const keys = Object.keys(body)
@@ -40,13 +41,14 @@ module.exports = {
   },
   async show(req, res, next) {
     try {
-      const recipe = await Recipe.findRecipe(req.params.id)
+      const { recipe, files } = await LoadRecipeService.load('recipe', { id: req.params.id , req})
       if (!recipe) {
         req.session.error = 'Receita não encontrada!'
         return res.redirect('/admin/recipes')
       }
 
       req.recipe = recipe
+      req.files  = files
 
       next()
     } catch (error) {
@@ -55,7 +57,7 @@ module.exports = {
   },
   async edit(req, res, next) {
     try {
-      const recipe = await Recipe.findRecipe(req.params.id)
+      const { recipe, files } = await LoadRecipeService.load('recipe', { id: req.params.id , req})
       if (!recipe) {
         req.session.error = 'Receita não encontrada!'
         return res.redirect('/admin/recipes')
@@ -70,6 +72,7 @@ module.exports = {
       }
 
       req.recipe = recipe
+      req.files  = files
 
       next()
     } catch (error) {
@@ -84,7 +87,7 @@ module.exports = {
       }
 
       const { user: userInSession } = req.session
-      const recipe = await Recipe.findById(req.body.id)
+      const { recipe } = await LoadRecipeService.load('recipe', { id: req.body.id , req})
 
       if (recipe.user_id != userInSession.id) {
         if (!userInSession.isAdmin) {
@@ -101,7 +104,7 @@ module.exports = {
   async delete(req, res, next) {
     try {
       const { user: userInSession } = req.session
-      const recipe = await Recipe.findById(req.body.id)
+      const { recipe } = await LoadRecipeService.load('recipe', { id: req.body.id , req})
 
       if (recipe.user_id != userInSession.id) {
         if (!userInSession.isAdmin) {

@@ -1,6 +1,6 @@
 const Recipe = require('../models/Recipe')
 const File   = require('../models/File')
-const { treatFilesFromData } = require('../../lib/useful')
+const LoadRecipeService = require('../services/LoadRecipeService')
 
 function treatFieldInformation(body) {
   if (body.information == '' || !body.information) {
@@ -30,16 +30,11 @@ module.exports = {
 
       const userIdForPaginate = !userInSession.isAdmin ? userInSession.id : null
 
-      let recipes = await Recipe.paginated(params, userIdForPaginate)
+      const recipes = await LoadRecipeService.load('recipes', { params, userIdForPaginate, req })
       if (recipes == "") {
         const message = "Nenhuma receita cadastrada!"
         return res.render('adminRecipes/recipes-manager', { message, error, success })
       }
-
-      const recipesPromises = recipes.map(recipe => File.findRecipeFile(recipe.id))
-      const results = await Promise.all(recipesPromises)
-
-      recipes = treatFilesFromData('recipe', recipes, results, req)
 
       const pagination = {
         totalPages: Math.ceil(recipes[0].total / limit),
@@ -95,17 +90,10 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      const { recipe } = req
+      const { recipe, files }  = req
       const { error, success } = req.session
       req.session.error   = ''
       req.session.success = ''
-
-      let results = await File.findRecipeFile(recipe.id)
-      let files = results.rows
-      files     = files.map(file => ({
-        ...file,
-        src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
-      }))
 
       return res.render('adminRecipes/recipe-detail', {
         recipe,
@@ -122,19 +110,12 @@ module.exports = {
   },
   async edit(req, res) {
     try {
-      const { recipe } = req
+      const { recipe, files }  = req
       const { error, success } = req.session
       req.session.error   = ''
       req.session.success = ''
       
       const chefOptions = await Recipe.chefSelectOptions()
-
-      const results = await File.findRecipeFile(recipe.id)
-      let files = results.rows
-      files     = files.map(file => ({
-        ...file,
-        src: `${req.protocol}://${req.headers.host}${file.path.replace('public', "")}`
-      }))
 
       return res.render('adminRecipes/recipe-edit', {
         recipe,
