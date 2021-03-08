@@ -88,10 +88,10 @@ module.exports = {
         ${filterQuery}
         ${userIdQuery}
         ORDER BY recipes.${orderBy ? orderBy : 'title'} ${isDesc ? 'DESC' : 'ASC'}
-        LIMIT $1 OFFSET $2
+        ${limit && offset ? `LIMIT ${limit} OFFSET ${offset}` : ''}
       `
 
-      const results = await db.query(query, [limit, offset])
+      const results = await db.query(query)
       return results.rows
 
     } catch (error) {
@@ -99,59 +99,3 @@ module.exports = {
     }
   },
 }
-
-/* 
-async createRec(data) {
-  const query = `
-    INSERT INTO recipes (
-      chef_id,
-      title,
-      ingredients,
-      preparation,
-      information
-    ) VALUES ($1, $2, $3, $4, $5)
-    RETURNING id
-  `
-
-  const values = [
-    data.chef_id,
-    data.title,
-    data.ingredients,
-    data.preparation,
-    data.information,
-  ]
-
-  const results = await db.query(query, values)
-  return results.rows[0].id;
-},
-update(data) {
-  const query = `
-    UPDATE recipes SET
-      chef_id=($1),
-      title=($2),
-      ingredients=($3),
-      preparation=($4),
-      information=($5)
-    WHERE id = $6
-  `
-
-  const values = [
-    data.chef,
-    data.title,
-    data.ingredients,
-    data.preparation,
-    data.information,
-    data.id
-  ]
-
-  return db.query(query, values)
-},
-delete(id) {
-  const query = `
-    DELETE FROM recipes
-    WHERE id = $1
-  `
-
-  return db.query(query, [id])
-},
-*/

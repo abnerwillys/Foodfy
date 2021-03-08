@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const User   = require('../models/User')
-const { sendNewUserEmail }   = require('../services/SendMailService')
+const { sendNewUserEmail } = require('../services/SendMailService')
+const LoadUserService = require('../services/LoadUserService')
 
 module.exports = {
   async list(req, res) {
@@ -8,9 +9,7 @@ module.exports = {
     req.session.error   = ''
     req.session.success = ''
 
-    const users = (await User.findAll())
-      .sort((a,b) => a.name.localeCompare(b.name))
-
+    const users = await LoadUserService.load('users')
     if (users == "") {
       const message = "Nenhum usuário cadastrado!"
       return res.render('adminUsers/users-manager', { message, success, error })
@@ -55,7 +54,7 @@ module.exports = {
     req.session.error   = ''
     req.session.success = ''
 
-    const user = await User.findOne({ where: { id }})
+    const user = await LoadUserService.load('user', { where: { id }})
 
     return res.render('adminUsers/user-edit', { user, success, error })
   },

@@ -62,9 +62,6 @@ module.exports = {
         })
       }
 
-      console.log(token)
-      console.log(user.reset_token)
-
       if (password != repeat_password) {
         return res.render('session/reset-password', {
           token,

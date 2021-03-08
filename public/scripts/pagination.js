@@ -41,8 +41,6 @@ function createPagination(pagination) {
   const totalPages   = +pagination.dataset.total
   const filter       = pagination.dataset.filter
 
-  console.log(filter)
-
   const pages = paginate(selectedPage, totalPages)
 
   let elements = ""

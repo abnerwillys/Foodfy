@@ -37,7 +37,7 @@
   <a href="#-sobre">Sobre</a> •
   <a href="#-etapas-do-projeto">Etapas do projeto</a> • 
   <a href="#-tecnologias-utilizadas">Tecnologias</a> • 
-  <a href="#-como-baixar-o-projeto">Como baixar o projeto</a> • 
+  <a href="#-como-baixar/testar-o-projeto">Como baixar o projeto</a> • 
   <a href="#-licença">Licença</a> • 
   <a href="#-desenvolvedor">Desenvolvedor</a>
 </p>
@@ -48,8 +48,8 @@
 O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi proposto como Trabalho Final durante o **Bootcamp LaunchBase** lecionado pela **Rocketseat**, com o intuito de colocar em prática todo o conhecimento adquirido. O projeto foi desenvolvido totalmente pelo aluno seguindo diversas instruções/etapas (simulando ambiente de trabalho) ao longo do curso.
 
 <p align="center">
-    <a href="https://www.youtube.com/watch?v=7Tl0F6VSKjQ">
-        <img sr.c="/public/readme-assets/video-image.png" width="600px">
+    <a href="https://youtu.be/ihcBdWv-q_Y">
+        <img src="./public/readme-assets/video-image.png" width="600px">
     </a>
 </p>
 
@@ -144,6 +144,12 @@ As seguintes ferramentas foram usadas:
             alt="logo postgreSQL"
             width="50px">
     </a>
+    <a href="https://www.electronjs.org/apps/postbird">
+        <img 
+            src="./public/readme-assets/icon-postbird.png" 
+            alt="logo postgreSQL"
+            width="50px">
+    </a>
     <a href="https://code.visualstudio.com/">
         <img 
             src="./public/readme-assets/icon-vscode.svg" 
@@ -162,12 +168,10 @@ As seguintes ferramentas foram usadas:
 - [Node.Js](https://nodejs.org/en/) - Instalado em sua máquina;
 - [Yarn](https://yarnpkg.com/getting-started/install) - Gerenciador de pacotes de sua preferência (Yarn foi usado nesse projeto);
 - [Git](https://git-scm.com/downloads) - Instalado em sua máquina;
-- [PostgreSQL](https://www.postgresql.org/download/) - Instalado em sua máquina. Segue abaixo a configuração usada nesse projeto em *src/config/db.js*:
-    - user: 'postgres',
-    - password: '12345',
-    - host: 'localhost',
-    - port: 5400,
-    - database: 'foodfydb'
+- [PostBird](https://www.electronjs.org/apps/postbird) - Instalado em sua máquina;
+- [PostgreSQL](https://www.postgresql.org/download/) - Instalado em sua máquina. Segue abaixo informações importantes:
+    - [Configuração do Banco de Dados usado nesse projeto](https://github.com/abner-starkasty/Foodfy/blob/master/src/config/db.js);
+    - [Arquivo SQL para criação do banco, tabelas e constraints](https://github.com/abner-starkasty/Foodfy/blob/master/src/config/FoodfyDb/Foodfy.sql);
 
 
 
@@ -183,8 +187,7 @@ $ git clone https://github.com/abner-starkasty/Foodfy
 # Entrar/abrir diretório do projeto no seu editor
 $ cd Foodfy
 
-# Criar banco de dados(observe a configuração do postgres comentada mais acima) utilizando a query dentro do arquivo: src/config/FoodfyDb/Foodfy.sql
-
+# Criar banco de dados utilizando o arquivo Foodfy.sql
 # Basta copiar e colar tudo na aba query do postbird e executar a query.
 
 # Executar seeds.js para criar primeiro usuário
