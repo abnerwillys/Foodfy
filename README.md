@@ -57,19 +57,19 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
 ### 📝 Etapas do projeto
 
  - [x] 💯 Construindo Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-02/blob/master/desafios/02-foodfy.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/01-construindo-foodfy/01-construindo-foodfy.md)
  - [x] 💯 Refatorando Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-03/blob/master/desafios/03-refatorando-foodfy.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/02-refatorando-foodfy/02-refatorando-foodfy.md)
  - [x] 💯 Administração do Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-04/blob/master/desafios/04-admin-foodfy.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/03-admnistra%C3%A7%C3%A3o-do-foodfy/03-admnistra%C3%A7%C3%A3o-do-foodfy.md)
  - [x] 💯 Persistindo Dados do Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-05/blob/master/desafios/05-persistindo-dados-foodfy.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/04-persistindo-dados-do-foodfy/04-persistindo-dados-do-foodfy.md)
  - [x] 💯 Upload de Imagens no Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-07/blob/master/desafios/07-foodfy-envio-imagens.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/05-upload-de-imagens-no-foodfy/05-upload-de-imagens-no-foodfy.md)
  - [x] 💯 Apresentação e Organização das Receitas no Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-08/blob/master/desafios/08-apresentacao-organizacao-receitas-foodfy.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/06-apresenta%C3%A7%C3%A3o-e-organiza%C3%A7%C3%A3o-das-receitas-foodfy/06-apresenta%C3%A7%C3%A3o-e-organiza%C3%A7%C3%A3o-das-receitas-foodfy.md)
  - [x] 💯 Sistema de login Foodfy:
-    - [Instruções](https://github.com/abner-starkasty/bootcamp-launchbase-desafios-10/blob/master/desafios/10-sistema-login-foodfy.md)
+    - [Instruções](https://github.com/abner-starkasty/Foodfy/blob/master/public/readme/instructions-challenge/07-sistema-de-login-foodfy/07-sistema-de-login-foodfy.md)
 
 ---
 ### 🛠 Tecnologias utilizadas
