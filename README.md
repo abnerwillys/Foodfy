@@ -1,6 +1,6 @@
 <h1 align="center">
   <img 
-    src="./public/readme-assets/chef.png"
+    src="./public/readme/assets/chef.png"
     width="200px"
     alt="Logo do LaunchBase">
 </h1>
@@ -49,7 +49,7 @@ O projeto **Foodfy** é um site de receitas culinárias. Esse projeto foi propos
 
 <p align="center">
     <a href="https://youtu.be/ihcBdWv-q_Y">
-        <img src="./public/readme-assets/video-image.png" width="600px">
+        <img src="./public/readme/assets/video-image.png" width="600px">
     </a>
 </p>
 
@@ -80,79 +80,79 @@ As seguintes ferramentas foram usadas:
 <p align="center">
     <a href="https://www.javascript.com/">
         <img 
-            src="./public/readme-assets/icon-javascript.svg" 
+            src="./public/readme/assets/icon-javascript.svg" 
             alt="logo JavaScript"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="http://www.ecma-international.org/ecma-262/6.0/">
         <img 
-            src="./public/readme-assets/icon-ecmascript6.svg" 
+            src="./public/readme/assets/icon-ecmascript6.svg" 
             alt="logo ECS6"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
         <img 
-            src="./public/readme-assets/icon-css3.svg" 
+            src="./public/readme/assets/icon-css3.svg" 
             alt="logo CSS3"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
         <img 
-            src="./public/readme-assets/icon-html5.svg" 
+            src="./public/readme/assets/icon-html5.svg" 
             alt="logo HTML5"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://mozilla.github.io/nunjucks/">
         <img 
-            src="./public/readme-assets/icon-nunjucks.svg" 
+            src="./public/readme/assets/icon-nunjucks.svg" 
             alt="logo HTML5"
             width="52px"
             style="border-radius: 8px;">
     </a>
     <a href="https://nodejs.org/en/">
         <img 
-            src="./public/readme-assets/icon-nodejs.svg" 
+            src="./public/readme/assets/icon-nodejs.svg" 
             alt="logo Node.js"
             width="50px"
             style="border-radius: 8px;">
     </a>
     <a href="https://expressjs.com/">
         <img 
-            src="./public/readme-assets/icon-express2.png" 
+            src="./public/readme/assets/icon-express2.png" 
             alt="logo framework express"
             width="85px">
     </a>
     <a href="https://git-scm.com/">
         <img 
-            src="./public/readme-assets/icon-git.svg" 
+            src="./public/readme/assets/icon-git.svg" 
             alt="logo git"
             width="50px">
     </a>
     <a href="https://github.com/">
         <img 
-            src="./public/readme-assets/icon-gitHub2.svg" 
+            src="./public/readme/assets/icon-gitHub2.svg" 
             alt="logo git"
             width="50px">
     </a>
     <a href="https://www.postgresql.org/">
         <img 
-            src="./public/readme-assets/icon-postgresql.svg" 
+            src="./public/readme/assets/icon-postgresql.svg" 
             alt="logo postgreSQL"
             width="50px">
     </a>
     <a href="https://www.electronjs.org/apps/postbird">
         <img 
-            src="./public/readme-assets/icon-postbird.png" 
+            src="./public/readme/assets/icon-postbird.png" 
             alt="logo postgreSQL"
             width="50px">
     </a>
     <a href="https://code.visualstudio.com/">
         <img 
-            src="./public/readme-assets/icon-vscode.svg" 
+            src="./public/readme/assets/icon-vscode.svg" 
             alt="logo vsCode"
             width="50px">
     </a>
